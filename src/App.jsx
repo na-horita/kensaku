@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import Title from './components/Title'
+import Form from './components/Form'
 import './App.css'
 
 function App() {
@@ -8,6 +9,7 @@ function App() {
   return (
     <div className="App">
         <Title />
+        <Form />
     </div>
   )
 }
