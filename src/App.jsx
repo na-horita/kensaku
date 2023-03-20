@@ -3,7 +3,7 @@ import axios from 'axios'
 import Title from './components/Title'
 import Form from './components/Form'
 import Results from './components/Results'
-import Frequent from './Frequent';
+import Frequent from './components/Frequent';
 import './App.css'
 
 function App() {
@@ -62,10 +62,10 @@ function App() {
   return (
     <div className="App">
         <Title />
+        <Frequent setWord={setWord} searchImages={searchImages}/>
         <Form setWord={setWord} getPhotoData={getPhotoData} />
         検索文字:{word}
         <Results photos = {photos} />
-        <Frequent />
     </div>
   )
 }
