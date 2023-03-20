@@ -3,6 +3,7 @@ import axios from 'axios'
 import Title from './components/Title'
 import Form from './components/Form'
 import Results from './components/Results'
+import Frequent from './Frequent';
 import './App.css'
 
 function App() {
@@ -64,6 +65,7 @@ function App() {
         <Form setWord={setWord} getPhotoData={getPhotoData} />
         検索文字:{word}
         <Results photos = {photos} />
+        <Frequent />
     </div>
   )
 }
