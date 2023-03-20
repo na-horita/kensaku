@@ -1,0 +1,19 @@
+{
+  "frequents": [
+    {
+      "id": 1,
+      "name": "John Doe",
+      "word": "mountain"
+    },
+    {
+      "id": 2,
+      "name": "Jane Smith",
+      "word": "sky"
+    },
+    {
+      "id": 5,
+      "name": "tachinaba",
+      "word": "game"
+    }
+  ]
+}
