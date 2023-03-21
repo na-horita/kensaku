@@ -10,12 +10,12 @@ function App() {
   const [word, setWord] = useState('')
   const [photos,setPhotos] = useState([])
 
-  const searchImages = async () => {
+  const searchImages = async (word2 = word) => {
     const pexelsAPIKey = 'ycuX09ywi56e2xu3hSuMWNDw4vzJAyye7HKi7LYQIoEUz0QnoQC0sE7S';
     const unsplashAPIKey = 'UrTEHHwYhYpE612HSg7bfj7KPAHUADyp1YCJsoLEcL8';
 
     // Pexels APIのリクエスト 最大８０件まで
-    const pexelsResponse = await axios.get(`https://api.pexels.com/v1/search?query=${word}&per_page=10`, {
+    const pexelsResponse = await axios.get(`https://api.pexels.com/v1/search?query=${word2}&per_page=10`, {
       headers: {
         Authorization: pexelsAPIKey,
       },
@@ -30,7 +30,7 @@ function App() {
     }));
 
     // Unsplash APIのリクエスト 最大３０件まで
-    const unsplashResponse = await axios.get(`https://api.unsplash.com/search/photos?query=${word}&per_page=10`, {
+    const unsplashResponse = await axios.get(`https://api.unsplash.com/search/photos?query=${word2}&per_page=10`, {
       headers: {
         Authorization: `Client-ID ${unsplashAPIKey}`,
       },

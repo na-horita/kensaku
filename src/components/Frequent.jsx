@@ -1,21 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-
 
 const Frequent = ({setWord,searchImages}) => {
 
   const [frequents, setFrequents] = useState([]);
 
   const ccccc = async (e) => {
-    try {
-      e.preventDefault();
-      let word = await e.target.value;
-      await setWord(word);
-      //console.log(word);
-      await searchImages()
-    } catch (error) {
-      console.error(error);
-    }
+    e.preventDefault();
+    let word = e.target.value;
+    setWord(word);
+    searchImages(word);
   };
 
   useEffect(() => {
