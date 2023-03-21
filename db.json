@@ -11,9 +11,39 @@
       "word": "sky"
     },
     {
+      "id": 3,
+      "name": "Alex saisa",
+      "word": "game"
+    },
+    {
+      "id": 4,
+      "name": "yamashita takashi",
+      "word": "rural"
+    },
+    {
       "id": 5,
       "name": "tachinaba",
       "word": "game"
+    },
+    {
+      "id": 6,
+      "name": "uchida mikwe",
+      "word": "hill"
+    },
+    {
+      "id": 7,
+      "name": "uchida mikwe",
+      "word": "road"
+    },
+    {
+      "id": 8,
+      "name": "uchida mikwe",
+      "word": "island"
+    },
+    {
+      "id": 9,
+      "name": "uchida mikwe",
+      "word": "border"
     }
   ]
 }

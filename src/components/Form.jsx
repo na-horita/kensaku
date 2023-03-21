@@ -12,5 +12,5 @@ const Form = ({setWord,word,getPhotoData}) => {
         </form>
     );
 }
- 
+
 export default Form;
