@@ -10,6 +10,7 @@ function App() {
   const [word, setWord] = useState('')
   const [photos,setPhotos] = useState([])
 
+  //初期値をuseStateで保持している変数のwordにした。そしてこの変数は外部から代入することが可能としている。
   const searchImages = async (word2 = word) => {
     const pexelsAPIKey = 'ycuX09ywi56e2xu3hSuMWNDw4vzJAyye7HKi7LYQIoEUz0QnoQC0sE7S';
     const unsplashAPIKey = 'UrTEHHwYhYpE612HSg7bfj7KPAHUADyp1YCJsoLEcL8';
@@ -63,7 +64,7 @@ function App() {
     <div className="App">
         <Title />
         <Frequent setWord={setWord} searchImages={searchImages}/>
-        <Form setWord={setWord} getPhotoData={getPhotoData} />
+        <Form setWord={setWord} word={word} getPhotoData={getPhotoData} />
         検索文字:{word}
         <Results photos = {photos} />
     </div>
