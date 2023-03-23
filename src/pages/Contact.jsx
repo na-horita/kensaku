@@ -1,9 +1,13 @@
+import ContactForm from '../components/ContactForm';
+
 const Contact = () => {
     return(
     <>
-        <h1>Contact</h1>
-        <p>By <a href="https://unsplash.com/">Unsplash</a></p>
-    </>
+         <div className="haedtitle">
+            <h1>お問い合わせ</h1>
+        </div>
+        <ContactForm />
+</>
     );
 }
  
