@@ -1,13 +1,13 @@
 import React from 'react';
 import Masonry, {ResponsiveMasonry} from "react-responsive-masonry"
-import BeatLoader from "react-spinners/BeatLoader";
+import RiseLoader from "react-spinners/RiseLoader";
 
 const Results = ({photos,loading}) => {
 
     return (
 
         <>
-            {loading && <BeatLoader color={"#FFBB7A"} size={30} margin={4} />}
+            {loading && <RiseLoader color={"#26d146"} size={25} margin={40} />}
 
             {!loading &&
             <ResponsiveMasonry
