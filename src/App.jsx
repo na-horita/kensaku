@@ -1,10 +1,13 @@
 import { useState } from 'react'
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import axios from 'axios'
-import Title from './components/Title'
+
 import Form from './components/Form'
 import Results from './components/Results'
 import Frequent from './components/Frequent';
 import './App.css'
+import Top from './pages/Top';
+import Contact from './pages/Contact';
 
 function App() {
   const [word, setWord] = useState('')
@@ -65,7 +68,15 @@ function App() {
 
   return (
     <div className="App">
-        <Title />
+
+        <BrowserRouter>
+          {/* 2. Routesコンポーネントを使用して、各ページのルートを設定 */}
+          <Routes>
+            <Route path="/" element={<Top />} />
+            <Route path="/contact" element={<Contact />} />
+          </Routes>
+        </BrowserRouter>
+
         <Frequent setWord={setWord} searchImages={searchImages} loading = {loading} setLoading={setLoading} />
         <Form setWord={setWord} word={word} getPhotoData={getPhotoData} />
         検索文字:{word}

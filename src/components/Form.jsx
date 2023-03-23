@@ -1,14 +1,14 @@
-const Form = ({setWord,word,getPhotoData}) => {
+const Form = (props) => {
     return(
         <form>
             <input
             type="text"
             name="keyword"
             placeholder="e.g. cat"
-            onChange={e => setWord(e.target.value)}
-            value={word}
+            onChange={e => props.setWord(e.target.value)}
+            value={props.word}
             />
-            <button type="submit" onClick={getPhotoData}>Search</button>
+            <button type="submit" onClick={props.getPhotoData}>Search</button>
         </form>
     );
 }
