@@ -6,7 +6,14 @@ import Form from '../components/Form'
 import Results from '../components/Results'
 import Frequent from '../components/Frequent';
 
+import { useIndexedDB } from '../useIndexedDB';
+
 const Top = () => {
+  const [count, setCount] = useIndexedDB('count', 0);
+
+  const increment = () => {
+    setCount(count + 1);
+  };
 
   const [word, setWord] = useState('')
   const [photos,setPhotos] = useState([])
@@ -75,6 +82,11 @@ const Top = () => {
             <Form setWord={setWord} word={word} getPhotoData={getPhotoData} />
             検索文字:{word}
             <Results photos = {photos} loading = {loading} />
+
+            <div>
+                <p>Count: {count}</p>
+                <button onClick={increment}>Increment</button>
+            </div>
         </>
     );
 }
