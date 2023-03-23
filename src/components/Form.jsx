@@ -1,5 +1,5 @@
 const Form = (props) => {
-    return(
+  return (
         <form>
             <input
             type="text"
@@ -10,7 +10,7 @@ const Form = (props) => {
             />
             <button type="submit" onClick={props.getPhotoData}>Search</button>
         </form>
-    );
+  )
 }
 
-export default Form;
+export default Form

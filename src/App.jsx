@@ -1,12 +1,11 @@
 import { useState } from 'react'
-import { BrowserRouter, Link, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Link, Routes, Route } from 'react-router-dom'
 
 import './App.css'
-import Top from './pages/Top';
-import Contact from './pages/Contact';
+import Top from './pages/Top'
+import Contact from './pages/Contact'
 
-function App() {
-
+function App () {
   return (
     <div className="App">
 

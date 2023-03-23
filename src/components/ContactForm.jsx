@@ -1,11 +1,11 @@
-import { useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form'
 
-function ContactForm() {
-  const { register, handleSubmit } = useForm();
+function ContactForm () {
+  const { register, handleSubmit } = useForm()
 
   const onSubmit = (data) => {
-    console.log(data);
-  };
+    console.log(data)
+  }
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -20,7 +20,7 @@ function ContactForm() {
 
       <button type="submit">Submit</button>
     </form>
-  );
+  )
 }
- 
-export default ContactForm;
+
+export default ContactForm

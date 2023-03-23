@@ -1,22 +1,22 @@
-import { useLayoutEffect, useState } from 'react';
-import { set, get } from 'idb-keyval';
+import { useLayoutEffect, useState } from 'react'
+import { set, get } from 'idb-keyval'
 
-export function useIndexedDB(key, initialValue) {
-  const [value, setValue] = useState(0);
+export function useIndexedDB (key, initialValue) {
+  const [value, setValue] = useState(0)
 
   useLayoutEffect(() => {
     get(key).then((val) => {
       if (val !== undefined) {
-        setValue(val);
+        setValue(val)
       }
-    });
-  }, [key]);
+    })
+  }, [key])
 
   const save = (val) => {
     set(key, val).then(() => {
-      setValue(val);
-    });
-  };
+      setValue(val)
+    })
+  }
 
-  return [value, save];
+  return [value, save]
 }
