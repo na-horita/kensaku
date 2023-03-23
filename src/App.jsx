@@ -9,6 +9,7 @@ import './App.css'
 function App() {
   const [word, setWord] = useState('')
   const [photos,setPhotos] = useState([])
+  const [loading,setLoading] = useState(false)
 
   //初期値をuseStateで保持している変数のwordにした。そしてこの変数は外部から代入することが可能としている。
   const searchImages = async (word2 = word) => {
@@ -55,18 +56,20 @@ function App() {
     setPhotos(mergedPhotos);
   };
 
-  const getPhotoData = (e) => {
+  const getPhotoData = async (e) => {
     e.preventDefault();
-    searchImages();
+    setLoading(true);
+    await searchImages();
+    setLoading(false);
   };
 
   return (
     <div className="App">
         <Title />
-        <Frequent setWord={setWord} searchImages={searchImages}/>
+        <Frequent setWord={setWord} searchImages={searchImages} loading = {loading} setLoading={setLoading} />
         <Form setWord={setWord} word={word} getPhotoData={getPhotoData} />
         検索文字:{word}
-        <Results photos = {photos} />
+        <Results photos = {photos} loading = {loading} />
     </div>
   )
 }

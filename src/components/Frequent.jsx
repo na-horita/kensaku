@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from 'react';
 
-const Frequent = ({setWord,searchImages}) => {
+const Frequent = ({setWord,searchImages,loading,setLoading}) => {
 
   const [frequents, setFrequents] = useState([]);
 
   const ccccc = async (e) => {
     e.preventDefault();
     let word = e.target.value;
+    setLoading(true);
     setWord(word);
-    searchImages(word);
+    await searchImages(word);
+    setLoading(false);
   };
 
   useEffect(() => {
