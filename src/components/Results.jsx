@@ -1,4 +1,3 @@
-import React from 'react'
 import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry'
 import RiseLoader from 'react-spinners/RiseLoader'
 
