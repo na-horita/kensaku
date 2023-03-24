@@ -1,33 +1,41 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect } from "react";
 
 const Frequent = (props) => {
-  const [frequents, setFrequents] = useState([])
+  const [frequents, setFrequents] = useState([]);
 
   const ccccc = async (e) => {
-    e.preventDefault()
-    const word = e.target.value
-    props.setLoading(true)
-    props.setWord(word)
-    await props.searchImages(word)
-    props.setLoading(false)
-  }
+    e.preventDefault();
+    const word = e.target.value;
+    props.setLoading(true);
+    props.setWord(word);
+    await props.searchImages(word);
+    props.setLoading(false);
+  };
 
   useEffect(() => {
-    fetch('http://localhost:3001/frequents')
+    fetch("http://localhost:3001/frequents")
       .then((response) => response.json())
-      .then((data) => setFrequents(data))
-  }, [])
+      .then((data) => setFrequents(data));
+  }, []);
 
   return (
     <div>
       <h3>良く検索される一覧</h3>
-        <form>
+      <form>
         {frequents.map((frequent) => (
-            <button key={frequent.id} type="submit" value={frequent.word} onClick={ccccc} style={{ margin: '0 5px' }}>{frequent.word}</button>
+          <button
+            key={frequent.id}
+            type="submit"
+            value={frequent.word}
+            onClick={ccccc}
+            style={{ margin: "0 5px" }}
+          >
+            {frequent.word}
+          </button>
         ))}
-        </form>
+      </form>
     </div>
-  )
-}
+  );
+};
 
-export default Frequent
+export default Frequent;
