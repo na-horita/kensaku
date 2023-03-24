@@ -9,15 +9,18 @@ import Frequent from "../components/Frequent";
 import { useIndexedDB } from "../useIndexedDB";
 
 const Top = () => {
-  const [count, setCount] = useIndexedDB("count", 0);
-  const [count2, setCount2] = useIndexedDB("count2", 0);
+  const [hopes, setHopes] = useIndexedDB('hopes', null);
 
-  const increment = () => {
-    setCount(count + 1);
-  };
-
-　const increment2 = () => {
-    setCount2(count2 + 1);
+  const handleAddToFavorites = (event, image) => {
+    event.preventDefault();
+    const existingIndex = hopes.findIndex((hope) => hope.id === image.id);
+    const newHopes = [...hopes];
+    if (existingIndex !== -1) {
+      newHopes.splice(existingIndex, 1);
+    } else {
+      newHopes.push(image);
+    }
+    setHopes(newHopes);
   };
 
   const [word, setWord] = useState("");
@@ -102,12 +105,7 @@ const Top = () => {
       />
       <Form setWord={setWord} word={word} getPhotoData={getPhotoData} />
       検索文字:{word}
-      <Results photos={photos} loading={loading} />
-      <div>
-        <p>Count: {count}</p><p>Count2: {count2}</p>
-        <button onClick={increment}>Increment</button>
-        <button onClick={increment2}>Increment2</button>
-      </div>
+      <Results photos={photos} loading={loading} handleAddToFavorites={handleAddToFavorites} hopes={hopes} />
     </>
   );
 };
