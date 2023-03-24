@@ -10,9 +10,14 @@ import { useIndexedDB } from "../useIndexedDB";
 
 const Top = () => {
   const [count, setCount] = useIndexedDB("count", 0);
+  const [count2, setCount2] = useIndexedDB("count2", 0);
 
   const increment = () => {
     setCount(count + 1);
+  };
+
+　const increment2 = () => {
+    setCount2(count2 + 1);
   };
 
   const [word, setWord] = useState("");
@@ -99,8 +104,9 @@ const Top = () => {
       検索文字:{word}
       <Results photos={photos} loading={loading} />
       <div>
-        <p>Count: {count}</p>
+        <p>Count: {count}</p><p>Count2: {count2}</p>
         <button onClick={increment}>Increment</button>
+        <button onClick={increment2}>Increment2</button>
       </div>
     </>
   );
