@@ -5,6 +5,7 @@ import axios from "axios";
 import Form from "../components/Form";
 import Results from "../components/Results";
 import Frequent from "../components/Frequent";
+import Hopes from "../components/Hopes";
 
 import { useIndexedDB } from "../useIndexedDB";
 
@@ -106,6 +107,8 @@ const Top = () => {
       <Form setWord={setWord} word={word} getPhotoData={getPhotoData} />
       検索文字:{word}
       <Results photos={photos} loading={loading} handleAddToFavorites={handleAddToFavorites} hopes={hopes} />
+      <hr />
+      <Hopes hopes={hopes} />
     </>
   );
 };
