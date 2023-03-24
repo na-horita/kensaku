@@ -1,9 +1,8 @@
-import { useState,useEffect } from "react";
-import { Splide, SplideSlide } from '@splidejs/react-splide';
-import '@splidejs/splide/dist/css/themes/splide-default.min.css';
+import { useState, useEffect } from "react";
+import { Splide, SplideSlide } from "@splidejs/react-splide";
+import "@splidejs/splide/dist/css/themes/splide-default.min.css";
 
 const Hopes = (props) => {
-
   const [perPage, setPerPage] = useState(10);
   const [perMove, setPerMove] = useState(10);
   const [gap, setGap] = useState(15);
@@ -30,38 +29,33 @@ const Hopes = (props) => {
   }, []);
 
   const options = {
-    perPage: perPage,
-    perMove: perMove,
-    gap: gap,
+    perPage,
+    perMove,
+    gap,
     type: "loop",
     pagination: false,
     arrows: true,
     rewind: true,
     classes: {
-      arrow: 'splide__arrow custom-arrow',
+      arrow: "splide__arrow custom-arrow",
     },
   };
-
 
   return (
     <>
       {props.hopes && props.hopes.length > 0 && (
-          <div className="splide_wrap">
-            <h4 style={{padding:"20px 0"}}>お気に入り画像集</h4>
-            <Splide options={options}>
-            {props.hopes.map((hope,index) => (
+        <div className="splide_wrap">
+          <h4 style={{ padding: "20px 0" }}>お気に入り画像集</h4>
+          <Splide options={options}>
+            {props.hopes.map((hope, index) => (
               <SplideSlide key={hope.id}>
-              <a
-                href={hope.link}
-                target="_blank"
-                rel="noreferrer"
-              >
-                <img src={hope.url} alt={hope.photographer} />
-              </a>
+                <a href={hope.link} target="_blank" rel="noreferrer">
+                  <img src={hope.url} alt={hope.photographer} />
+                </a>
               </SplideSlide>
             ))}
-            </Splide>
-          </div>
+          </Splide>
+        </div>
       )}
     </>
   );

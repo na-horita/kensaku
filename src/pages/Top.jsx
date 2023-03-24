@@ -10,12 +10,26 @@ import Hopes from "../components/Hopes";
 import { useIndexedDB } from "../useIndexedDB";
 
 const Top = () => {
-  const [hopes, setHopes] = useIndexedDB('hopes', null);
+  const [hopes, setHopes] = useIndexedDB("hopes", []);
 
   const handleAddToFavorites = (event, image) => {
     event.preventDefault();
-    const existingIndex = hopes.findIndex((hope) => hope.id === image.id);
-    const newHopes = [...hopes];
+
+    // 「お気に入り」の配列の中と一致するかのフラグ　-1は不一致を表す。
+    let existingIndex = -1;
+
+    // 「お気に入り」一覧を格納するための配列
+    let newHopes;
+
+    // 「お気に入り」一覧に既に値があるのかの条件分岐　あれば「お気に入り」とこのイメージが一致するかを計算
+    if (hopes && hopes.length) {
+      existingIndex = hopes.findIndex((hope) => hope.id === image.id);
+      newHopes = [...hopes];
+    } else {
+      // 「お気に入り」一覧が空の配列ならば、newHopesに空の配列を設定
+      newHopes = [];
+    }
+
     if (existingIndex !== -1) {
       newHopes.splice(existingIndex, 1);
     } else {
@@ -36,7 +50,7 @@ const Top = () => {
 
     // Pexels APIのリクエスト 最大８０件まで
     const pexelsResponse = await axios.get(
-      `https://api.pexels.com/v1/search?query=${word2}&per_page=10`,
+      `https://api.pexels.com/v1/search?query=${word2}&per_page=15`,
       {
         headers: {
           Authorization: pexelsAPIKey,
@@ -54,7 +68,7 @@ const Top = () => {
 
     // Unsplash APIのリクエスト 最大３０件まで
     const unsplashResponse = await axios.get(
-      `https://api.unsplash.com/search/photos?query=${word2}&per_page=10`,
+      `https://api.unsplash.com/search/photos?query=${word2}&per_page=15`,
       {
         headers: {
           Authorization: `Client-ID ${unsplashAPIKey}`,
@@ -106,7 +120,12 @@ const Top = () => {
       />
       <Form setWord={setWord} word={word} getPhotoData={getPhotoData} />
       検索文字:{word}
-      <Results photos={photos} loading={loading} handleAddToFavorites={handleAddToFavorites} hopes={hopes} />
+      <Results
+        photos={photos}
+        loading={loading}
+        handleAddToFavorites={handleAddToFavorites}
+        hopes={hopes}
+      />
       <hr />
       <Hopes hopes={hopes} />
     </>
