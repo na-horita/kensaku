@@ -49,9 +49,15 @@ const Hopes = (props) => {
           <div className="splide_wrap">
             <h4 style={{padding:"20px 0"}}>お気に入り画像集</h4>
             <Splide options={options}>
-            {props.hopes.map((hope) => (
+            {props.hopes.map((hope,index) => (
               <SplideSlide key={hope.id}>
+              <a
+                href={hope.link}
+                target="_blank"
+                rel="noreferrer"
+              >
                 <img src={hope.url} alt={hope.photographer} />
+              </a>
               </SplideSlide>
             ))}
             </Splide>
