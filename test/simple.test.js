@@ -25,3 +25,43 @@ test("mock function is called", () => {
 //   const component = renderer.create(<App />);
 //   expect(component.toJSON()).toMatchSnapshot();
 // });
+
+beforeAll(() => {
+  console.log("before all tests");
+});
+
+beforeEach(() => {
+  num = 2;
+});
+
+describe("math", () => {
+  let num;
+
+  beforeEach(() => {
+    num = 2;
+  });
+
+  afterEach(() => {
+    num = null;
+  });
+
+  test("adds 1 + 2 to equal 3", () => {
+    expect(1 + num).toBe(3);
+  });
+});
+
+let counter = 0;
+
+test("test 1", () => {
+  counter++;
+  expect(counter).toBe(1);
+});
+
+test("test 2", () => {
+  counter++;
+  expect(counter).toBe(1);
+});
+
+afterEach(() => {
+  counter = 0;
+});
