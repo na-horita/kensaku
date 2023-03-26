@@ -1,10 +1,13 @@
+import { Button } from "react-bootstrap";
+
 const Frequent = (props) => {
   return (
     <div>
       <h3>良く検索される一覧</h3>
       <form>
         {props.frequents.map((frequent) => (
-          <button
+          <Button
+            variant="outline-dark"
             key={frequent.id}
             type="submit"
             value={frequent.word}
@@ -12,7 +15,7 @@ const Frequent = (props) => {
             style={{ margin: "0 5px" }}
           >
             {frequent.word}
-          </button>
+          </Button>
         ))}
       </form>
     </div>
