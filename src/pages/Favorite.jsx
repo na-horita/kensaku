@@ -1,6 +1,8 @@
 
 import { useState,useEffect } from "react";
 import { get, set } from 'idb-keyval';
+import PhotoAlbum from "react-photo-album";
+import photos from "../components/FavoriteDatas";
 
 function Favorite() {
     const [hopes, setHopes] = useState([]);
@@ -16,14 +18,7 @@ function Favorite() {
   return (
     <div>
       <h1>My Favorite Images</h1>
-      <ul>
-        {hopes.map((hope) => (
-          <li key={hope.id}>
-            <img src={hope.url} alt={hope.title} />
-            <p>{hope.title}</p>
-          </li>
-        ))}
-      </ul>
+        <PhotoAlbum photos={photos} layout="rows" />
     </div>
   );
 }

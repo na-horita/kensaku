@@ -21,9 +21,11 @@
     "react-dom": "^18.2.0",
     "react-grid-system": "^8.1.9",
     "react-hook-form": "^7.43.7",
+    "react-photo-album": "^2.0.3",
     "react-responsive-masonry": "^2.1.7",
     "react-router-dom": "^6.9.0",
-    "react-spinners": "^0.13.8"
+    "react-spinners": "^0.13.8",
+    "styled-components": "^5.3.9"
   },
   "devDependencies": {
     "@types/jest": "^29.5.0",
