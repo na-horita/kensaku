@@ -15,13 +15,13 @@ const Top = () => {
   const handleAddToFavorites = (event, image) => {
     event.preventDefault();
 
-    // 「お気に入り」の配列の中と一致するかのフラグ　-1は不一致を表す。
+    // 「お気に入り」の配列の中と一致するかのフラグ -1は不一致を表す。
     let existingIndex = -1;
 
     // 「お気に入り」一覧を格納するための配列
     let newHopes;
 
-    // 「お気に入り」一覧に既に値があるのかの条件分岐　あれば「お気に入り」とこのイメージが一致するかを計算
+    // 「お気に入り」一覧に既に値があるのかの条件分岐 あれば「お気に入り」とこのイメージが一致するかを計算
     if (hopes && hopes.length) {
       existingIndex = hopes.findIndex((hope) => hope.id === image.id);
       newHopes = [...hopes];

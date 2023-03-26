@@ -14,7 +14,9 @@ const Results = (props) => {
       {props.loading && <RiseLoader color={"#26d146"} size={25} margin={40} />}
 
       {!props.loading && (
-        <ResponsiveMasonry columnsCountBreakPoints={{ 350: 2, 750: 3, 900: 5, 1080: 6 }}>
+        <ResponsiveMasonry
+          columnsCountBreakPoints={{ 350: 2, 750: 3, 900: 5, 1080: 6 }}
+        >
           <Masonry columnsCount={3} gutter="10px">
             {props.photos.map((singleData, index) => (
               <div key={index}>
