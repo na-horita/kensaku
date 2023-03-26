@@ -1,28 +1,15 @@
-import { BrowserRouter, Link, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import "./App.css";
 import Top from "./pages/Top";
 import Contact from "./pages/Contact";
+import Navbar from "./components/Navbar";
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <header>
-          {/* メニュー */}
-          <nav>
-            <ul>
-              <li>
-                {/* Topページへのリンク */}
-                <Link to="/">Top</Link>
-              </li>
-              <li>
-                {/* Contactページへのリンク */}
-                <Link to="/contact">Contact</Link>
-              </li>
-            </ul>
-          </nav>
-        </header>
+      <Navbar />
         {/* ルーティング */}
         <Routes>
           <Route path="/" element={<Top />} />
