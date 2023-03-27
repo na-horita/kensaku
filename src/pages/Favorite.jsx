@@ -11,7 +11,7 @@ function Favorite() {
         setHopes(result);
       }
     });
-  }, []);
+  }, [hopes]);
 
   const breakpoints = [880, 640, 384, 256, 128, 96, 64, 48];
 
@@ -20,6 +20,7 @@ function Favorite() {
     width: photo.width,
     height: photo.height,
     source: photo.source,
+    link: photo.link,
     images: breakpoints.map((breakpoint) => {
       const height = Math.round((photo.height / photo.width) * breakpoint);
       return {
@@ -40,7 +41,8 @@ function Favorite() {
     renderPhoto={({ photo, wrapperStyle, renderDefaultPhoto }) => (
         <div style={{ position: "relative", ...wrapperStyle }}>
             {renderDefaultPhoto({ wrapped: true })}
-            {photo.src && (
+        {photo.src && (
+          <a href={`${photo.link}`} target="_blank">
                 <div
                     style={{
                         position: "absolute",
@@ -49,9 +51,10 @@ function Favorite() {
                         inset: "auto 0 0 0",
                         padding: 1,
                     }}
-                ><a href="#">
+                >
                     {photo.source}
-                </a></div>
+            </div>
+          </a>
             )}
         </div>
     )}
