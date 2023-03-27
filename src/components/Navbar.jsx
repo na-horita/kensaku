@@ -17,6 +17,9 @@ function Navb() {
             <Link className="nav-link" to="/favorite">
               お気に入り
             </Link>
+            <Link className="nav-link" to="/sus">
+              suspense練習
+            </Link>
             <Link className="nav-link" to="/contact">
               お問い合わせ
             </Link>

@@ -4,6 +4,7 @@ import "./App.css";
 import Top from "./pages/Top";
 import Contact from "./pages/Contact";
 import Favorite from "./pages/Favorite";
+import Sus from "./pages/Sus";
 import Navb from "./components/Navbar";
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
             <Route path="/" element={<Top />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/favorite" element={<Favorite />} />
+            <Route path="/sus" element={<Sus />} />
           </Routes>
         </div>
       </BrowserRouter>
