@@ -6,6 +6,7 @@ import Contact from "./pages/Contact";
 import Favorite from "./pages/Favorite";
 import Sus from "./pages/Sus";
 import Navb from "./components/Navbar";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           </Routes>
         </div>
       </BrowserRouter>
+      <Footer />
     </div>
   );
 }

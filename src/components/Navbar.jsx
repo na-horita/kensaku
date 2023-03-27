@@ -21,7 +21,7 @@ function Navb() {
               suspense練習
             </Link>
             <Link className="nav-link" to="/contact">
-              お問い合わせ
+              ワード追加
             </Link>
           </Nav>
         </Navbar.Collapse>

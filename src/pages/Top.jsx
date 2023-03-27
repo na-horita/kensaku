@@ -82,12 +82,6 @@ const Top = () => {
 
   return (
     <>
-      <div className="haedtitle">
-        <p>
-          By <a href="https://unsplash.com/">Unsplash</a>・
-          <a href="https://www.pexels.com/ja-jp/">Pexels</a>
-        </p>
-      </div>
       <Frequent
         setWord={setWord}
         searchImages={searchImages}
