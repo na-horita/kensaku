@@ -5,6 +5,15 @@ function FrequentsList() {
   const [frequents, setFrequents] = useState([]);
 
   useEffect(() => {
+    fetchFrequents(); // 初回のデータ取得
+    const interval = setInterval(fetchFrequents, 5000); // 5秒ごとにデータ取得
+
+    return () => {
+      clearInterval(interval); // コンポーネントがアンマウントされた時にインターバルを解除
+    };
+  }, []);
+
+  const fetchFrequents = () => {
     fetch("http://localhost:3000/frequents")
       .then((response) => response.json())
       .then((data) => {
@@ -13,7 +22,7 @@ function FrequentsList() {
       .catch((error) => {
         console.error("Error:", error);
       });
-  }, []);
+  }
 
   function handleClick(keyword) {
     window.location.href = `/?keyword=${keyword}`;
