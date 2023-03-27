@@ -8,7 +8,7 @@ const Contact = () => {
         <h1>良く検索されるワード追加</h1>
       </div>
       <AddFrequent />
-        <hr />
+      <hr />
       <FrequentsList />
     </>
   );

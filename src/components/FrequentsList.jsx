@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Button } from 'react-bootstrap';
+import { Button } from "react-bootstrap";
 
 function FrequentsList() {
   const [frequents, setFrequents] = useState([]);
@@ -15,21 +15,22 @@ function FrequentsList() {
       });
   }, []);
 
-function handleClick(keyword) {
-  window.location.href = `/?keyword=${keyword}`;
-}
+  function handleClick(keyword) {
+    window.location.href = `/?keyword=${keyword}`;
+  }
 
   return (
     <div>
       {frequents.map((frequent) => (
         <Button
-variant="outline-dark"
-className="mx-1"
-style={{ cursor: "pointer" }}
-key={frequent.id}
-onClick={() => handleClick(frequent.word)}
->{frequent.word}
-</Button>
+          variant="outline-dark"
+          className="mx-1"
+          style={{ cursor: "pointer" }}
+          key={frequent.id}
+          onClick={() => handleClick(frequent.word)}
+        >
+          {frequent.word}
+        </Button>
       ))}
     </div>
   );
