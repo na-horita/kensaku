@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "react-bootstrap";
 
 function FrequentsList() {
@@ -22,7 +22,7 @@ function FrequentsList() {
       .catch((error) => {
         console.error("Error:", error);
       });
-  }
+  };
 
   function handleClick(keyword) {
     window.location.href = `/?keyword=${keyword}`;
