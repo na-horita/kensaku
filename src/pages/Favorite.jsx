@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
-import { get, set } from "idb-keyval";
+import { get } from "idb-keyval";
 import PhotoAlbum from "react-photo-album";
+import Zoom from "react-medium-image-zoom";
+import "react-medium-image-zoom/dist/styles.css";
 
 function Favorite() {
   const [hopes, setHopes] = useState([]);
@@ -37,28 +39,43 @@ function Favorite() {
       <PhotoAlbum
         layout="rows"
         spacing="8"
-    photos={FavoriteDatas}
-    renderPhoto={({ photo, wrapperStyle, renderDefaultPhoto }) => (
-        <div style={{ position: "relative", ...wrapperStyle }}>
+        photos={FavoriteDatas}
+        renderPhoto={({ photo, wrapperStyle, renderDefaultPhoto }) => (
+          <div style={{ position: "relative", ...wrapperStyle }}>
             {renderDefaultPhoto({ wrapped: true })}
-        {photo.src && (
-          <a href={`${photo.link}`} target="_blank">
-                <div
+            {photo.src && (
+              <div
+                style={{
+                  position: "absolute",
+                  overflow: "hidden",
+                  inset: "0 0 0 0",
+                }}
+              >
+                <a href={`${photo.link}`} target="_blank" rel="noreferrer">
+                  <p
                     style={{
-                        position: "absolute",
-                        overflow: "hidden",
-                        backgroundColor: "rgba(255 255 255 / .6)",
-                        inset: "auto 0 0 0",
-                        padding: 1,
+                      position: "absolute",
+                      inset: "auto 0 0 auto",
+                      zIndex: "10",
+                      display: "table",
+                      overflow: "hidden",
+                      backgroundColor: "rgba(255 255 255 / .7)",
+                      padding: "3px 6px",
+                      marginBottom: "0rem",
                     }}
-                >
+                  >
+                    {" "}
                     {photo.source}
-            </div>
-          </a>
+                  </p>
+                </a>
+                <Zoom>
+                  <img alt={photo.source} src={photo.src} />
+                </Zoom>
+              </div>
             )}
-        </div>
-    )}
-/>
+          </div>
+        )}
+      />
     </div>
   );
 }
