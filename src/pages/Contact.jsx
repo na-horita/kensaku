@@ -1,12 +1,15 @@
-import ContactForm from "../components/ContactForm";
+import AddFrequent from "../components/AddFrequent";
+import FrequentsList from "../components/FrequentsList";
 
 const Contact = () => {
   return (
     <>
       <div className="haedtitle">
-        <h1>お問い合わせ</h1>
+        <h1>良く検索されるワード追加</h1>
       </div>
-      <ContactForm />
+      <AddFrequent />
+        <hr />
+      <FrequentsList />
     </>
   );
 };

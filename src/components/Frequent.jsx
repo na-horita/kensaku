@@ -14,7 +14,7 @@ const Frequent = (props) => {
   };
 
   useEffect(() => {
-    fetch("http://localhost:3001/frequents")
+    fetch("http://localhost:3000/frequents")
       .then((response) => response.json())
       .then((data) => setFrequents(data));
   }, []);

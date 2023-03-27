@@ -23,5 +23,5 @@ npm install -g json-server
 type nul > db.json
 
 //JSON Serverを起動します。
-json-server --watch db.json --port 3001
+json-server --watch db.json --port 3000
 ```
