@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import axios from "axios";
 
@@ -14,6 +14,17 @@ const Top = () => {
   const [word, setWord] = useState("");
   const [photos, setPhotos] = useState([]);
   const [loading, setLoading] = useState(false);
+
+  const urlParams = new URLSearchParams(window.location.search);
+  const keyword = urlParams.get("keyword");
+  useEffect(() => {
+    (async () => {
+      setLoading(true);
+      setWord(keyword);
+      await searchImages(keyword);
+      setLoading(false);
+    })();
+  }, [keyword]);
 
   // 初期値をuseStateで保持している変数のwordにした。そしてこの変数は外部から代入することが可能としている。
   const searchImages = async (word2 = word) => {
