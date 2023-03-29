@@ -18,12 +18,13 @@ const Top = () => {
   const urlParams = new URLSearchParams(window.location.search);
   const keyword = urlParams.get("keyword");
   useEffect(() => {
-    (async () => {
-      setLoading(true);
-      setWord(keyword);
-      await searchImages(keyword);
-      setLoading(false);
-    })();
+    keyword &&
+      (async () => {
+        setLoading(true);
+        setWord(keyword);
+        await searchImages(keyword);
+        setLoading(false);
+      })();
   }, [keyword]);
 
   // 初期値をuseStateで保持している変数のwordにした。そしてこの変数は外部から代入することが可能としている。
