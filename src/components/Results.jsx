@@ -1,5 +1,6 @@
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
 import RiseLoader from "react-spinners/RiseLoader";
+import { Button } from 'react-bootstrap';
 
 const Results = (props) => {
   // お気に入りor解除のボタンtoggle
@@ -58,11 +59,14 @@ const Results = (props) => {
                 </a>
                 <p>
                   {index}:{singleData.source}:{singleData.created_at}
-                  <button
+                  <Button
+                    variant="outline-dark"
+                    size="sm"
+                    className="mt-1"
                     onClick={(event) => handleAddToFavorites(event, singleData)}
                   >
                     {isFavorite(singleData) ? "解除" : "お気に入り"}
-                  </button>
+                  </Button>
                 </p>
               </div>
             ))}
