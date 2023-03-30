@@ -23,6 +23,8 @@ npm install express data
 node index.cjs
 ```
 
+Open [http://localhost:3000/api/frequent](http://localhost:3000/api/frequent) 
+
 ## JSON Server(local開発用)
 
 良く検索されるワード一覧はdb.jsonに保存をして、JSON serverを利用してデータ取得を行います。
