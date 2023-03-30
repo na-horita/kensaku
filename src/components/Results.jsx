@@ -1,6 +1,6 @@
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
 import RiseLoader from "react-spinners/RiseLoader";
-import { Button } from 'react-bootstrap';
+import { Button } from "react-bootstrap";
 
 const Results = (props) => {
   // お気に入りor解除のボタンtoggle

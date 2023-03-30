@@ -1,37 +1,16 @@
-import React, { Suspense } from 'react';
-import axios from 'axios';
-
-const Images = React.lazy(() => import('../components/Images'));
+import ImageShadow from 'react-image-shadow';
+import 'react-image-shadow/assets/index.css';
 
 const Sus = () => {
-  const [images, setImages] = React.useState([]);
-  const [isLoading, setIsLoading] = React.useState(true);
-
-  React.useEffect(() => {
-    const fetchImages = async () => {
-      const response = await axios.get('https://api.pexels.com/v1/search?query=runner&per_page=80', {
-        headers: {
-          Authorization: 'ycuX09ywi56e2xu3hSuMWNDw4vzJAyye7HKi7LYQIoEUz0QnoQC0sE7S',
-        },
-      });
-
-      setImages(response.data.photos);
-      setIsLoading(false);
-    };
-
-    fetchImages();
-  }, []);
-
   return (
     <div>
-      <h1>Images of the Moon</h1>
-      <Suspense fallback={<div>Loading...</div>}>
-        {isLoading ? (
-          <div>Loading...Loading...Loading...Loading...Loading...Loading...Loading...Loading...Loading...Loading...Loading...Loading...Loading...Loading...Loading...Loading...Loading...Loading...Loading...Loading...Loading...Loading...Loading...Loading...Loading...Loading...Loading...Loading...Loading...Loading...Loading...Loading...Loading...Loading...Loading...Loading...Loading...Loading...Loading...Loading...Loading...Loading...Loading...Loading...Loading...</div>
-        ) : (
-          <Images images={images} />
-        )}
-      </Suspense>
+      <p>練習用</p>
+      <div>
+        <ImageShadow src="https://cdn.pixabay.com/photo/2019/12/17/14/07/amaryllis-4701720_960_720.jpg" />
+        <ImageShadow src="https://images.pexels.com/photos/4652275/pexels-photo-4652275.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" />
+        <ImageShadow src="https://cdn.pixabay.com/photo/2019/12/17/14/07/amaryllis-4701720_960_720.jpg" />
+        <ImageShadow src="https://cdn.pixabay.com/photo/2019/12/17/14/07/amaryllis-4701720_960_720.jpg" />
+      </div>
     </div>
   );
 };
