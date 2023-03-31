@@ -2,14 +2,18 @@
   "version": 2,
   "builds": [
     {
-      "src": "index.cjs",
+      "src": "app.cjs",
       "use": "@now/node"
     }
   ],
   "routes": [
     {
+      "src": "/api/frequent",
+      "dest": "app.cjs"
+    },
+    {
       "src": "/(.*)",
-      "dest": "index.cjs"
+      "dest": "/404.html"
     }
   ]
 }
