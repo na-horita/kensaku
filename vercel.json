@@ -1,11 +1,5 @@
 {
   "version": 2,
-  "builds": [
-    {
-      "src": "app.cjs",
-      "use": "@now/node"
-    }
-  ],
   "routes": [
     {
       "src": "/api/frequent",
