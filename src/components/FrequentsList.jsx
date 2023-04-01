@@ -14,7 +14,7 @@ function FrequentsList() {
   }, []);
 
   const fetchFrequents = () => {
-    fetch("http://localhost:3000/api/frequent")
+    fetch("https://kensaku-express.vercel.app/api/frequent")
       .then((response) => response.json())
       .then((data) => {
         setFrequents(data);
