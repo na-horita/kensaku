@@ -54,7 +54,7 @@ function AddFrequent() {
           onClose={() => setShowAlert(false)}
           dismissible
         >
-          POSTを完了しました。
+          POSTを完了しました
         </Alert>
       )}
 
