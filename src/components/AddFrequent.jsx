@@ -25,7 +25,7 @@ function AddFrequent() {
   const onSubmit = (data) => {
     const newFrequent = { name: data.name, word: data.word };
 
-    fetch("http://localhost:3000/frequents", {
+    fetch("http://localhost:3000/api/frequent", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
