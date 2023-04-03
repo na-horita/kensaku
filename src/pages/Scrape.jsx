@@ -1,12 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import ScrapeCard from "../components/ScrapeCard";
-
-import { useRecoilValue } from 'recoil';
-import cartState from '../recoil/atoms/cartState';
+import ScrapeSide from "../components/ScrapeSide";
 
 const Scrape = () => {
-  const cart = useRecoilValue(cartState);
 
   const [drones, setDrones] = useState([]);
   useEffect(() => {
@@ -63,17 +60,7 @@ const cards = [
         </div>
       </div>
       <div className="right-column">
-        <h3>右側のカラム</h3>
-        {cart.length !== 0 && (
-  <div>
-    {cart.map((item,index) => (
-      <div key={index}>
-        <p>Title: {item.title}</p>
-        <p>Price: {item.price}</p>
-      </div>
-    ))}
-  </div>
-)}
+            <ScrapeSide />
       </div>
     </div>
   );
