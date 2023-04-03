@@ -37,7 +37,6 @@ function Favorite() {
     <div>
       <h1>My Favorite Images</h1>
       <PhotoAlbum
-        key={hopes.map((photo) => photo.id).join()} // hopesをkeyに指定
         layout="rows"
         spacing="8"
         photos={FavoriteDatas}
