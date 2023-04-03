@@ -46,4 +46,113 @@ img {
   margin:20px;
 }
 
+/* スクレイピングページ */
+.container {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
 
+.left-column {
+  max-width: 83%;
+  margin-right: 2%;
+  width: 100%;
+  background-color: #f2f2f2;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.right-column {
+  max-width: 15%;
+  width: 100%;
+  background-color: #f9f9f9;
+  padding: 20px;
+}
+
+@media screen and (max-width: 880px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .left-column {
+    max-width: 100%;
+    margin-bottom: 150px; /* サイドバーの高さ分余白を作る */
+    margin-right: initial;
+  }
+
+  .right-column {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    max-width: 100%;
+    width: 178px;
+    height: 150px;
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+  }
+}
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.scrape-card {
+  width: calc(33.33% - 10px);
+  margin-bottom: 20px;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.card-image {
+  height: 200px;
+  overflow: hidden;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.card-image img {
+  width: 100%;
+  height: auto;
+}
+
+.scrap-card-content {
+  padding: 20px;
+}
+
+.scrap-card-title {
+  margin: 0;
+  font-size: 12px;
+  font-weight: bold;
+  line-height: 1.2;
+}
+
+.scrap-card-title a {
+  color: #333;
+  text-decoration: none;
+  transition: all 0.2s ease-in-out;
+  border-bottom: 1px solid transparent;
+}
+
+.scrap-title a:hover {
+  border-bottom: 1px solid #333;
+}
+
+.scrap-price {
+  margin: 10px 0 0;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+@media screen and (max-width: 880px) { 
+  .scrape-card {
+    width: calc(50% - 10px);
+    margin-bottom: 15px;
+  }
+}
