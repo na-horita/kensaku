@@ -4,9 +4,11 @@ import "./App.css";
 import Top from "./pages/Top";
 import Contact from "./pages/Contact";
 import Favorite from "./pages/Favorite";
+import Scrape from "./pages/Scrape";
 import Sus from "./pages/Sus";
 import Navb from "./components/Navbar";
 import Footer from "./components/Footer";
+
 
 function App() {
   return (
@@ -19,6 +21,7 @@ function App() {
             <Route path="/contact" element={<Contact />} />
             <Route path="/favorite" element={<Favorite />} />
             <Route path="/sus" element={<Sus />} />
+            <Route path="/scrape" element={<Scrape />} />
           </Routes>
         </div>
       </BrowserRouter>

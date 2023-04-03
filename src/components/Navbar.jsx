@@ -23,6 +23,9 @@ function Navb() {
             <Link className="nav-link" to="/contact">
               ワード追加
             </Link>
+            <Link className="nav-link" to="/scrape">
+              楽天検索
+            </Link>
           </Nav>
         </Navbar.Collapse>
       </Container>
