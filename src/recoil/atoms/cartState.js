@@ -1,7 +1,7 @@
-import { atom } from 'recoil';
+import { atom } from "recoil";
 
 const couponState = atom({
-  key: 'couponState',
+  key: "couponState",
   default: [],
 });
 

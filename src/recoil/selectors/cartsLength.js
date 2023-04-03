@@ -1,8 +1,8 @@
-import { selector } from 'recoil';
-import cartState from '../atoms/cartState';
+import { selector } from "recoil";
+import cartState from "../atoms/cartState";
 
 const cartsLength = selector({
-  key: 'arrayLengthSelector',
+  key: "arrayLengthSelector",
   get: ({ get }) => {
     const array = get(cartState);
     return array.length;

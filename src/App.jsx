@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { RecoilRoot } from 'recoil';
+import { RecoilRoot } from "recoil";
 
 import "./App.css";
 import Top from "./pages/Top";
@@ -10,22 +10,21 @@ import Sus from "./pages/Sus";
 import Navb from "./components/Navbar";
 import Footer from "./components/Footer";
 
-
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
         <Navb />
         <RecoilRoot>
-        <div className="app_wrap">
-          <Routes>
-            <Route path="/" element={<Top />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/favorite" element={<Favorite />} />
-            <Route path="/sus" element={<Sus />} />
-            <Route path="/scrape" element={<Scrape />} />
-          </Routes>
-        </div>
+          <div className="app_wrap">
+            <Routes>
+              <Route path="/" element={<Top />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/favorite" element={<Favorite />} />
+              <Route path="/sus" element={<Sus />} />
+              <Route path="/scrape" element={<Scrape />} />
+            </Routes>
+          </div>
         </RecoilRoot>
       </BrowserRouter>
       <Footer />

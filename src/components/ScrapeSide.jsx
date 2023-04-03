@@ -1,7 +1,7 @@
-import { useRecoilValue } from 'recoil';
-import cartState from '../recoil/atoms/cartState';
-import cartsLength from '../recoil/selectors/cartsLength';
-import couponCountSelector from '../recoil/selectors/couponCountSelector';
+import { useRecoilValue } from "recoil";
+import cartState from "../recoil/atoms/cartState";
+import cartsLength from "../recoil/selectors/cartsLength";
+import couponCountSelector from "../recoil/selectors/couponCountSelector";
 
 const ScrapeSide = () => {
   const carts = useRecoilValue(cartState);
@@ -11,13 +11,16 @@ const ScrapeSide = () => {
   return (
     <>
       <h4>合計【{length}個】</h4>
-        {carts.length !== 0 && (
+      {carts.length !== 0 && (
         <div>
-          {cartsVariat.map((item,index) => (
+          {cartsVariat.map((item, index) => (
             <div key={index}>
-              <p>・{item.title}<br />
+              <p>
+                ・{item.title}
+                <br />
                 価格: {item.price}円<br />
-                商品数【{item.num}個】</p>
+                商品数【{item.num}個】
+              </p>
             </div>
           ))}
         </div>
