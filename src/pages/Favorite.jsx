@@ -13,7 +13,7 @@ function Favorite() {
         setHopes(result);
       }
     });
-  }, [hopes]);
+  }, []);
 
   const breakpoints = [880, 640, 384, 256, 128, 96, 64, 48];
 
