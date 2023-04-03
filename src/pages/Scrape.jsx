@@ -2,7 +2,12 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import ScrapeCard from "../components/ScrapeCard";
 
+import { useRecoilValue } from 'recoil';
+import cartState from '../recoil/atoms/cartState';
+
 const Scrape = () => {
+  const cart = useRecoilValue(cartState);
+
   const [drones, setDrones] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
@@ -17,23 +22,27 @@ const Scrape = () => {
 const cards = [
   {
     title: "タイトル1",
-    price: "1000円",
-    image: "https://dummyimage.com/600x400/000/fff"
+    price: 1200,
+    img: "https://dummyimage.com/600x400/000/fff",
+    url: "https://news.yahoo.co.jp/"
   },
   {
     title: "タイトル2",
-    price: "2000円",
-    image: "https://dummyimage.com/600x400/000/fff"
+    price: 2300,
+    img: "https://dummyimage.com/600x400/000/fff",
+    url: "https://news.yahoo.co.jp/"
   },
   {
     title: "タイトル3",
-    price: "3000円",
-    image: "https://dummyimage.com/600x400/000/fff"
+    price: 3500,
+    img: "https://dummyimage.com/600x400/000/fff",
+    url: "https://news.yahoo.co.jp/"
   },
   {
-    title: "タイトル3",
-    price: "3000円",
-    image: "https://dummyimage.com/600x400/000/fff"
+    title: "タイトル4",
+    price: 4500,
+    img: "https://dummyimage.com/600x400/000/fff",
+    url: "https://news.yahoo.co.jp/"
   }
 ];
 
@@ -42,7 +51,7 @@ const cards = [
       <div className="left-column">
       <h2>楽天商品検索（ドローン）</h2>
         <div className="card-container">
-          {drones.map((drone, index) => (
+          {cards.map((drone, index) => (
             <ScrapeCard
               key={index}
               title={drone.title}
@@ -54,8 +63,17 @@ const cards = [
         </div>
       </div>
       <div className="right-column">
-        <h2>右側のカラム</h2>
-        <p>ここにコンテンツを入れます。</p>
+        <h3>右側のカラム</h3>
+        {cart.length !== 0 && (
+  <div>
+    {cart.map((item,index) => (
+      <div key={index}>
+        <p>Title: {item.title}</p>
+        <p>Price: {item.price}</p>
+      </div>
+    ))}
+  </div>
+)}
       </div>
     </div>
   );

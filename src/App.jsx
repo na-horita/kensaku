@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { RecoilRoot } from 'recoil';
 
 import "./App.css";
 import Top from "./pages/Top";
@@ -15,6 +16,7 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Navb />
+        <RecoilRoot>
         <div className="app_wrap">
           <Routes>
             <Route path="/" element={<Top />} />
@@ -24,6 +26,7 @@ function App() {
             <Route path="/scrape" element={<Scrape />} />
           </Routes>
         </div>
+        </RecoilRoot>
       </BrowserRouter>
       <Footer />
     </div>
