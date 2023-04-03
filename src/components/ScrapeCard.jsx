@@ -22,7 +22,8 @@ const truncatedTitle = title.slice(0, 30) + (title.length > 30 ? "..." : "");
           <button
             onClick={() => {
               addBookHandler(title,price);
-            }}
+          }}
+          style={{ backgroundColor: '#33A35E', color: '#fff', borderRadius: "25px", marginBottom:"10px" }}>
           >
             カートに追加
         </button>
