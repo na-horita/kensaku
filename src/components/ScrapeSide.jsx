@@ -1,4 +1,5 @@
 import { useRecoilValue } from "recoil";
+
 import ScrapeSideList from "../components/ScrapeSideList";
 import cartState from "../recoil/atoms/cartState";
 import cartsLength from "../recoil/selectors/cartsLength";
@@ -15,7 +16,7 @@ const ScrapeSide = () => {
       {carts.length !== 0 && (
         <div>
           {cartsVariat.map((item, index) => (
-            <ScrapeSideList item={item} index={index} />
+            <ScrapeSideList item={item} key={index} />
           ))}
         </div>
       )}
