@@ -1,3 +1,4 @@
+import React from "react";
 import { useRecoilState } from "recoil";
 import cartState from "../recoil/atoms/cartState";
 
@@ -37,4 +38,4 @@ const ScrapeCard = ({ title, url, img, price }) => {
   );
 };
 
-export default ScrapeCard;
+export default React.memo(ScrapeCard);

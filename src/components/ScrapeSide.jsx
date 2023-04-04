@@ -1,4 +1,5 @@
 import { useRecoilValue } from "recoil";
+import React from "react";
 
 import ScrapeSideList from "../components/ScrapeSideList";
 import cartState from "../recoil/atoms/cartState";
@@ -24,4 +25,4 @@ const ScrapeSide = () => {
   );
 };
 
-export default ScrapeSide;
+export default React.memo(ScrapeSide);

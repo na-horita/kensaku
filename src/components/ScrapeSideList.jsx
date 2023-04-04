@@ -1,3 +1,4 @@
+import React from "react";
 const ScrapeSideList = ({ item }) => {
   return (
     <div>
@@ -11,4 +12,4 @@ const ScrapeSideList = ({ item }) => {
   );
 };
 
-export default ScrapeSideList;
+export default React.memo(ScrapeSideList);

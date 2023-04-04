@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React,{ useState, useEffect } from "react";
 import axios from "axios";
 import ScrapeCard from "../components/ScrapeCard";
 import ScrapeSide from "../components/ScrapeSide";
@@ -38,8 +38,14 @@ const Scrape = () => {
     },
     {
       title: "タイトル4",
-      price: 4500,
+      price: 4100,
       img: "https://dummyimage.com/600x400/000/fff",
+      url: "https://news.yahoo.co.jp/",
+    },
+    {
+      title: "タイトル5",
+      price: 5800,
+      img: "https://dummyimage.com/600x400/000/ccc",
       url: "https://news.yahoo.co.jp/",
     },
   ];
@@ -67,4 +73,4 @@ const Scrape = () => {
   );
 };
 
-export default Scrape;
+export default React.memo(Scrape);
