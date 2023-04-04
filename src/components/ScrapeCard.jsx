@@ -19,7 +19,9 @@ const ScrapeCard = ({ title, url, img, price }) => {
         <a href={url} target="_blank" rel="noreferrer">
           <h5 className="scrape-card-title">{truncatedTitle}</h5>
         </a>
-        <p className="scrape-card-description">{price}円</p>
+        <p className="scrape-card-description">
+          {price.toLocaleString("ja-JP")}円
+        </p>
         <button
           onClick={() => {
             addBookHandler(title, price);

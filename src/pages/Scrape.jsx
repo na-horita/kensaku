@@ -17,45 +17,45 @@ const Scrape = () => {
     fetchData();
   }, []);
 
-  const cards = [
-    {
-      title: "タイトル1",
-      price: 1200,
-      img: "https://dummyimage.com/600x400/000/fff",
-      url: "https://news.yahoo.co.jp/",
-    },
-    {
-      title: "タイトル2",
-      price: 2300,
-      img: "https://dummyimage.com/600x400/000/fff",
-      url: "https://news.yahoo.co.jp/",
-    },
-    {
-      title: "タイトル3",
-      price: 3500,
-      img: "https://dummyimage.com/600x400/000/fff",
-      url: "https://news.yahoo.co.jp/",
-    },
-    {
-      title: "タイトル4",
-      price: 4100,
-      img: "https://dummyimage.com/600x400/000/fff",
-      url: "https://news.yahoo.co.jp/",
-    },
-    {
-      title: "タイトル5",
-      price: 5800,
-      img: "https://dummyimage.com/600x400/000/ccc",
-      url: "https://news.yahoo.co.jp/",
-    },
-  ];
+  // const cards = [
+  //   {
+  //     title: "タイトル1",
+  //     price: 1200,
+  //     img: "https://dummyimage.com/600x400/000/fff",
+  //     url: "https://news.yahoo.co.jp/",
+  //   },
+  //   {
+  //     title: "タイトル2",
+  //     price: 2300,
+  //     img: "https://dummyimage.com/600x400/000/fff",
+  //     url: "https://news.yahoo.co.jp/",
+  //   },
+  //   {
+  //     title: "タイトル3",
+  //     price: 3500,
+  //     img: "https://dummyimage.com/600x400/000/fff",
+  //     url: "https://news.yahoo.co.jp/",
+  //   },
+  //   {
+  //     title: "タイトル4",
+  //     price: 4100,
+  //     img: "https://dummyimage.com/600x400/000/fff",
+  //     url: "https://news.yahoo.co.jp/",
+  //   },
+  //   {
+  //     title: "タイトル5",
+  //     price: 5800,
+  //     img: "https://dummyimage.com/600x400/000/ccc",
+  //     url: "https://news.yahoo.co.jp/",
+  //   },
+  // ];
 
   return (
     <div className="container">
       <div className="left-column">
         <h2>楽天商品検索（ドローン）</h2>
         <div className="card-container">
-          {cards.map((drone, index) => (
+          {drones.map((drone, index) => (
             <ScrapeCard
               key={index}
               title={drone.title}
