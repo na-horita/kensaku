@@ -1,4 +1,5 @@
 import { useRecoilValue } from "recoil";
+import ScrapeSideList from "../components/ScrapeSideList";
 import cartState from "../recoil/atoms/cartState";
 import cartsLength from "../recoil/selectors/cartsLength";
 import couponCountSelector from "../recoil/selectors/couponCountSelector";
@@ -14,14 +15,7 @@ const ScrapeSide = () => {
       {carts.length !== 0 && (
         <div>
           {cartsVariat.map((item, index) => (
-            <div key={index}>
-              <p>
-                ・{item.title}
-                <br />
-                価格: {item.price}円<br />
-                商品数【{item.num}個】
-              </p>
-            </div>
+            <ScrapeSideList item={item} index={index} />
           ))}
         </div>
       )}
