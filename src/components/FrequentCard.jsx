@@ -5,10 +5,10 @@ const Frequent = (props) => {
     <div>
       <h3>良く検索される一覧</h3>
       <form>
-        {props.frequents.map((frequent) => (
+        {props.frequents.map((frequent, index) => (
           <Button
             variant="outline-dark"
-            key={frequent.id}
+            key={index}
             type="submit"
             value={frequent.word}
             onClick={props.getFrequentData}

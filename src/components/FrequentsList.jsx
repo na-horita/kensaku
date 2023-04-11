@@ -30,12 +30,12 @@ function FrequentsList() {
 
   return (
     <div>
-      {frequents.map((frequent) => (
+      {frequents.map((frequent, index) => (
         <Button
           variant="outline-dark"
           className="mx-1"
           style={{ cursor: "pointer" }}
-          key={frequent.id}
+          key={index}
           onClick={() => handleClick(frequent.word)}
         >
           {frequent.word}
