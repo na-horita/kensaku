@@ -2,6 +2,8 @@ import { useRecoilValue } from "recoil";
 import React from "react";
 
 import ScrapeSideList from "../components/ScrapeSideList";
+import ScrapeSideTitle from "../components/ScrapeSideTitle";
+
 import cartState from "../recoil/atoms/cartState";
 import cartsLength from "../recoil/selectors/cartsLength";
 import couponCountSelector from "../recoil/selectors/couponCountSelector";
@@ -17,22 +19,7 @@ const ScrapeSide = () => {
     useRecoilValue(discountSelector);
   return (
     <>
-      <h4>品数【{length}点】</h4>
-      <p>
-        <span style={{ color, fontWeight: "bold" }}>
-          合計{discountTotal.toLocaleString("ja-JP")}円
-        </span>
-        <br />
-        {rate > 0 && (
-          <>
-            <span style={{ textDecoration: "line-through" }}>
-              元価格{total.toLocaleString("ja-JP")}円
-            </span>
-            <br />
-          </>
-        )}
-        {message}
-      </p>
+      <ScrapeSideTitle length={length} total={total} color={color} message={message} discountTotal={discountTotal} rate={rate} />
       {carts.length !== 0 && (
         <div>
           {cartsVariat.map((item, index) => (
