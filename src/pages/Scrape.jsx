@@ -18,7 +18,7 @@ const Scrape = () => {
         <div style={{ marginBottom: "22px" }}>
           <ScrapeSideTitleHook />
         </div>
-        <div>
+        <div className="ScrapeSideList">
           <ScrapeSideListHook />
         </div>
       </div>
