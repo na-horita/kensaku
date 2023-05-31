@@ -6,6 +6,7 @@ import Form from "../components/Form";
 import Results from "../components/Results";
 import Frequent from "../components/Frequent";
 import Hopes from "../components/Hopes";
+import Explain from "../components/Explain";
 
 import { useIndexedDB } from "../useIndexedDB";
 
@@ -94,6 +95,7 @@ const Top = () => {
 
   return (
     <>
+      <Explain />
       <Frequent
         setWord={setWord}
         searchImages={searchImages}
