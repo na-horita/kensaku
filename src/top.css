@@ -1,0 +1,54 @@
+.hero_container {
+  height: 240px;
+  margin: 20px 0 30px;
+  display: grid;
+  gap: 3px;
+  grid-template:
+    "visual number expression" 170px
+    "visual other  other" 70px /
+    30% 320px 1fr;
+}
+
+.visual {
+  grid-area: visual;
+  background-color: #fcc;
+  display: grid;
+  place-content: center;
+  place-items: center;
+}
+
+.number {
+  grid-area: number;
+  background-color: #caf;
+  display: grid;
+  place-items: center;
+}
+
+.expression {
+  grid-area: expression;
+  background-color: #ffb;
+  display: grid;
+  place-items: center;
+}
+
+.other {
+  grid-area: other;
+  background-color: #bfa;
+  display: grid;
+  place-items: center;
+}
+
+@media (width < 800px) {
+  .other {
+    background-color: #fff;
+  }
+}
+
+.visual img,
+.number img,
+.expression img,
+.other img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
