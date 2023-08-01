@@ -1,12 +1,28 @@
 .hero_container {
-  height: 240px;
+  height: 260px;
   margin: 20px 0 30px;
   display: grid;
   gap: 3px;
   grid-template:
-    "visual number expression" 170px
-    "visual other  other" 70px /
+    "visual number expression" 180px
+    "visual other  other" 80px /
     30% 320px 1fr;
+}
+
+@media (width < 640px) {
+  .hero_container {
+    height: 440px;
+    gap: 2px;
+    grid-template:
+      "visual number" 240px
+      "expression expression" 100px
+      "other other" 100px /
+      1fr 1fr;
+  }
+
+  .visual h2{
+    font-size: 21px;
+  }
 }
 
 .visual {
@@ -36,12 +52,6 @@
   background-color: #bfa;
   display: grid;
   place-items: center;
-}
-
-@media (width < 800px) {
-  .other {
-    background-color: #fff;
-  }
 }
 
 .visual img,
