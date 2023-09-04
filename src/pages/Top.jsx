@@ -4,7 +4,7 @@ import axios from "axios";
 
 import Form from "../components/Form";
 import Results from "../components/Results";
-import Frequent from "../components/Frequent";
+import Frequent from "../features/Frequent";
 import Hopes from "../components/Hopes";
 import Explain from "../components/Explain";
 import TopHero from "../components/TopHero";

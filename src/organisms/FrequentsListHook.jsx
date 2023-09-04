@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { Button } from "react-bootstrap";
 import FrequentsList from "../components/FrequentsList";
 
 function FrequentsListHook() {

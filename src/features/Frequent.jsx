@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import FrequentCard from "./FrequentCard";
+import FrequentCard from "../components/FrequentCard";
 
 const Frequent = (props) => {
   const [frequents, setFrequents] = useState([]);

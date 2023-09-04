@@ -1,4 +1,4 @@
-import FrequentAdd from "../components/FrequentAdd";
+import FrequentAdd from "../features/FrequentAdd";
 import FrequentsListHook from "../organisms/FrequentsListHook";
 
 const Contact = () => {
