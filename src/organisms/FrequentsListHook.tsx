@@ -24,7 +24,7 @@ function FrequentsListHook() {
       });
   };
 
-  function handleClick(keyword) {
+  function handleClick(keyword:string):void {
     window.location.href = `/?keyword=${keyword}`;
   }
 

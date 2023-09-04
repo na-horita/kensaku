@@ -1,6 +1,12 @@
 import { Button } from "react-bootstrap";
+import { Frequent } from "../ts/frequent";
 
-function FrequentsList({ frequent,handleClick}) {
+type FrequentsListProps = {
+  frequent: Frequent;
+  handleClick: (word:string) => void;
+}
+
+function FrequentsList({ frequent, handleClick }: FrequentsListProps) {
   return (
     <Button
       variant="outline-dark"

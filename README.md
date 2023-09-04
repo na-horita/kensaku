@@ -1,41 +1,27 @@
-## コマンド
+# React + TypeScript + Vite
 
-```bash
-cd kensaku
-npm run lint
-npm run dev
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+
+Currently, two official plugins are available:
+
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+
+## Expanding the ESLint configuration
+
+If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+
+- Configure the top-level `parserOptions` property like this:
+
+```js
+   parserOptions: {
+    ecmaVersion: 'latest',
+    sourceType: 'module',
+    project: ['./tsconfig.json', './tsconfig.node.json'],
+    tsconfigRootDir: __dirname,
+   },
 ```
 
-Open [http://127.0.0.1:5173/](http://127.0.0.1:5173/) 
-
-トップページの編集`pages/Top.jsx` 
-お気に入り一覧ページの編集(例:/favorite/)`pages/Favorite.jsx`
-
-## Expressを使ってAPIのエンドポイントの作成(local開発用)
-
-良く検索されるワード一覧はfrequent.jsonに保存、これにより/api/frequent というAPIエンドポイントを定義する。
-
-```bash
-//JSON-serverインストール
-npm install express data
-
-//web Serverを起動します。
-node index.cjs
-```
-
-Open [http://localhost:3000/api/frequent](http://localhost:3000/api/frequent) 
-
-## JSON Server(local開発用)
-
-良く検索されるワード一覧はdb.jsonに保存をして、JSON serverを利用してデータ取得を行います。
-
-```bash
-//JSON-serverインストール
-npm install -g json-server
-
-//DBとして利用するためのJSONファイルを作成する
-type nul > db.json
-
-//JSON Serverを起動します。
-json-server --watch db.json --port 3000
-```
+- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
+- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
+- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
