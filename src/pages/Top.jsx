@@ -96,8 +96,7 @@ const Top = () => {
 
   return (
     <>
-      <TopHero />
-      {/* <Explain /> */}
+      <Explain />
       <Frequent
         setWord={setWord}
         searchImages={searchImages}
