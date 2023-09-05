@@ -64,7 +64,7 @@ function AddFrequent() {
           <Form.Label>
             <span className="pe-2">Name</span>
           </Form.Label>
-          <Form.Text className="text-muted">お名前をご記入ください。</Form.Text>
+          <Form.Text className="text-muted">お名前をご記入ください</Form.Text>
           <Form.Control
             type="text"
             {...register("name", {
