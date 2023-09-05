@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import FrequentsList from "../components/FrequentsList";
+import FrequentsList from "../../components/frequent/FrequentsList";
 
 function FrequentsListHook() {
   const [frequents, setFrequents] = useState([]);

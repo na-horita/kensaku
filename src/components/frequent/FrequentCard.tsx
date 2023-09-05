@@ -1,11 +1,11 @@
 import { Button } from "react-bootstrap";
 
-const Frequent = (props) => {
+const Frequent = (props:any) => {
   return (
     <div>
       <h3>良く検索される一覧</h3>
       <form>
-        {props.frequents.map((frequent, index) => (
+        {props.frequents.map((frequent: any, index: any) => (
           <Button
             variant="outline-dark"
             key={index}

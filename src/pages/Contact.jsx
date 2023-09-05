@@ -1,5 +1,5 @@
-import FrequentAdd from "../features/FrequentAdd";
-import FrequentsListHook from "../organisms/FrequentsListHook";
+import FrequentAdd from "../features/frequent/FrequentAdd";
+import FrequentsListHook from "../organisms/frequent/FrequentsListHook";
 
 const Contact = () => {
   return (

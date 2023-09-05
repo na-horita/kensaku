@@ -1,10 +1,16 @@
 import { useState, useEffect } from "react";
-import FrequentCard from "../components/FrequentCard";
+import FrequentCard from "../../components/frequent/FrequentCard";
 
-const Frequent = (props) => {
-  const [frequents, setFrequents] = useState([]);
+type Frequent = {
+  id: number;
+  name: string;
+  word: string;
+}
 
-  const getFrequentData = async (e) => {
+const Frequent = (props:any) => {
+  const [frequents, setFrequents] = useState<Frequent[]>([]);
+
+  const getFrequentData = async (e:any) => {
     e.preventDefault();
     const word = e.target.value;
     props.setLoading(true);

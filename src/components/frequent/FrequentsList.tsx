@@ -1,5 +1,5 @@
 import { Button } from "react-bootstrap";
-import { Frequent } from "../ts/frequent";
+import { Frequent } from "../../ts/frequent";
 
 type FrequentsListProps = {
   frequent: Frequent;

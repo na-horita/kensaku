@@ -4,10 +4,9 @@ import axios from "axios";
 
 import Form from "../components/Form";
 import Results from "../components/Results";
-import Frequent from "../features/Frequent";
+import FrequentData from "../features/frequent/FrequentData";
 import Hopes from "../components/Hopes";
 import Explain from "../components/Explain";
-import TopHero from "../components/TopHero";
 
 import { useIndexedDB } from "../useIndexedDB";
 
@@ -97,7 +96,7 @@ const Top = () => {
   return (
     <>
       <Explain />
-      <Frequent
+      <FrequentData
         setWord={setWord}
         searchImages={searchImages}
         loading={loading}
