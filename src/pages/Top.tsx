@@ -12,9 +12,9 @@ import { useIndexedDB } from "../useIndexedDB";
 
 const Top = () => {
   const [hopes, setHopes] = useIndexedDB("hopes", []);
-  const [word, setWord] = useState("");
-  const [photos, setPhotos] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [word, setWord] = useState<any>("");
+  const [photos, setPhotos] = useState<any>([]);
+  const [loading, setLoading] = useState<any>(false);
 
   const urlParams = new URLSearchParams(window.location.search);
   const keyword = urlParams.get("keyword");
@@ -30,8 +30,7 @@ const Top = () => {
 
   // 初期値をuseStateで保持している変数のwordにした。そしてこの変数は外部から代入することが可能としている。
   const searchImages = async (word2 = word) => {
-    const pexelsAPIKey =
-      "ycuX09ywi56e2xu3hSuMWNDw4vzJAyye7HKi7LYQIoEUz0QnoQC0sE7S";
+    const pexelsAPIKey = "ycuX09ywi56e2xu3hSuMWNDw4vzJAyye7HKi7LYQIoEUz0QnoQC0sE7S";
     const unsplashAPIKey = "UrTEHHwYhYpE612HSg7bfj7KPAHUADyp1YCJsoLEcL8";
 
     // Pexels APIのリクエスト 最大８０件まで
@@ -43,7 +42,7 @@ const Top = () => {
         },
       }
     );
-    const pexelsPhotos = pexelsResponse.data.photos.map((photo) => ({
+    const pexelsPhotos = pexelsResponse.data.photos.map((photo: any) => ({
       id: photo.id,
       source: "pexels",
       url: photo.src.medium,
@@ -63,7 +62,7 @@ const Top = () => {
         },
       }
     );
-    const unsplashPhotos = unsplashResponse.data.results.map((photo) => ({
+    const unsplashPhotos = unsplashResponse.data.results.map((photo: any) => ({
       id: photo.id,
       source: "unsplash",
       url: photo.urls.regular,
@@ -75,18 +74,19 @@ const Top = () => {
     }));
 
     // PexelsとUnsplashの結果を合わせる
-    const mergedPhotos = [...pexelsPhotos, ...unsplashPhotos];
+    const mergedPhotos: any = [...pexelsPhotos, ...unsplashPhotos];
 
     // 作成日の新しい順にソートする
     mergedPhotos.sort(
-      (a, b) => new Date(b.created_at) - new Date(a.created_at)
+      (a: any, b: any) =>
+        new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
     );
 
     // 結果をセットする
     setPhotos(mergedPhotos);
   };
 
-  const getPhotoData = async (e) => {
+  const getPhotoData = async (e: any) => {
     e.preventDefault();
     setLoading(true);
     await searchImages();
