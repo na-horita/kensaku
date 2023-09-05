@@ -1,9 +1,8 @@
 import React from "react";
-const ScrapeSideList = ({ item }) => {
-  const itemTitle =
-    item.title.slice(0, 17) + (item.title.length > 17 ? "..." : "");
+const ScrapeSideList = ({ item }: any) => {
+  const itemTitle = item.title.slice(0, 17) + (item.title.length > 17 ? "..." : "");
   return (
-    <div style={{borderBottom:"1px solid #999", marginBottom:"5px"}}>
+    <div style={{ borderBottom: "1px solid #999", marginBottom: "5px" }}>
       <p>
         <span style={{ fontSize: "12px" }}>{itemTitle}</span>
         <br />

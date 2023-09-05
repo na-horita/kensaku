@@ -1,6 +1,6 @@
 import React from "react";
 
-const ScrapeCard = ({ title, url, img, price, addBookHandler }) => {
+const ScrapeCard = ({ title, url, img, price, addBookHandler }:any) => {
   const truncatedTitle = title.slice(0, 30) + (title.length > 30 ? "..." : "");
 
   return (

@@ -1,6 +1,6 @@
 import React from "react";
 
-import ScrapeCardHook from "../organisms//ScrapeCardHook";
+import ScrapeCardHook from "../organisms/ScrapeCardHook";
 import ScrapeSideTitleHook from "../organisms/ScrapeSideTitleHook";
 import ScrapeSideListHook from "../organisms/ScrapeSideListHook";
 

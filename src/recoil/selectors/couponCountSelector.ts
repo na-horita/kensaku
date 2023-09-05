@@ -5,9 +5,9 @@ const couponCountSelector = selector({
   key: "couponCountSelector",
   get: ({ get }) => {
     const carts = get(cartState);
-    const clickedCardCount = {};
+    const clickedCardCount:any = {};
 
-    carts.forEach((cart) => {
+    carts.forEach((cart:any) => {
       const title = cart.title;
       if (!clickedCardCount[title]) {
         clickedCardCount[title] = {

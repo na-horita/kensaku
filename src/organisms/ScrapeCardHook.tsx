@@ -6,7 +6,7 @@ import { useRecoilState } from "recoil";
 import cartState from "../recoil/atoms/cartState";
 
 const ScrapeCardHook = () => {
-  const [drones, setDrones] = useState([]);
+  const [drones, setDrones] = useState<any>([]);
   useEffect(() => {
     const fetchData = async () => {
       const result = await axios.get(
@@ -19,8 +19,8 @@ const ScrapeCardHook = () => {
     fetchData();
   }, []);
 
-  const [cart, setCart] = useRecoilState(cartState);
-  const addBookHandler = (title, price) => {
+  const [cart, setCart] = useRecoilState<any>(cartState);
+  const addBookHandler: any = (title: any, price: any) => {
     setCart([...cart, { title, price }]);
   };
 
@@ -59,7 +59,7 @@ const ScrapeCardHook = () => {
 
   return (
     <>
-      {drones.map((drone, index) => (
+      {drones.map((drone: any, index:any) => (
         <ScrapeCard
           key={index}
           title={drone.title}

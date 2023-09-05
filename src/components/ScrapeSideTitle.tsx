@@ -1,5 +1,5 @@
 import React from "react";
-const ScrapeSideList = ({ length,total,color,message,discountTotal,rate }) => {
+const ScrapeSideList = ({ length, total, color, message, discountTotal, rate }: any) => {
   return (
     <>
       <h4>品数【{length}点】</h4>
