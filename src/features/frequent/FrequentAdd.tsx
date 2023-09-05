@@ -65,14 +65,17 @@ function AddFrequent() {
             <span className="pe-2">Name</span>
           </Form.Label>
           <Form.Text className="text-muted">お名前をご記入ください</Form.Text>
-          <Form.Control
-            type="text"
-            {...register("name", {
-              required: true,
-              minLength: 1,
-              pattern: /^[a-zA-Zぁ-んァ-ン一-龥々]+$/,
-            })}
-          />
+          <div className="d-flex justify-content-center">
+            <Form.Control
+              type="text"
+              style={{ maxWidth: "300px", width: "100%", borderColor: "#999" }}
+              {...register("name", {
+                required: true,
+                minLength: 1,
+                pattern: /^[a-zA-Zぁ-んァ-ン一-龥々]+$/,
+              })}
+            />
+          </div>
           {errors.name?.type === "required" && (
             <span className="text-danger">お名前は必須です。</span>
           )}
@@ -91,14 +94,17 @@ function AddFrequent() {
             <span className="pe-2">Word</span>
           </Form.Label>
           <Form.Text className="text-muted">登録したいワードをご入力ください。</Form.Text>
-          <Form.Control
-            type="text"
-            {...register("word", {
-              required: true,
-              minLength: 2,
-              pattern: /^[a-zA-Z]+$/,
-            })}
-          />
+          <div className="d-flex justify-content-center">
+            <Form.Control
+              type="text"
+              style={{ maxWidth: "300px", width: "100%", borderColor: "#999" }}
+              {...register("word", {
+                required: true,
+                minLength: 2,
+                pattern: /^[a-zA-Z]+$/,
+              })}
+            />
+          </div>
           {errors.word?.type === "required" && (
             <span className="text-danger">ワードは必須です。</span>
           )}
