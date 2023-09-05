@@ -1,16 +1,11 @@
 import { useState, useEffect } from "react";
 import FrequentCard from "../../components/frequent/FrequentCard";
+import { Frequent } from "../../ts/frequent";
 
-type Frequent = {
-  id: number;
-  name: string;
-  word: string;
-}
-
-const Frequent = (props:any) => {
+const Frequent = (props: any) => {
   const [frequents, setFrequents] = useState<Frequent[]>([]);
 
-  const getFrequentData = async (e:any) => {
+  const getFrequentData = async (e: any) => {
     e.preventDefault();
     const word = e.target.value;
     props.setLoading(true);
@@ -19,10 +14,23 @@ const Frequent = (props:any) => {
     props.setLoading(false);
   };
 
+  const fetchFrequentsData = async () => {
+    const response = await fetch("https://kensaku-express.vercel.app/api/frequent");
+    if (!response.ok) throw new Error();
+    return response.json();
+  };
+
   useEffect(() => {
-    fetch("https://kensaku-express.vercel.app/api/frequent")
-      .then((response) => response.json())
-      .then((data) => setFrequents(data));
+    async function fetchData() {
+      try {
+        const allFrequents = await fetchFrequentsData();
+        setFrequents(allFrequents);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+
+    fetchData();
   }, []);
 
   return (
