@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import FrequentCard from "../../components/frequent/FrequentCard";
 import { Frequent } from "../../ts/frequent";
 
-const Frequent = (props: any) => {
+const FrequentData = (props: any) => {
   const [frequents, setFrequents] = useState<Frequent[]>([]);
 
   const getFrequentData = async (e: any) => {
@@ -40,4 +40,4 @@ const Frequent = (props: any) => {
   );
 };
 
-export default Frequent;
+export default FrequentData;
