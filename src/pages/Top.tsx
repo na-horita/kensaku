@@ -11,7 +11,7 @@ import Explain from "../components/Explain";
 import { useIndexedDB } from "../useIndexedDB";
 
 const Top = () => {
-  const [hopes, setHopes] = useIndexedDB("hopes", []);
+  const [hopes, setHopes] = useIndexedDB("hopes");
   const [word, setWord] = useState<any>("");
   const [photos, setPhotos] = useState<any>([]);
   const [loading, setLoading] = useState<any>(false);

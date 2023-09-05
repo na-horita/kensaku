@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Button, Form, Stack, Alert } from "react-bootstrap";
-import { useForm } from "react-hook-form";
+import { useForm, SubmitHandler } from "react-hook-form";
 import { Frequent } from "../../ts/frequent";
 
 
@@ -25,9 +25,7 @@ function AddFrequent() {
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm();
-  const [name, setName] = useState<string>("");
-  const [word, setWord] = useState<string>("");
+  } = useForm<Omit<Frequent, "id">>();
   const [showAlert, setShowAlert] = useState<boolean>(false);
 
   useEffect(() => {
@@ -40,7 +38,7 @@ function AddFrequent() {
     return () => clearTimeout(timeout);
   }, [showAlert]);
 
-  const onSubmit = (data: any) => {
+  const onSubmit: SubmitHandler<Omit<Frequent, "id">> = (data) => {
     const newFrequent = { name: data.name, word: data.word };
 
     frequentsData(newFrequent)
@@ -69,8 +67,6 @@ function AddFrequent() {
           <Form.Text className="text-muted">お名前をご記入ください。</Form.Text>
           <Form.Control
             type="text"
-            defaultValue={name}
-            onChange={(e: any) => setName(e.target.value)}
             {...register("name", {
               required: true,
               minLength: 1,
@@ -97,8 +93,6 @@ function AddFrequent() {
           <Form.Text className="text-muted">登録したいワードをご入力ください。</Form.Text>
           <Form.Control
             type="text"
-            defaultValue={word}
-            onChange={(e: any) => setWord(e.target.value)}
             {...register("word", {
               required: true,
               minLength: 2,
