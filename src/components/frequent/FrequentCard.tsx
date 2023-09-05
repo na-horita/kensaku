@@ -1,6 +1,6 @@
 import { Button } from "react-bootstrap";
 
-const Frequent = ({ frequents, getFrequentData }: any) => {
+const FrequentCard = ({ frequents, getFrequentData }: any) => {
   return (
     <div>
       <h3>良く検索される一覧</h3>
@@ -22,4 +22,4 @@ const Frequent = ({ frequents, getFrequentData }: any) => {
   );
 };
 
-export default Frequent;
+export default FrequentCard;
