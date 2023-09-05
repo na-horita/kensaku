@@ -1,5 +1,5 @@
 import { Button } from "react-bootstrap";
-const Form = (props) => {
+const Form = (props:any) => {
   return (
     <div className="mt-3">
       <form>
@@ -13,7 +13,7 @@ const Form = (props) => {
         />
         <Button
           variant="primary"
-          size="md"
+          size="lg"
           type="submit"
           onClick={props.getPhotoData}
           className="-mt-2 ml-1"

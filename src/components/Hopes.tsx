@@ -1,6 +1,6 @@
 import HopesCard from "../features/HopesCard";
 
-const Hopes = (props) => {
+const Hopes = (props:any) => {
   return (
     <>
       {props.hopes && props.hopes.length > 0 && (

@@ -2,10 +2,10 @@ import { useState, useEffect } from "react";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/splide/dist/css/themes/splide-default.min.css";
 
-const HopesCard = (props) => {
-  const [perPage, setPerPage] = useState(10);
-  const [perMove, setPerMove] = useState(10);
-  const [gap, setGap] = useState(15);
+const HopesCard = (props:any) => {
+  const [perPage, setPerPage] = useState<number>(10);
+  const [perMove, setPerMove] = useState<number>(10);
+  const [gap, setGap] = useState<number>(15);
 
   useEffect(() => {
     const handleResize = () => {
@@ -43,7 +43,7 @@ const HopesCard = (props) => {
 
   return (
     <Splide options={options}>
-      {props.hopes.map((hope, index) => (
+      {props.hopes.map((hope:any) => (
         <SplideSlide key={hope.id}>
           <a href={hope.link} target="_blank" rel="noreferrer">
             <img src={hope.url} alt={hope.photographer} />

@@ -1,7 +1,7 @@
 import { useLayoutEffect, useState } from "react";
 import { set, get } from "idb-keyval";
 
-export function useIndexedDB(key, initialValue) {
+export function useIndexedDB(key:any) {
   const [value, setValue] = useState(0);
 
   useLayoutEffect(() => {
@@ -12,7 +12,7 @@ export function useIndexedDB(key, initialValue) {
     });
   }, [key]);
 
-  const save = (val) => {
+  const save = (val:any) => {
     set(key, val).then(() => {
       setValue(val);
     });
