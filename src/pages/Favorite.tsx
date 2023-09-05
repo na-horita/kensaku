@@ -17,7 +17,7 @@ function Favorite() {
 
   const breakpoints = [880, 640, 384, 256, 128, 96, 64, 48];
 
-  const FavoriteDatas = hopes.map((photo) => ({
+  const FavoriteDatas = hopes.map((photo:any) => ({
     src: photo.url,
     width: photo.width,
     height: photo.height,
@@ -38,7 +38,7 @@ function Favorite() {
       <h1>My Favorite Images</h1>
       <PhotoAlbum
         layout="rows"
-        spacing="8"
+        spacing={8}
         photos={FavoriteDatas}
         renderPhoto={({ photo, wrapperStyle, renderDefaultPhoto }) => (
           <div style={{ position: "relative", ...wrapperStyle }}>
