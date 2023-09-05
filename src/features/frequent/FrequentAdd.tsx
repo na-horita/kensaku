@@ -1,16 +1,34 @@
 import { useState, useEffect } from "react";
 import { Button, Form, Stack, Alert } from "react-bootstrap";
 import { useForm } from "react-hook-form";
+import { Frequent } from "../../ts/frequent";
+
+
+async function frequentsData(formData: Omit<Frequent,"id">) {
+  const response = await fetch("https://kensaku-express.vercel.app/api/frequent", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(formData),
+  });
+
+  if (!response.ok) {
+    throw new Error("Network response was not ok");
+  }
+  return response.json();
+}
 
 function AddFrequent() {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
-  const [name, setName] = useState("");
-  const [word, setWord] = useState("");
-  const [showAlert, setShowAlert] = useState(false);
+  const [name, setName] = useState<string>("");
+  const [word, setWord] = useState<string>("");
+  const [showAlert, setShowAlert] = useState<boolean>(false);
 
   useEffect(() => {
     // 3秒後にアラートを非表示にする
@@ -22,23 +40,12 @@ function AddFrequent() {
     return () => clearTimeout(timeout);
   }, [showAlert]);
 
-  const onSubmit = (data) => {
+  const onSubmit = (data: any) => {
     const newFrequent = { name: data.name, word: data.word };
 
-    fetch("https://kensaku-express.vercel.app/api/frequent", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(newFrequent),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("Success:", data);
-        setName("");
-        setWord("");
-        document.getElementById("inp_name").value = "";
-        document.getElementById("inp_word").value = "";
+    frequentsData(newFrequent)
+      .then(() => {
+        reset();
         setShowAlert(true);
       })
       .catch((error) => {
@@ -49,11 +56,7 @@ function AddFrequent() {
   return (
     <div>
       {showAlert && (
-        <Alert
-          variant="success"
-          onClose={() => setShowAlert(false)}
-          dismissible
-        >
+        <Alert variant="success" onClose={() => setShowAlert(false)} dismissible>
           POSTを完了しました
         </Alert>
       )}
@@ -66,9 +69,8 @@ function AddFrequent() {
           <Form.Text className="text-muted">お名前をご記入ください。</Form.Text>
           <Form.Control
             type="text"
-            id="inp_name"
             defaultValue={name}
-            onChange={(e) => setName(e.target.value)}
+            onChange={(e: any) => setName(e.target.value)}
             {...register("name", {
               required: true,
               minLength: 1,
@@ -79,9 +81,7 @@ function AddFrequent() {
             <span className="text-danger">お名前は必須です。</span>
           )}
           {errors.name?.type === "minLength" && (
-            <span className="text-danger">
-              お名前は1文字以上で入力してください。
-            </span>
+            <span className="text-danger">お名前は1文字以上で入力してください。</span>
           )}
           {errors.name?.type === "pattern" && (
             <span className="text-danger">
@@ -94,14 +94,11 @@ function AddFrequent() {
           <Form.Label>
             <span className="pe-2">Word</span>
           </Form.Label>
-          <Form.Text className="text-muted">
-            登録したいワードをご入力ください。
-          </Form.Text>
+          <Form.Text className="text-muted">登録したいワードをご入力ください。</Form.Text>
           <Form.Control
             type="text"
-            id="inp_word"
             defaultValue={word}
-            onChange={(e) => setWord(e.target.value)}
+            onChange={(e: any) => setWord(e.target.value)}
             {...register("word", {
               required: true,
               minLength: 2,
@@ -112,14 +109,10 @@ function AddFrequent() {
             <span className="text-danger">ワードは必須です。</span>
           )}
           {errors.word?.type === "minLength" && (
-            <span className="text-danger">
-              ワードは2文字以上で入力してください。
-            </span>
+            <span className="text-danger">ワードは2文字以上で入力してください。</span>
           )}
           {errors.word?.type === "pattern" && (
-            <span className="text-danger">
-              ワードは英語で入力してください。
-            </span>
+            <span className="text-danger">ワードは英語で入力してください。</span>
           )}
         </Form.Group>
 
