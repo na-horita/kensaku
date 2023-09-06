@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { getPexelsData, mapDataToCustomFormat } from "../features/gathering";
+import { GetPexelsData, pexelsApichema } from "../ts/photo";
 
 const pexelsAPIKey = import.meta.env.VITE_REACT_APP_API_pexels;
 
@@ -7,18 +8,27 @@ const GetPexels = () => {
   const [pexelsData, setPexelsData] = useState<any>([]);
   const [pexelsDataCustom, setPexelsDataCustom] = useState<any>([]);
 
+  const inputData: GetPexelsData = {
+    word: "brown",
+    num: 20,
+    apiKey: pexelsAPIKey,
+  };
+
   useEffect(() => {
-    getPexelsData({
-      word: "fire",
-      num: 25,
-      apiKey: pexelsAPIKey,
-    })
-      .then((data) => {
-        setPexelsData(data);
-      })
-      .catch((error) => {
-        console.error("データの取得に失敗しました。エラー:", error);
-      });
+    try {
+      // スキーマにデータを検証
+      pexelsApichema.parse(inputData);
+
+      getPexelsData(inputData)
+        .then((data) => {
+          setPexelsData(data);
+        })
+        .catch((error) => {
+          console.error("データの取得に失敗しました。エラー:", error);
+        });
+    } catch (validationError) {
+      console.error("入力データが無効です。エラー:", validationError);
+    }
   }, []);
 
   useEffect(() => {
