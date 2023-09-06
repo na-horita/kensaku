@@ -13,6 +13,7 @@ import { useIndexedDB } from "../useIndexedDB";
 import { sortByNewestCreationDate } from "../features/gathering";
 
 const Top = () => {
+  // const apiKey = import.meta.env.VITE_REACT_APP_API_KEY;
   const [hopes, setHopes] = useIndexedDB("hopes");
   const [word, setWord] = useState<any>("");
   const [photos, setPhotos] = useState<any>([]);
@@ -32,8 +33,8 @@ const Top = () => {
 
   // 初期値をuseStateで保持している変数のwordにした。そしてこの変数は外部から代入することが可能としている。
   const searchImages = async (word2 = word) => {
-    const pexelsAPIKey = "ycuX09ywi56e2xu3hSuMWNDw4vzJAyye7HKi7LYQIoEUz0QnoQC0sE7S";
-    const unsplashAPIKey = "UrTEHHwYhYpE612HSg7bfj7KPAHUADyp1YCJsoLEcL8";
+    const pexelsAPIKey = import.meta.env.VITE_REACT_APP_API_pexels;
+    const unsplashAPIKey = import.meta.env.VITE_REACT_APP_API_unsplash;
 
     // Pexels APIのリクエスト 最大８０件まで
     const pexelsResponse = await axios.get(
