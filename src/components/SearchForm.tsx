@@ -1,5 +1,5 @@
 import { Button } from "react-bootstrap";
-const Form = (props:any) => {
+const SearchForm = (props:any) => {
   return (
     <div className="mt-3">
       <form>
@@ -16,7 +16,7 @@ const Form = (props:any) => {
           size="lg"
           type="submit"
           onClick={props.getPhotoData}
-          className="-mt-2 ml-1"
+          className="-mt-3 ml-1"
         >
           Search
         </Button>
@@ -25,4 +25,4 @@ const Form = (props:any) => {
   );
 };
 
-export default Form;
+export default SearchForm;

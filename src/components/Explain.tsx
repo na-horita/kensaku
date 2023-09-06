@@ -4,6 +4,7 @@ const Explain = () => {
       position: relative;
       display: block;
       width:190px;
+      margin:5px 0 0 15px;
       padding: 10px 10px 10px 30px;
       cursor: pointer;
       font-weight: bold;

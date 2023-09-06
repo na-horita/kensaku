@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 
 import axios from "axios";
 
-import Form from "../components/Form";
+import SearchForm from "../components/SearchForm";
 import Results from "../components/Results";
 import FrequentData from "../features/frequent/FrequentData";
 import Hopes from "../components/Hopes";
@@ -102,7 +102,7 @@ const Top = () => {
         loading={loading}
         setLoading={setLoading}
       />
-      <Form setWord={setWord} word={word} getPhotoData={getPhotoData} />
+      <SearchForm setWord={setWord} word={word} getPhotoData={getPhotoData} />
       検索文字:{word}
       <Results photos={photos} loading={loading} setHopes={setHopes} hopes={hopes} />
       <hr />
