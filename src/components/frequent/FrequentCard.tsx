@@ -7,12 +7,13 @@ const FrequentCard = ({ frequents, getFrequentData }: any) => {
       <form>
         {frequents.map((frequent: any, index: any) => (
           <Button
-            variant="outline-dark"
+            variant="outline-success"
+            size="lg"
             key={index}
             type="submit"
             value={frequent.word}
             onClick={getFrequentData}
-            style={{ margin: "0 5px" }}
+            className="mb-2 mx-1"
           >
             {frequent.word}
           </Button>
