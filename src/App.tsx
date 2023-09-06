@@ -3,13 +3,13 @@ import { RecoilRoot } from "recoil";
 
 import "./App.css";
 import Top from "./pages/Top";
-import Contact from "./pages/Contact";
+import Add from "./pages/Add";
 import Favorite from "./pages/Favorite";
 import Scrape from "./pages/Scrape";
 import Explain from "./pages/Explain";
 import Sus from "./pages/Sus";
-import Navb from "./components/Navbar";
-import Footer from "./components/Footer";
+import Navb from "./components/common/Navbar";
+import Footer from "./components/common/Footer";
 
 function App() {
   return (
@@ -21,7 +21,7 @@ function App() {
             <Routes>
               <Route path="/" element={<Top />} />
               <Route path="/explain" element={<Explain />} />
-              <Route path="/contact" element={<Contact />} />
+              <Route path="/add" element={<Add />} />
               <Route path="/favorite" element={<Favorite />} />
               <Route path="/sus" element={<Sus />} />
               <Route path="/scrape" element={<Scrape />} />

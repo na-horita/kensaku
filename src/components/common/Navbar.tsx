@@ -23,7 +23,7 @@ function Navb() {
             {/* <Link className="nav-link" to="/sus">
               suspense練習
             </Link> */}
-            <Link className="nav-link" to="/contact">
+            <Link className="nav-link" to="/add">
               ワード追加
             </Link>
             <Link className="nav-link" to="/scrape">

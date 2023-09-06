@@ -2,11 +2,11 @@ import { useState, useEffect } from "react";
 
 import axios from "axios";
 
-import SearchForm from "../components/SearchForm";
-import Results from "../components/Results";
+import SearchForm from "../components/frontpage/SearchForm";
+import Results from "../components/frontpage/Results";
 import FrequentData from "../features/frequent/FrequentData";
-import Hopes from "../components/Hopes";
-import Explain from "../components/Explain";
+import Hopes from "../components/frontpage/Hopes";
+import Explain from "../components/frontpage/Explain";
 
 import { useIndexedDB } from "../useIndexedDB";
 

@@ -1,4 +1,4 @@
-import HopesCard from "../features/HopesCard";
+import HopesCard from "../../features/HopesCard";
 
 const Hopes = (props:any) => {
   return (
