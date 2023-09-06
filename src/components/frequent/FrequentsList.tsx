@@ -9,9 +9,10 @@ type FrequentsListProps = {
 function FrequentsList({ frequent, handleClick }: FrequentsListProps) {
   return (
     <Button
-      variant="outline-dark"
-      className="mx-1 mb-1"
-      style={{ cursor: "pointer" }}
+      variant="outline-success"
+      size="lg"
+      className="mb-2 mx-1"
+      value={frequent.word}
       onClick={() => handleClick(frequent.word)}
     >
       {frequent.word}

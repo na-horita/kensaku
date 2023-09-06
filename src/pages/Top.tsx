@@ -96,12 +96,17 @@ const Top = () => {
   return (
     <>
       <Explain />
-      <FrequentData
-        setWord={setWord}
-        searchImages={searchImages}
-        loading={loading}
-        setLoading={setLoading}
-      />
+      <div>
+        <h3>良く検索される一覧</h3>
+        <form>
+          <FrequentData
+            setWord={setWord}
+            searchImages={searchImages}
+            loading={loading}
+            setLoading={setLoading}
+          />
+        </form>
+      </div>
       <SearchForm setWord={setWord} word={word} getPhotoData={getPhotoData} />
       検索文字:{word}
       <Results photos={photos} loading={loading} setHopes={setHopes} hopes={hopes} />

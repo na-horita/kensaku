@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import FrequentCard from "../../components/frequent/FrequentCard";
+import FrequentButton from "../../components/frequent/FrequentButton";
 import { Frequent } from "../../ts/frequent";
 
 const FrequentData = (props: any) => {
@@ -35,7 +35,9 @@ const FrequentData = (props: any) => {
 
   return (
     <>
-      <FrequentCard frequents={frequents} getFrequentData={getFrequentData} />
+      {frequents.map((frequent: any) => (
+        <FrequentButton frequent={frequent} getFrequentData={getFrequentData} />
+      ))}
     </>
   );
 };
