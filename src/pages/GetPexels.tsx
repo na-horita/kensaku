@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { getPexelsData, mapPexelsDataToCustomFormat } from "../features/gathering";
+import { getPexelsData, mapDataToCustomFormat } from "../features/gathering";
 
 const pexelsAPIKey = import.meta.env.VITE_REACT_APP_API_pexels;
 
@@ -23,7 +23,7 @@ const GetPexels = () => {
 
   useEffect(() => {
     const pexelsPhotos: any = pexelsData.map((photo: any) =>
-      mapPexelsDataToCustomFormat(photo)
+      mapDataToCustomFormat(photo, "Pexels")
     );
     setPexelsDataCustom(pexelsPhotos);
   }, [pexelsData]);
@@ -42,6 +42,7 @@ const GetPexels = () => {
             <th>Height</th>
             <th>Link</th>
             <th>Photographer</th>
+            <th>日付</th>
           </tr>
         </thead>
         <tbody>
@@ -61,6 +62,7 @@ const GetPexels = () => {
                 </a>
               </td>
               <td>{data.photographer}</td>
+              <td>{data.created_at}</td>
             </tr>
           ))}
         </tbody>

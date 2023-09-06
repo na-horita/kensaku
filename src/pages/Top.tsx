@@ -10,8 +10,10 @@ import Explain from "../components/frontpage/Explain";
 
 import { useIndexedDB } from "../useIndexedDB";
 
-import { getPexelsData } from "../features/gathering";
-
+import { getPexelsData, mapDataToCustomFormat } from "../features/gathering";
+const pexelsAPIKey = import.meta.env.VITE_REACT_APP_API_pexels;
+const unsplashAPIKey = import.meta.env.VITE_REACT_APP_API_unsplash;
+    
 const Top = () => {
   // const apiKey = import.meta.env.VITE_REACT_APP_API_KEY;
   const [hopes, setHopes] = useIndexedDB("hopes");
@@ -33,21 +35,12 @@ const Top = () => {
 
   // 初期値をuseStateで保持している変数のwordにした。そしてこの変数は外部から代入することが可能としている。
   const searchImages = async (word2 = word) => {
-    const pexelsAPIKey = import.meta.env.VITE_REACT_APP_API_pexels;
-    const unsplashAPIKey = import.meta.env.VITE_REACT_APP_API_unsplash;
 
     // Pexels APIのリクエスト 最大８０件まで
-    const pexelsResponse = await getPexelsData(word2, 15, pexelsAPIKey);
-    const pexelsPhotos = pexelsResponse.map((photo: any) => ({
-      id: photo.id,
-      source: "pexels",
-      url: photo.src.medium,
-      width: photo.width,
-      height: photo.height,
-      link: photo.url,
-      photographer: photo.photographer,
-      created_at: photo.created_at,
-    }));
+    const pexelsResponse = await getPexelsData(word2, 45, pexelsAPIKey);
+    const pexelsPhotos = pexelsResponse.map((photo: any) =>
+      mapDataToCustomFormat(photo, "Pexels")
+    );
 
     // Unsplash APIのリクエスト 最大３０件まで
     const unsplashResponse = await axios.get(
@@ -58,16 +51,9 @@ const Top = () => {
         },
       }
     );
-    const unsplashPhotos = unsplashResponse.data.results.map((photo: any) => ({
-      id: photo.id,
-      source: "unsplash",
-      url: photo.urls.regular,
-      width: photo.width,
-      height: photo.height,
-      link: photo.links.html,
-      photographer: photo.user.name,
-      created_at: photo.created_at,
-    }));
+    const unsplashPhotos = unsplashResponse.data.results.map((photo: any) =>
+      mapDataToCustomFormat(photo, "Unsplash")
+    );
 
     // PexelsとUnsplashの結果を合わせる
     const mergedPhotos: any = [...pexelsPhotos, ...unsplashPhotos];

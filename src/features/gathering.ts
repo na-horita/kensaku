@@ -20,20 +20,6 @@ export const getPexelsData = async (word:string, num:number, apiKey:string) => {
   }
 };
 
-//pixelデータのオブジェクトのキーフレーズを合わせる
-export const mapPexelsDataToCustomFormat = (data:any) => {
-  return {
-    id: data.id,
-    source: "pexels",
-    url: data.src.medium,
-    width: data.width,
-    height: data.height,
-    link: data.url,
-    photographer: data.photographer,
-    // created_at: data.created_at,
-  };
-}
-
 // Unsplash APIのリクエスト 最大３０件まで
 export const getUnsplashData = async (word2:string, num:number, apiKey:string) => {
   try {
@@ -51,6 +37,38 @@ export const getUnsplashData = async (word2:string, num:number, apiKey:string) =
     // エラーハンドリングを行う場合のコード
     console.error("Unsplash APIエラー:", error);
     return null; // またはエラーを適切に処理して返す
+  }
+};
+
+//pixel,Unsplashデータのオブジェクトのキーフレーズを合わせる
+type SourceType = "Unsplash" | "Pexels";
+
+export const mapDataToCustomFormat = (data: any, source: SourceType = "Pexels"): any => {
+  const commonProperties = {
+    id: data.id,
+    source: source,
+    width: data.width,
+    height: data.height,
+  };
+
+  if (source === "Pexels") {
+    return {
+      ...commonProperties,
+      url: data.src.medium,
+      link: data.url,
+      photographer: data.photographer,
+      created_at: data.created_at,
+    };
+  }
+
+  if (source === "Unsplash") {
+    return {
+      ...commonProperties,
+      url: data.urls.regular,
+      link: data.links.html,
+      photographer: data.user.name,
+      created_at: data.created_at,
+    };
   }
 };
 
