@@ -10,7 +10,7 @@ import Explain from "../components/frontpage/Explain";
 
 import { useIndexedDB } from "../useIndexedDB";
 
-import { sortByNewestCreationDate } from "../features/gathering";
+import { getPexelsData } from "../features/gathering";
 
 const Top = () => {
   // const apiKey = import.meta.env.VITE_REACT_APP_API_KEY;
@@ -37,15 +37,8 @@ const Top = () => {
     const unsplashAPIKey = import.meta.env.VITE_REACT_APP_API_unsplash;
 
     // Pexels APIのリクエスト 最大８０件まで
-    const pexelsResponse = await axios.get(
-      `https://api.pexels.com/v1/search?query=${word2}&per_page=15`,
-      {
-        headers: {
-          Authorization: pexelsAPIKey,
-        },
-      }
-    );
-    const pexelsPhotos = pexelsResponse.data.photos.map((photo: any) => ({
+    const pexelsResponse = await getPexelsData(word2, 15, pexelsAPIKey);
+    const pexelsPhotos = pexelsResponse.map((photo: any) => ({
       id: photo.id,
       source: "pexels",
       url: photo.src.medium,
@@ -80,7 +73,7 @@ const Top = () => {
     const mergedPhotos: any = [...pexelsPhotos, ...unsplashPhotos];
 
     // 作成日の新しい順にソートする
-    sortByNewestCreationDate(mergedPhotos);
+    // sortByNewestCreationDate(mergedPhotos);
 
     // 結果をセットする
     setPhotos(mergedPhotos);

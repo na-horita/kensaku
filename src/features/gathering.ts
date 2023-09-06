@@ -20,6 +20,20 @@ export const getPexelsData = async (word:string, num:number, apiKey:string) => {
   }
 };
 
+//pixelデータのオブジェクトのキーフレーズを合わせる
+export const mapPexelsDataToCustomFormat = (data:any) => {
+  return {
+    id: data.id,
+    source: "pexels",
+    url: data.src.medium,
+    width: data.width,
+    height: data.height,
+    link: data.url,
+    photographer: data.photographer,
+    // created_at: data.created_at,
+  };
+}
+
 // Unsplash APIのリクエスト 最大３０件まで
 export const getUnsplashData = async (word2:string, num:number, apiKey:string) => {
   try {
@@ -40,6 +54,7 @@ export const getUnsplashData = async (word2:string, num:number, apiKey:string) =
   }
 };
 
+//
 
 // 作成日の新しい順にソートする
 export const sortByNewestCreationDate = function (photos: any) {
