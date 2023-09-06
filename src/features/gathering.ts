@@ -1,4 +1,5 @@
 import axios from "axios";
+import { SourceType, Photo } from "../ts/photo"; 
 
 // Pexels APIのリクエスト 最大８０件まで
 export const getPexelsData = async (word:string, num:number, apiKey:string) => {
@@ -41,9 +42,7 @@ export const getUnsplashData = async (word2:string, num:number, apiKey:string) =
 };
 
 //pixel,Unsplashデータのオブジェクトのキーフレーズを合わせる
-type SourceType = "Unsplash" | "Pexels";
-
-export const mapDataToCustomFormat = (data: any, source: SourceType = "Pexels"): any => {
+export const mapDataToCustomFormat = (data: any, source: SourceType = "Pexels"): Photo => {
   const commonProperties = {
     id: data.id,
     source: source,
@@ -70,6 +69,7 @@ export const mapDataToCustomFormat = (data: any, source: SourceType = "Pexels"):
       created_at: data.created_at,
     };
   }
+  throw new Error("未知のソースです");
 };
 
 //
