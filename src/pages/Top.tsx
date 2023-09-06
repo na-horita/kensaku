@@ -37,7 +37,11 @@ const Top = () => {
   const searchImages = async (word2 = word) => {
 
     // Pexels APIのリクエスト 最大８０件まで
-    const pexelsResponse = await getPexelsData(word2, 45, pexelsAPIKey);
+    const pexelsResponse = await getPexelsData({
+      word: word2,
+      num: 45,
+      apiKey: pexelsAPIKey,
+    });
     const pexelsPhotos = pexelsResponse.map((photo: any) =>
       mapDataToCustomFormat(photo, "Pexels")
     );

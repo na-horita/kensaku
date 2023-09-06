@@ -1,8 +1,8 @@
 import axios from "axios";
-import { SourceType, Photo } from "../ts/photo"; 
+import { SourceType, Photo, GetPexelsData } from "../ts/photo"; 
 
 // Pexels APIのリクエスト 最大８０件まで
-export const getPexelsData = async (word:string, num:number, apiKey:string) => {
+export const getPexelsData = async ({ word, num, apiKey }: GetPexelsData) => {
   try {
     const response = await axios.get(
       `https://api.pexels.com/v1/search?query=${word}&per_page=${num}`,

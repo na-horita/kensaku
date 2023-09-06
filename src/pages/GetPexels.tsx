@@ -8,11 +8,11 @@ const GetPexels = () => {
   const [pexelsDataCustom, setPexelsDataCustom] = useState<any>([]);
 
   useEffect(() => {
-    const word = "fire";
-    const num = 15;
-    const apiKey = pexelsAPIKey;
-
-    getPexelsData(word, num, apiKey)
+    getPexelsData({
+      word: "fire",
+      num: 25,
+      apiKey: pexelsAPIKey,
+    })
       .then((data) => {
         setPexelsData(data);
       })

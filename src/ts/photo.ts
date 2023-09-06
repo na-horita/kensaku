@@ -10,3 +10,11 @@ export type Photo = {
   photographer: string;
   created_at?: string;
 }; 
+
+
+// Pexels APIのリクエスト
+export type GetPexelsData = { 
+  word: string,
+  num: number,
+  apiKey: string,
+};
