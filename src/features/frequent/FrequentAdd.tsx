@@ -64,7 +64,7 @@ function AddFrequent() {
           <Form.Label>
             <span className="pe-2">Name</span>
           </Form.Label>
-          <Form.Text className="text-muted">お名前をご記入ください</Form.Text>
+          <Form.Text className="text-muted">入力者のお名前をご記入ください</Form.Text>
           <div className="d-flex justify-content-center">
             <Form.Control
               type="text"
