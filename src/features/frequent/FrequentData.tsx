@@ -36,7 +36,11 @@ const FrequentData = (props: any) => {
   return (
     <>
       {frequents.map((frequent: any) => (
-        <FrequentButton frequent={frequent} getFrequentData={getFrequentData} />
+        <FrequentButton
+          key={frequent.id}
+          frequent={frequent}
+          getFrequentData={getFrequentData}
+        />
       ))}
     </>
   );
