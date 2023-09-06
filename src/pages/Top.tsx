@@ -10,6 +10,8 @@ import Explain from "../components/frontpage/Explain";
 
 import { useIndexedDB } from "../useIndexedDB";
 
+import { sortByNewestCreationDate } from "../features/gathering";
+
 const Top = () => {
   const [hopes, setHopes] = useIndexedDB("hopes");
   const [word, setWord] = useState<any>("");
@@ -77,10 +79,7 @@ const Top = () => {
     const mergedPhotos: any = [...pexelsPhotos, ...unsplashPhotos];
 
     // 作成日の新しい順にソートする
-    mergedPhotos.sort(
-      (a: any, b: any) =>
-        new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
-    );
+    sortByNewestCreationDate(mergedPhotos);
 
     // 結果をセットする
     setPhotos(mergedPhotos);
