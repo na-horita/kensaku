@@ -2,10 +2,11 @@ import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
 import RiseLoader from "react-spinners/RiseLoader";
 import { Button } from "react-bootstrap";
 import { dateUntilDayJap } from "../../utils/dateFns";
+import { Photo } from "../../ts/photo";
 
 const Results = (props: any) => {
   // お気に入りor解除のボタンtoggle
-  const isFavorite = (singleData: any) => {
+  const isFavorite = (singleData: Photo): boolean => {
     return (
       props.hopes &&
       props.hopes.findIndex((hope: any) => hope.id === singleData.id) !== -1
@@ -46,7 +47,7 @@ const Results = (props: any) => {
       {!props.loading && (
         <ResponsiveMasonry columnsCountBreakPoints={{ 350: 2, 750: 3, 900: 5, 1080: 6 }}>
           <Masonry columnsCount={3} gutter="10px">
-            {props.photos.map((singleData: any, index: any) => (
+            {props.photos.map((singleData: Photo, index: number) => (
               <div key={index}>
                 <a href={singleData.link} target="_blank" key={index} rel="noreferrer">
                   <img src={singleData.url} alt={singleData.photographer} />
@@ -55,7 +56,7 @@ const Results = (props: any) => {
                   {index}:【{singleData.source}】
                   {singleData.created_at && dateUntilDayJap(singleData.created_at)}
                   <Button
-                    variant="outline-dark"
+                    variant={isFavorite(singleData) ? "outline-secondary" : "info"}
                     size="sm"
                     className="mt-1"
                     onClick={(event) => handleAddToFavorites(event, singleData)}
