@@ -1,6 +1,7 @@
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
 import RiseLoader from "react-spinners/RiseLoader";
 import { Button } from "react-bootstrap";
+import { dateUntilDayJap } from "../../utils/dateFns";
 
 const Results = (props: any) => {
   // お気に入りor解除のボタンtoggle
@@ -51,7 +52,8 @@ const Results = (props: any) => {
                   <img src={singleData.url} alt={singleData.photographer} />
                 </a>
                 <p>
-                  {index}:{singleData.source}:{singleData.created_at}
+                  {index}:【{singleData.source}】
+                  {singleData.created_at && dateUntilDayJap(singleData.created_at)}
                   <Button
                     variant="outline-dark"
                     size="sm"
