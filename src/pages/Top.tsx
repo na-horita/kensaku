@@ -10,16 +10,14 @@ import Explain from "../components/frontpage/Explain";
 
 import { useIndexedDB } from "../useIndexedDB";
 
-import { getPexelsData, mapDataToCustomFormat } from "../features/gathering";
-const pexelsAPIKey = import.meta.env.VITE_REACT_APP_API_pexels;
-const unsplashAPIKey = import.meta.env.VITE_REACT_APP_API_unsplash;
-    
+import { fetchData } from "../features/gathering";
+import { Photo, GetPexelsData } from "../ts/photo";
+
 const Top = () => {
-  // const apiKey = import.meta.env.VITE_REACT_APP_API_KEY;
   const [hopes, setHopes] = useIndexedDB("hopes");
-  const [word, setWord] = useState<any>("");
-  const [photos, setPhotos] = useState<any>([]);
-  const [loading, setLoading] = useState<any>(false);
+  const [word, setWord] = useState<string>("");
+  const [photos, setPhotos] = useState<Photo[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
 
   const urlParams = new URLSearchParams(window.location.search);
   const keyword = urlParams.get("keyword");
@@ -35,31 +33,18 @@ const Top = () => {
 
   // 初期値をuseStateで保持している変数のwordにした。そしてこの変数は外部から代入することが可能としている。
   const searchImages = async (word2 = word) => {
-
-    // Pexels APIのリクエスト 最大８０件まで
-    const pexelsResponse = await getPexelsData({
+    const inputData: GetPexelsData = {
       word: word2,
-      num: 45,
-    });
-    const pexelsPhotos = pexelsResponse.map((photo: any) =>
-      mapDataToCustomFormat(photo, "Pexels")
-    );
+      num: 20,
+    };
 
+    // Unsplash APIのリクエスト 最大８０件まで
+    const pexelsPhotos = await fetchData("Pexels", { ...inputData, num: 25 });
     // Unsplash APIのリクエスト 最大３０件まで
-    const unsplashResponse = await axios.get(
-      `https://api.unsplash.com/search/photos?query=${word2}&per_page=15`,
-      {
-        headers: {
-          Authorization: `Client-ID ${unsplashAPIKey}`,
-        },
-      }
-    );
-    const unsplashPhotos = unsplashResponse.data.results.map((photo: any) =>
-      mapDataToCustomFormat(photo, "Unsplash")
-    );
+    const unsplashPhotos = await fetchData("Unsplash", inputData);
 
     // PexelsとUnsplashの結果を合わせる
-    const mergedPhotos: any = [...pexelsPhotos, ...unsplashPhotos];
+    const mergedPhotos: Photo[] = [...pexelsPhotos, ...unsplashPhotos];
 
     // 作成日の新しい順にソートする
     // sortByNewestCreationDate(mergedPhotos);
