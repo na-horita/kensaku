@@ -13,7 +13,10 @@ const unsplashAPIKey = import.meta.env.VITE_REACT_APP_API_unsplash;
 //apiデータ取得とオブジェクトの整形
 //第一引数　type SourceType
 //第二引数　zod pexelsApiSchema
-export const fetchData = async (source: SourceType, inputData: GetPexelsData) => {
+export const fetchData = async (
+  source: SourceType,
+  inputData: GetPexelsData
+): Promise<Photo[] | null> => {
   try {
     // スキーマにデータを検証
     source === "Pexels"
@@ -30,11 +33,12 @@ export const fetchData = async (source: SourceType, inputData: GetPexelsData) =>
     return resultPhotos;
   } catch (validationError) {
     console.error("入力データが無効です。エラー:", validationError);
+    return null;
   }
 };
 
 // Pexels APIのリクエスト 最大８０件まで
-export const getPexelsData = async ({ word, num }: GetPexelsData) => {
+export const getPexelsData = async ({ word, num }: GetPexelsData): Promise<any | null> => {
   try {
     const response = await axios.get(
       `https://api.pexels.com/v1/search?query=${word}&per_page=${num}`,
@@ -54,7 +58,7 @@ export const getPexelsData = async ({ word, num }: GetPexelsData) => {
 };
 
 // Unsplash APIのリクエスト 最大３０件まで
-export const getUnsplashData = async ({ word, num }: GetPexelsData) => {
+export const getUnsplashData = async ({ word, num }: GetPexelsData): Promise<any | null> => {
   try {
     const response = await axios.get(
       `https://api.unsplash.com/search/photos?query=${word}&per_page=${num}`,

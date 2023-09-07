@@ -16,7 +16,7 @@ import { Photo, GetPexelsData } from "../ts/photo";
 const Top = () => {
   const [hopes, setHopes] = useIndexedDB("hopes");
   const [word, setWord] = useState<string>("");
-  const [photos, setPhotos] = useState<Photo[]>([]);
+  const [photos, setPhotos] = useState<Photo[] | null>([]);
   const [loading, setLoading] = useState<boolean>(false);
 
   const urlParams = new URLSearchParams(window.location.search);
@@ -43,13 +43,15 @@ const Top = () => {
     // Unsplash APIのリクエスト 最大３０件まで
     const unsplashPhotos = await fetchData("Unsplash", inputData);
 
-    // PexelsとUnsplashの結果を合わせる
-    const mergedPhotos: Photo[] = [...pexelsPhotos, ...unsplashPhotos];
+    // PexelsとUnsplashの結果を合わせる。両方共からならばnullとする
+    const mergedPhotos: Photo[] | null =
+      pexelsPhotos !== null && unsplashPhotos !== null
+        ? [...pexelsPhotos, ...unsplashPhotos]
+        : null;
 
     // 作成日の新しい順にソートする
     // sortByNewestCreationDate(mergedPhotos);
 
-    // 結果をセットする
     setPhotos(mergedPhotos);
   };
 
