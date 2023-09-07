@@ -10,8 +10,9 @@ import Explain from "./pages/Explain";
 import Sus from "./pages/Sus";
 import Navb from "./components/common/Navbar";
 import Footer from "./components/common/Footer";
-import GetPexels from "./pages/GetPexels";
-import GetUnsplash from "./pages/GetUnsplash";
+import GetPexels from "./pages/tdd/GetPexels";
+import GetUnsplash from "./pages/tdd/GetUnsplash";
+import Tdd from "./pages/tdd/index";
 
 function App() {
   return (
@@ -27,8 +28,9 @@ function App() {
               <Route path="/favorite" element={<Favorite />} />
               <Route path="/sus" element={<Sus />} />
               <Route path="/scrape" element={<Scrape />} />
-              <Route path="/getPexels" element={<GetPexels />} />
-              <Route path="/getUnsplash" element={<GetUnsplash />} />
+              <Route path="/tdd" element={<Tdd />} />
+              <Route path="/tdd/getPexels" element={<GetPexels />} />
+              <Route path="/tdd/getUnsplash" element={<GetUnsplash />} />
             </Routes>
           </div>
         </RecoilRoot>

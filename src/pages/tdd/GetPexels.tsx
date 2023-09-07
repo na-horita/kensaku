@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
-import { fetchData } from "../features/gathering";
-import { Photo,GetPexelsData } from "../ts/photo";
+import { fetchData } from "../../features/gathering";
+import { Photo, GetPexelsData } from "../../ts/photo";
+import TddNav from "../../components/tdd/TddNav";
 
 const GetPexels = () => {
   // const [pexelsData, setPexelsData] = useState<any>([]);
@@ -8,7 +9,7 @@ const GetPexels = () => {
 
   const inputData: GetPexelsData = {
     word: "bio",
-    num: 29,
+    num: 45,
   };
 
   useEffect(() => {
@@ -24,8 +25,10 @@ const GetPexels = () => {
 
   return (
     <>
+      <TddNav />
       <div>
-        <h2>ピクセルデータの実験ページ</h2>
+        <h2>ピクセルデータの実験</h2>
+        <p className="text-center text-lg">(一度の検索は80件まで)</p>
         {pexelsDataCustom && (
           <table className="border">
             <thead className="border bg-sky-400">
