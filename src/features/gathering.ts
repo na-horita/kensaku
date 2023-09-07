@@ -49,10 +49,10 @@ export const getPexelsData = async ({ word, num, apiKey }: GetPexelsData) => {
 };
 
 // Unsplash APIのリクエスト 最大３０件まで
-export const getUnsplashData = async (word2: string, num: number, apiKey: string) => {
+export const getUnsplashData = async ({ word, num, apiKey }: GetPexelsData) => {
   try {
     const response = await axios.get(
-      `https://api.unsplash.com/search/photos?query=${word2}&per_page=${num}`,
+      `https://api.unsplash.com/search/photos?query=${word}&per_page=${num}`,
       {
         headers: {
           Authorization: `Client-ID ${apiKey}`,
@@ -60,7 +60,7 @@ export const getUnsplashData = async (word2: string, num: number, apiKey: string
       }
     );
 
-    return response.data;
+    return response.data.results;
   } catch (error) {
     // エラーハンドリングを行う場合のコード
     console.error("Unsplash APIエラー:", error);

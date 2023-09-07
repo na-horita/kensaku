@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { getPexelsData, mapDataToCustomFormat } from "../features/gathering";
+import { getUnsplashData, mapDataToCustomFormat } from "../features/gathering";
 import { GetPexelsData, pexelsApiSchema } from "../ts/photo";
 
 const pexelsAPIKey = import.meta.env.VITE_REACT_APP_API_pexels;
@@ -10,8 +10,8 @@ const GetPexels = () => {
   const [pexelsDataCustom, setPexelsDataCustom] = useState<any>([]);
 
   const inputData: GetPexelsData = {
-    word: "brown",
-    num: 20,
+    word: "globe",
+    num: 6,
     apiKey: unsplashAPIKey,
   };
 
@@ -20,7 +20,7 @@ const GetPexels = () => {
       // スキーマにデータを検証
       pexelsApiSchema.parse(inputData);
 
-      getPexelsData(inputData)
+      getUnsplashData(inputData)
         .then((data) => {
           setPexelsData(data);
         })
@@ -34,7 +34,7 @@ const GetPexels = () => {
 
   useEffect(() => {
     const pexelsPhotos: any = pexelsData.map((photo: any) =>
-      mapDataToCustomFormat(photo, "Pexels")
+      mapDataToCustomFormat(photo, "Unsplash")
     );
     setPexelsDataCustom(pexelsPhotos);
   }, [pexelsData]);
