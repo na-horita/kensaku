@@ -2,16 +2,13 @@ import { useState, useEffect } from "react";
 import { fetchData } from "../features/gathering";
 import { Photo,GetPexelsData } from "../ts/photo";
 
-const pexelsAPIKey = import.meta.env.VITE_REACT_APP_API_pexels;
-
 const GetPexels = () => {
   // const [pexelsData, setPexelsData] = useState<any>([]);
   const [pexelsDataCustom, setPexelsDataCustom] = useState<Photo[]>([]);
 
   const inputData: GetPexelsData = {
-    word: "globe",
-    num: 6,
-    apiKey: pexelsAPIKey,
+    word: "bio",
+    num: 29,
   };
 
   useEffect(() => {

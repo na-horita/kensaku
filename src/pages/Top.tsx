@@ -40,7 +40,6 @@ const Top = () => {
     const pexelsResponse = await getPexelsData({
       word: word2,
       num: 45,
-      apiKey: pexelsAPIKey,
     });
     const pexelsPhotos = pexelsResponse.map((photo: any) =>
       mapDataToCustomFormat(photo, "Pexels")

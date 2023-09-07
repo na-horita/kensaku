@@ -7,35 +7,40 @@ import {
   unsplashApiSchema,
 } from "../ts/photo";
 
+const pexelsAPIKey = import.meta.env.VITE_REACT_APP_API_pexels;
+const unsplashAPIKey = import.meta.env.VITE_REACT_APP_API_unsplash;
 
 //apiデータ取得とオブジェクトの整形
 //第一引数　type SourceType
 //第二引数　zod pexelsApiSchema
-export const fetchData = async (source: SourceType,inputData: GetPexelsData) => {
+export const fetchData = async (source: SourceType, inputData: GetPexelsData) => {
   try {
-      // スキーマにデータを検証
+    // スキーマにデータを検証
     source === "Pexels"
       ? pexelsApiSchema.parse(inputData)
       : unsplashApiSchema.parse(inputData);
 
-    const pexelsResponse = await getPexelsData(inputData);
-    const pexelsPhotos = pexelsResponse.map((photo: any) =>
+    const fetchResponse =
+      source === "Pexels"
+        ? await getPexelsData(inputData)
+        : await getUnsplashData(inputData);
+    const resultPhotos = fetchResponse.map((photo: any) =>
       mapDataToCustomFormat(photo, source)
     );
-    return pexelsPhotos;
+    return resultPhotos;
   } catch (validationError) {
     console.error("入力データが無効です。エラー:", validationError);
   }
 };
 
 // Pexels APIのリクエスト 最大８０件まで
-export const getPexelsData = async ({ word, num, apiKey }: GetPexelsData) => {
+export const getPexelsData = async ({ word, num }: GetPexelsData) => {
   try {
     const response = await axios.get(
       `https://api.pexels.com/v1/search?query=${word}&per_page=${num}`,
       {
         headers: {
-          Authorization: apiKey,
+          Authorization: pexelsAPIKey,
         },
       }
     );
@@ -49,13 +54,13 @@ export const getPexelsData = async ({ word, num, apiKey }: GetPexelsData) => {
 };
 
 // Unsplash APIのリクエスト 最大３０件まで
-export const getUnsplashData = async ({ word, num, apiKey }: GetPexelsData) => {
+export const getUnsplashData = async ({ word, num }: GetPexelsData) => {
   try {
     const response = await axios.get(
       `https://api.unsplash.com/search/photos?query=${word}&per_page=${num}`,
       {
         headers: {
-          Authorization: `Client-ID ${apiKey}`,
+          Authorization: `Client-ID ${unsplashAPIKey}`,
         },
       }
     );
@@ -105,7 +110,7 @@ export const mapDataToCustomFormat = (
 //
 
 // 作成日の新しい順にソートする
-export const sortByNewestCreationDate = function (photos: any) {
+export const sortByNewestCreationDate = function (photos: Photo[]) {
   return photos.sort(
     (a: any, b: any) =>
       new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
