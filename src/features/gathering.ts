@@ -1,5 +1,32 @@
 import axios from "axios";
-import { SourceType, Photo, GetPexelsData } from "../ts/photo"; 
+import {
+  SourceType,
+  Photo,
+  GetPexelsData,
+  pexelsApiSchema,
+  unsplashApiSchema,
+} from "../ts/photo";
+
+
+//apiデータ取得とオブジェクトの整形
+//第一引数　type SourceType
+//第二引数　zod pexelsApiSchema
+export const fetchData = async (source: SourceType,inputData: GetPexelsData) => {
+  try {
+      // スキーマにデータを検証
+    source === "Pexels"
+      ? pexelsApiSchema.parse(inputData)
+      : unsplashApiSchema.parse(inputData);
+
+    const pexelsResponse = await getPexelsData(inputData);
+    const pexelsPhotos = pexelsResponse.map((photo: any) =>
+      mapDataToCustomFormat(photo, source)
+    );
+    return pexelsPhotos;
+  } catch (validationError) {
+    console.error("入力データが無効です。エラー:", validationError);
+  }
+};
 
 // Pexels APIのリクエスト 最大８０件まで
 export const getPexelsData = async ({ word, num, apiKey }: GetPexelsData) => {
@@ -22,7 +49,7 @@ export const getPexelsData = async ({ word, num, apiKey }: GetPexelsData) => {
 };
 
 // Unsplash APIのリクエスト 最大３０件まで
-export const getUnsplashData = async (word2:string, num:number, apiKey:string) => {
+export const getUnsplashData = async (word2: string, num: number, apiKey: string) => {
   try {
     const response = await axios.get(
       `https://api.unsplash.com/search/photos?query=${word2}&per_page=${num}`,
@@ -42,7 +69,10 @@ export const getUnsplashData = async (word2:string, num:number, apiKey:string) =
 };
 
 //pixel,Unsplashデータのオブジェクトのキーフレーズを合わせる
-export const mapDataToCustomFormat = (data: any, source: SourceType = "Pexels"): Photo => {
+export const mapDataToCustomFormat = (
+  data: any,
+  source: SourceType = "Pexels"
+): Photo => {
   const commonProperties = {
     id: data.id,
     source: source,
