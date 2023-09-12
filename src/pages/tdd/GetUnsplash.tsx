@@ -1,22 +1,19 @@
 import { useState, useEffect } from "react";
 import { getUnsplashData, mapDataToCustomFormat } from "../../features/gathering";
-import { GetPexelsData, unsplashApiSchema } from "../../ts/photo";
+import { UnsplashApiSchema, unsplashApiSchema } from "../../ts/photo";
 import TddNav from "../../components/tdd/TddNav";
 
 const GetPexels = () => {
   const [pexelsData, setPexelsData] = useState<any>([]);
   const [pexelsDataCustom, setPexelsDataCustom] = useState<any>([]);
 
-  const inputData: GetPexelsData = {
+  const inputData: UnsplashApiSchema = {
     word: "globe",
     num: 28,
   };
 
   useEffect(() => {
     try {
-      // スキーマにデータを検証
-      unsplashApiSchema.parse(inputData);
-
       getUnsplashData(inputData)
         .then((data) => {
           setPexelsData(data);

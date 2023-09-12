@@ -12,12 +12,6 @@ export type Photo = {
   created_at?: string;
 }; 
 
-// Pexels APIのリクエスト
-export type GetPexelsData = { 
-  word: string,
-  num: number,
-};
-
 // オブジェクトのスキーマを定義
 export const pexelsApiSchema = z.object({
   word: z.string(),
@@ -28,3 +22,7 @@ export const unsplashApiSchema = z.object({
   word: z.string(),
   num: z.number().min(1).max(30),
 });
+
+// ZodスキーマからTypeScript型を抽出
+export type PexelsApiSchema = z.infer<typeof pexelsApiSchema>;
+export type UnsplashApiSchema = z.infer<typeof pexelsApiSchema>;

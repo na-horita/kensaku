@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
 import { fetchData } from "../../features/gathering";
-import { Photo, GetPexelsData } from "../../ts/photo";
+import { Photo, PexelsApiSchema } from "../../ts/photo";
 import TddNav from "../../components/tdd/TddNav";
 
 const GetPexels = () => {
   // const [pexelsData, setPexelsData] = useState<any>([]);
   const [pexelsDataCustom, setPexelsDataCustom] = useState<Photo[]>([]);
 
-  const inputData: GetPexelsData = {
+  const inputData: PexelsApiSchema = {
     word: "bio",
     num: 45,
   };
