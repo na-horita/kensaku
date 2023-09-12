@@ -15,7 +15,7 @@ const GetPexels = () => {
   useEffect(() => {
     try {
       getUnsplashData(inputData)
-        .then((data) => {
+        .then((data:any) => {
           setPexelsData(data);
         })
         .catch((error) => {

@@ -6,6 +6,7 @@ import {
   pexelsApiSchema,
   unsplashApiSchema,
 } from "../ts/photo";
+import { PexelsImagesResults, PexelsPhoto } from "../ts/pexels";
 
 const pexelsAPIKey = import.meta.env.VITE_REACT_APP_API_pexels;
 const unsplashAPIKey = import.meta.env.VITE_REACT_APP_API_unsplash;
@@ -38,7 +39,10 @@ export const fetchData = async (
 };
 
 // Pexels APIのリクエスト 最大８０件まで
-export const getPexelsData = async ({ word, num }: GetPexelsData): Promise<any | null> => {
+export const getPexelsData = async ({
+  word,
+  num,
+}: GetPexelsData): Promise<PexelsPhoto[] | null> => {
   try {
     const response = await axios.get(
       `https://api.pexels.com/v1/search?query=${word}&per_page=${num}`,
@@ -48,8 +52,10 @@ export const getPexelsData = async ({ word, num }: GetPexelsData): Promise<any |
         },
       }
     );
+    const responseData: Awaited<PexelsImagesResults> = await response.data;
+    const responseDataPhotos: PexelsPhoto[] = responseData.photos;
 
-    return response.data.photos;
+    return responseDataPhotos;
   } catch (error) {
     // エラーハンドリングを行う場合のコード
     console.error("Pexels APIエラー:", error);
