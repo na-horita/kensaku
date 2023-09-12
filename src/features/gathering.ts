@@ -2,9 +2,10 @@ import axios from "axios";
 import {
   SourceType,
   Photo,
-  GetPexelsData,
   pexelsApiSchema,
   unsplashApiSchema,
+  PexelsApiSchema,
+  UnsplashApiSchema,
 } from "../ts/photo";
 import { PexelsImagesResults, PexelsPhoto } from "../ts/pexels";
 
@@ -16,7 +17,7 @@ const unsplashAPIKey = import.meta.env.VITE_REACT_APP_API_unsplash;
 //第二引数　zod pexelsApiSchema
 export const fetchData = async (
   source: SourceType,
-  inputData: GetPexelsData
+  inputData: PexelsApiSchema | UnsplashApiSchema
 ): Promise<Photo[] | null> => {
   try {
     // スキーマにデータを検証
@@ -42,7 +43,7 @@ export const fetchData = async (
 export const getPexelsData = async ({
   word,
   num,
-}: GetPexelsData): Promise<PexelsPhoto[] | null> => {
+}: PexelsApiSchema): Promise<PexelsPhoto[] | null> => {
   try {
     const response = await axios.get(
       `https://api.pexels.com/v1/search?query=${word}&per_page=${num}`,
@@ -64,7 +65,7 @@ export const getPexelsData = async ({
 };
 
 // Unsplash APIのリクエスト 最大３０件まで
-export const getUnsplashData = async ({ word, num }: GetPexelsData): Promise<any | null> => {
+export const getUnsplashData = async ({ word, num }: UnsplashApiSchema): Promise<any | null> => {
   try {
     const response = await axios.get(
       `https://api.unsplash.com/search/photos?query=${word}&per_page=${num}`,
