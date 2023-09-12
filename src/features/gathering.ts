@@ -28,7 +28,7 @@ export const fetchData = async (
       source === "Pexels"
         ? await getPexelsData(inputData)
         : await getUnsplashData(inputData);
-    const resultPhotos = fetchResponse.map((photo: any) =>
+    const resultPhotos = await fetchResponse.map((photo: any) =>
       mapDataToCustomFormat(photo, source)
     );
     return resultPhotos;
@@ -53,7 +53,7 @@ export const getPexelsData = async ({
       }
     );
     const responseData: Awaited<PexelsImagesResults> = await response.data;
-    const responseDataPhotos: PexelsPhoto[] = responseData.photos;
+    const responseDataPhotos: PexelsPhoto[] = await responseData.photos;
 
     return responseDataPhotos;
   } catch (error) {
@@ -75,7 +75,10 @@ export const getUnsplashData = async ({ word, num }: GetPexelsData): Promise<any
       }
     );
 
-    return response.data.results;
+    const responseData: Awaited<any> = await response.data;
+    const responseDataPhotos: any[] = await responseData.results;
+
+    return responseDataPhotos;
   } catch (error) {
     // エラーハンドリングを行う場合のコード
     console.error("Unsplash APIエラー:", error);
