@@ -9,7 +9,7 @@ const GetPexels = () => {
 
   const inputData: PexelsApiSchema = {
     word: "bio",
-    num: 45,
+    num: 20,
   };
 
   useEffect(() => {

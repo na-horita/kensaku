@@ -9,7 +9,7 @@ const GetPexels = () => {
 
   const inputData: UnsplashApiSchema = {
     word: "globe",
-    num: 28,
+    num: 20,//例え30を超えてもapiが勝手に30をセットしてくれる。
   };
 
   useEffect(() => {

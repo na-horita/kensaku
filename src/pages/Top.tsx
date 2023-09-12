@@ -11,7 +11,7 @@ import Explain from "../components/frontpage/Explain";
 import { useIndexedDB } from "../useIndexedDB";
 
 import { fetchData } from "../features/gathering";
-import { Photo, GetPexelsData } from "../ts/photo";
+import { Photo, GetPexelsData, PexelsApiSchema, UnsplashApiSchema } from "../ts/photo";
 
 const Top = () => {
   const [hopes, setHopes] = useIndexedDB("hopes");
@@ -33,7 +33,7 @@ const Top = () => {
 
   // 初期値をuseStateで保持している変数のwordにした。そしてこの変数は外部から代入することが可能としている。
   const searchImages = async (word2 = word) => {
-    const inputData: GetPexelsData = {
+    const inputData: PexelsApiSchema & UnsplashApiSchema = {
       word: word2,
       num: 20,
     };
