@@ -4,7 +4,7 @@ const Explain = () => {
       position: relative;
       display: block;
       width:190px;
-      margin:5px 0 0 15px;
+      margin:10px 0 10px 15px;
       padding: 10px 10px 10px 30px;
       cursor: pointer;
       font-weight: bold;
@@ -69,6 +69,11 @@ const Explain = () => {
         transform: none;
       }
     }
+    @media (width < 640px) {
+    summary {
+      margin:10px 0 10px 0px;
+    }
+  }
   `;
 
   return (
@@ -77,7 +82,7 @@ const Explain = () => {
       <details>
         <summary>アプリの説明文表示</summary>
         <div className="details-content">
-          <ul>
+          <ul className="lg:px-4 px-2">
             <li>
               検索窓にキーワードを入力して、searchボタンを押すと、UnsplashとPexelsの両方から画像を検索してきます
             </li>
