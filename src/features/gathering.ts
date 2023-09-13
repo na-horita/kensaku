@@ -1,4 +1,4 @@
-import axios from "axios";
+
 import {
   SourceType,
   Photo,
@@ -7,10 +7,8 @@ import {
   PexelsApiSchema,
   UnsplashApiSchema,
 } from "../ts/photo";
-import { PexelsImagesResults, PexelsPhoto } from "../ts/pexels";
-
-const pexelsAPIKey = import.meta.env.VITE_REACT_APP_API_pexels;
-const unsplashAPIKey = import.meta.env.VITE_REACT_APP_API_unsplash;
+import { getPexelsData } from "./photo/api/getPexelsData";
+import { getUnsplashData } from "./photo/api/getUnsplashData";
 
 //apiデータ取得とオブジェクトの整形
 //第一引数　type SourceType
@@ -36,54 +34,6 @@ export const fetchData = async (
   } catch (validationError) {
     console.error("入力データが無効です。エラー:", validationError);
     return null;
-  }
-};
-
-// Pexels APIのリクエスト 最大８０件まで
-export const getPexelsData = async ({
-  word,
-  num,
-}: PexelsApiSchema): Promise<PexelsPhoto[] | null> => {
-  try {
-    const response = await axios.get(
-      `https://api.pexels.com/v1/search?query=${word}&per_page=${num}`,
-      {
-        headers: {
-          Authorization: pexelsAPIKey,
-        },
-      }
-    );
-    const responseData: Awaited<PexelsImagesResults> = await response.data;
-    const responseDataPhotos: PexelsPhoto[] = await responseData.photos;
-
-    return responseDataPhotos;
-  } catch (error) {
-    // エラーハンドリングを行う場合のコード
-    console.error("Pexels APIエラー:", error);
-    return null; // またはエラーを適切に処理して返す
-  }
-};
-
-// Unsplash APIのリクエスト 最大３０件まで
-export const getUnsplashData = async ({ word, num }: UnsplashApiSchema): Promise<any | null> => {
-  try {
-    const response = await axios.get(
-      `https://api.unsplash.com/search/photos?query=${word}&per_page=${num}`,
-      {
-        headers: {
-          Authorization: `Client-ID ${unsplashAPIKey}`,
-        },
-      }
-    );
-
-    const responseData: Awaited<any> = await response.data;
-    const responseDataPhotos: any[] = await responseData.results;
-
-    return responseDataPhotos;
-  } catch (error) {
-    // エラーハンドリングを行う場合のコード
-    console.error("Unsplash APIエラー:", error);
-    return null; // またはエラーを適切に処理して返す
   }
 };
 

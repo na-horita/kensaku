@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
-import { getUnsplashData, mapDataToCustomFormat } from "../../features/gathering";
-import { UnsplashApiSchema, unsplashApiSchema } from "../../ts/photo";
+import { mapDataToCustomFormat } from "../../features/gathering";
+import { getUnsplashData } from "../../features/photo/api/getUnsplashData";
+import { UnsplashApiSchema } from "../../ts/photo";
 import TddNav from "../../components/tdd/TddNav";
 
 const GetPexels = () => {
