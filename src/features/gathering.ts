@@ -52,7 +52,7 @@ export const mapDataToCustomFormat = (
       url: data.src.medium,
       link: data.url,
       photographer: data.photographer,
-      created_at: data.created_at,
+      created_at: "2010-01-01T01:01:01Z", //Pexelsには日付データが入っていないので仮で入力する
     };
   }
 
@@ -71,9 +71,11 @@ export const mapDataToCustomFormat = (
 //
 
 // 作成日の新しい順にソートする
-export const sortByNewestCreationDate = function (photos: Photo[]) {
-  return photos.sort(
-    (a: any, b: any) =>
-      new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
-  );
+export const sortByNewestCreationDate = (photos: Photo[]): Photo[] => {
+  return photos.sort((a: Photo, b: Photo) => {
+    const createdAtA = Date.parse(a.created_at);
+    const createdAtB = Date.parse(b.created_at);
+
+    return createdAtB - createdAtA;
+  });
 };

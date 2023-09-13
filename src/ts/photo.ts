@@ -9,7 +9,7 @@ export type Photo = {
   url: string;
   link: string;
   photographer: string;
-  created_at?: string;
+  created_at: string;
 }; 
 
 // Pexels APIのリクエスト

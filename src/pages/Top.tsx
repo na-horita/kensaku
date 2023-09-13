@@ -10,7 +10,7 @@ import Explain from "../components/frontpage/Explain";
 
 import { useIndexedDB } from "../useIndexedDB";
 
-import { fetchData } from "../features/gathering";
+import { fetchData, sortByNewestCreationDate } from "../features/gathering";
 import { Photo, GetPexelsData, PexelsApiSchema, UnsplashApiSchema } from "../ts/photo";
 
 const Top = () => {
@@ -38,19 +38,19 @@ const Top = () => {
       num: 20,
     };
 
-    // Unsplash APIのリクエスト 最大８０件まで
+    // pexels APIのリクエスト 最大８０件まで
     const pexelsPhotos = await fetchData("Pexels", { ...inputData, num: 25 });
     // Unsplash APIのリクエスト 最大３０件まで
     const unsplashPhotos = await fetchData("Unsplash", inputData);
 
-    // PexelsとUnsplashの結果を合わせる。両方共からならばnullとする
+    // PexelsとUnsplashの結果を合わせる。両方共に空ならばnullとする
     const mergedPhotos: Photo[] | null =
       pexelsPhotos !== null && unsplashPhotos !== null
         ? [...pexelsPhotos, ...unsplashPhotos]
         : null;
 
     // 作成日の新しい順にソートする
-    // sortByNewestCreationDate(mergedPhotos);
+    sortByNewestCreationDate(mergedPhotos as Photo[]);
 
     setPhotos(mergedPhotos);
   };
