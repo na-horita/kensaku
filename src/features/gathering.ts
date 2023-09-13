@@ -2,26 +2,23 @@
 import {
   SourceType,
   Photo,
-  pexelsApiSchema,
-  unsplashApiSchema,
   PexelsApiSchema,
   UnsplashApiSchema,
 } from "../ts/photo";
 import { getPexelsData } from "./photo/api/getPexelsData";
 import { getUnsplashData } from "./photo/api/getUnsplashData";
 
+type PexelsJadgeAlias<T extends SourceType, A, B> = T extends "Pexels" ? A : B;
+
 //apiデータ取得とオブジェクトの整形
 //第一引数　type SourceType
-//第二引数　zod pexelsApiSchema
+//第二引数　PexelsJadgeAliasはsource値に応じて型定義が変更される
+
 export const fetchData = async (
   source: SourceType,
-  inputData: PexelsApiSchema | UnsplashApiSchema
+  inputData: PexelsJadgeAlias<typeof source, PexelsApiSchema, UnsplashApiSchema>
 ): Promise<Photo[] | null> => {
   try {
-    // スキーマにデータを検証
-    source === "Pexels"
-      ? pexelsApiSchema.parse(inputData)
-      : unsplashApiSchema.parse(inputData);
 
     const fetchResponse =
       source === "Pexels"
