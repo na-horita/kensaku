@@ -18,6 +18,11 @@ export const getPexelsData = async ({
         },
       }
     );
+
+    if (!response) {
+      throw new Error("Pexels APIからの応答がありません");
+    }
+
     const responseData: Awaited<PexelsImagesResults> = await response.data;
     const responseDataPhotos: PexelsPhoto[] = await responseData.photos;
 
