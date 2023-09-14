@@ -7,6 +7,7 @@ import {
 } from "../ts/photo";
 import { getPexelsData } from "../api/photo/getPexelsData";
 import { getUnsplashData } from "../api/photo/getUnsplashData";
+import { PexelsPhoto } from "../class/PexelsPhoto";
 
 type PexelsJadgeAlias<T extends SourceType, A, B> = T extends "Pexels" ? A : B;
 
@@ -17,16 +18,17 @@ type PexelsJadgeAlias<T extends SourceType, A, B> = T extends "Pexels" ? A : B;
 export const fetchData = async (
   source: SourceType,
   inputData: PexelsJadgeAlias<typeof source, PexelsApiSchema, UnsplashApiSchema>
-): Promise<Photo[] | null> => {
+): Promise<any | null> => {
   try {
-
     const fetchResponse =
       source === "Pexels"
         ? await getPexelsData(inputData)
         : await getUnsplashData(inputData);
-    const resultPhotos = await fetchResponse.map((photo: any) =>
-      mapDataToCustomFormat(photo, source)
-    );
+    
+    const resultPhotos = fetchResponse
+      ? fetchResponse.map((photo: any) => mapDataToCustomFormat(photo, source))
+      : [];
+    
     return resultPhotos;
   } catch (validationError) {
     console.error("入力データが無効です。エラー:", validationError);
@@ -35,10 +37,7 @@ export const fetchData = async (
 };
 
 //pixel,Unsplashデータのオブジェクトのキーフレーズを合わせる
-export const mapDataToCustomFormat = (
-  data: any,
-  source: SourceType = "Pexels"
-): Photo => {
+export const mapDataToCustomFormat = (data: any, source: SourceType = "Pexels"): PexelsPhoto => {
   const commonProperties = {
     id: data.id,
     source: source,
@@ -47,13 +46,7 @@ export const mapDataToCustomFormat = (
   };
 
   if (source === "Pexels") {
-    return {
-      ...commonProperties,
-      url: data.src.medium,
-      link: data.url,
-      photographer: data.photographer,
-      created_at: "2010-01-01T01:01:01Z", //Pexelsには日付データが入っていないので仮で入力する
-    };
+    return new PexelsPhoto(data);
   }
 
   if (source === "Unsplash") {

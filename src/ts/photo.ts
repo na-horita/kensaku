@@ -3,9 +3,9 @@ import { z } from "zod";
 
 export type Photo = {
   id: string;
-  source: SourceType;
   width: number;
   height: number;
+  source: SourceType;
   url: string;
   link: string;
   photographer: string;

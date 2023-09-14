@@ -1,30 +1,20 @@
-type BasicData = {
+export type BasePhotoType = {
   id: number;
   width: number;
   height: number;
-}
+};
 
-class BasePhoto {
+export class BasePhoto {
   // クラスのプロパティ
-  id: number;
+  id: string | number;
   width: number;
   height: number;
+  created_at: string;
 
-  constructor(data: BasicData) {
+  constructor(data: BasePhotoType) {
     this.id = data.id;
     this.width = data.width;
     this.height = data.height;
+    this.created_at = "2010-01-01T01:01:01Z";
   }
 }
-
-// 使用例
-const dataFromPexels: BasicData = {
-  id: 123,
-  width: 800,
-  height: 600,
-  // 他のプロパティもここでセット
-};
-
-const basePhotoInstance = new BasePhoto(dataFromPexels);
-
-console.log(basePhotoInstance); // BasePhoto インスタンスの詳細を表示
