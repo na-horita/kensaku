@@ -4,7 +4,7 @@ import { Photo, PexelsApiSchema } from "../../ts/photo";
 import TddNav from "../../components/tdd/TddNav";
 
 const GetPexels = () => {
-  // const [pexelsData, setPexelsData] = useState<any>([]);
+  const [pexelsData, setPexelsData] = useState<any>([]);
   const [pexelsDataCustom, setPexelsDataCustom] = useState<Photo[]>([]);
 
   const inputData: PexelsApiSchema = {

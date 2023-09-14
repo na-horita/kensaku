@@ -1,6 +1,7 @@
 import axios from "axios";
 // import { PexelsImagesResults, PexelsPhoto } from "../../../ts/pexels";
 import { UnsplashApiSchema } from "../../ts/photo";
+import { UnsplashPhoto, UnsplashImagesResults } from "../../ts/unsplash";
 
 const unsplashAPIKey = import.meta.env.VITE_REACT_APP_API_unsplash;
 
@@ -8,7 +9,7 @@ const unsplashAPIKey = import.meta.env.VITE_REACT_APP_API_unsplash;
 export const getUnsplashData = async ({
   word,
   num,
-}: UnsplashApiSchema): Promise<any | null> => {
+}: UnsplashApiSchema): Promise<UnsplashPhoto[] | null> => {
   try {
     const response = await axios.get(
       `https://api.unsplash.com/search/photos?query=${word}&per_page=${num}`,
@@ -19,8 +20,9 @@ export const getUnsplashData = async ({
       }
     );
 
-    const responseData: Awaited<any> = await response.data;
-    const responseDataPhotos: any[] = await responseData.results;
+    const responseData: Awaited<UnsplashImagesResults> = await response.data;
+    // console.log(responseData);
+    const responseDataPhotos: UnsplashPhoto[] = await responseData.results;
 
     return responseDataPhotos;
   } catch (error) {

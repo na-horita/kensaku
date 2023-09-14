@@ -3,10 +3,11 @@ import { mapDataToCustomFormat } from "../../features/gathering";
 import { getUnsplashData } from "../../api/photo/getUnsplashData";
 import { UnsplashApiSchema } from "../../ts/photo";
 import TddNav from "../../components/tdd/TddNav";
+import { UnsplashPhoto, UnsplashImagesResults } from "../../ts/unsplash";
 
 const GetPexels = () => {
   const [pexelsData, setPexelsData] = useState<any>([]);
-  const [pexelsDataCustom, setPexelsDataCustom] = useState<any>([]);
+  const [pexelsDataCustom, setPexelsDataCustom] = useState<UnsplashPhoto[]>([]);
 
   const inputData: UnsplashApiSchema = {
     word: "globe",
@@ -16,7 +17,8 @@ const GetPexels = () => {
   useEffect(() => {
     try {
       getUnsplashData(inputData)
-        .then((data:any) => {
+        .then((data: any) => {
+          // console.log(data);
           setPexelsData(data);
         })
         .catch((error) => {
@@ -28,7 +30,7 @@ const GetPexels = () => {
   }, []);
 
   useEffect(() => {
-    const pexelsPhotos: any = pexelsData.map((photo: any) =>
+    const pexelsPhotos: UnsplashPhoto[] = pexelsData.map((photo: UnsplashPhoto) =>
       mapDataToCustomFormat(photo, "Unsplash")
     );
     setPexelsDataCustom(pexelsPhotos);
