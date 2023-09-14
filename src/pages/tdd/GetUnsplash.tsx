@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { mapDataToCustomFormat } from "../../features/gathering";
-import { getUnsplashData } from "../../features/photo/api/getUnsplashData";
+import { getUnsplashData } from "../../api/photo/getUnsplashData";
 import { UnsplashApiSchema } from "../../ts/photo";
 import TddNav from "../../components/tdd/TddNav";
 

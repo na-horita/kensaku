@@ -1,6 +1,6 @@
 import axios from "axios";
-import { PexelsImagesResults, PexelsPhoto } from "../../../ts/pexels";
-import { PexelsApiSchema } from "../../../ts/photo";
+import { PexelsImagesResults, PexelsPhoto } from "../../ts/pexels";
+import { PexelsApiSchema } from "../../ts/photo";
 
 const pexelsAPIKey = import.meta.env.VITE_REACT_APP_API_pexels;
 

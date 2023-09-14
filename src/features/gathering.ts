@@ -5,8 +5,8 @@ import {
   PexelsApiSchema,
   UnsplashApiSchema,
 } from "../ts/photo";
-import { getPexelsData } from "./photo/api/getPexelsData";
-import { getUnsplashData } from "./photo/api/getUnsplashData";
+import { getPexelsData } from "../api/photo/getPexelsData";
+import { getUnsplashData } from "../api/photo/getUnsplashData";
 
 type PexelsJadgeAlias<T extends SourceType, A, B> = T extends "Pexels" ? A : B;
 

@@ -1,6 +1,6 @@
 import axios from "axios";
 // import { PexelsImagesResults, PexelsPhoto } from "../../../ts/pexels";
-import { UnsplashApiSchema } from "../../../ts/photo";
+import { UnsplashApiSchema } from "../../ts/photo";
 
 const unsplashAPIKey = import.meta.env.VITE_REACT_APP_API_unsplash;
 
