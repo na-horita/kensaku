@@ -6,7 +6,7 @@ import { ApiUnsplashPhoto, ApiUnsplashImagesResults } from "../../ts/unsplash";
 const unsplashAPIKey = import.meta.env.VITE_REACT_APP_API_unsplash;
 
 // Unsplash APIのリクエスト 最大３０件まで
-export const getUnsplashData = async ({
+export const getApiUnsplashData = async ({
   word,
   num,
 }: UnsplashApiSchema): Promise<ApiUnsplashPhoto[] | null> => {

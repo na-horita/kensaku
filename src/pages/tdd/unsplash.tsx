@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { mapDataToCustomFormat } from "../../features/gathering";
-import { getUnsplashData } from "../../api/photo/getUnsplashData";
+import { getApiUnsplashData } from "../../api/photo/getApiUnsplashData";
 import { UnsplashApiSchema } from "../../ts/photo";
 import TddNav from "../../components/tdd/TddNav";
 import { ApiUnsplashPhoto } from "../../ts/unsplash";
@@ -16,7 +16,7 @@ const GetPexels = () => {
 
   useEffect(() => {
     try {
-      getUnsplashData(inputData)
+      getApiUnsplashData(inputData)
         .then((data: any) => {
           // console.log(data);
           setPexelsData(data);

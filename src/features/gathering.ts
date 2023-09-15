@@ -6,8 +6,8 @@ import {
   PexelsApiSchema,
   UnsplashApiSchema,
 } from "../ts/photo";
-import { getPexelsData } from "../api/photo/getPexelsData";
-import { getUnsplashData } from "../api/photo/getUnsplashData";
+import { getApiPexelsData } from "../api/photo/getApiPexelsData";
+import { getApiUnsplashData } from "../api/photo/getApiUnsplashData";
 import { PexelsPhoto } from "../class/PexelsPhoto";
 import { UnsplashPhoto } from "../class/UnsplashPhoto";
 import { ApiPexelsPhoto } from "../ts/pexels";
@@ -24,8 +24,8 @@ export const fetchData = async (
   try {
     const fetchResponse =
       source === "Pexels"
-        ? await getPexelsData(inputData)
-        : await getUnsplashData(inputData);
+        ? await getApiPexelsData(inputData)
+        : await getApiUnsplashData(inputData);
     
     const resultPhotos = fetchResponse
       ? fetchResponse.map((photo: ApiPexelsPhoto | ApiUnsplashPhoto) =>

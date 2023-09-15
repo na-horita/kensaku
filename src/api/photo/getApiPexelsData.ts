@@ -5,7 +5,7 @@ import { PexelsApiSchema } from "../../ts/photo";
 const pexelsAPIKey = import.meta.env.VITE_REACT_APP_API_pexels;
 
 // Pexels APIのリクエスト 最大８０件まで
-export const getPexelsData = async ({
+export const getApiPexelsData = async ({
   word,
   num,
 }: PexelsApiSchema): Promise<ApiPexelsPhoto[] | null> => {
