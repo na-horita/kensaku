@@ -11,7 +11,7 @@ import Explain from "../components/frontpage/Explain";
 import { useIndexedDB } from "../useIndexedDB";
 
 import { fetchData, sortByNewestCreationDate } from "../features/gathering";
-import { Photo, GetPexelsData, PexelsApiSchema, UnsplashApiSchema } from "../ts/photo";
+import { Photo, PexelsApiSchema, UnsplashApiSchema } from "../ts/photo";
 
 const Top = () => {
   const [hopes, setHopes] = useIndexedDB("hopes");
