@@ -16,6 +16,7 @@ const PhotoSchema = z.object({
   src: z.object({
     medium: z.string(),
   }),
+  photographer: z.string(),
   alt: z.string(),
   blurredDataUrl: z.string().optional(),
 });
@@ -24,6 +25,6 @@ export const ImagesSchemaWithPhotos = BasicImageSchema.extend({
   photos: z.array(PhotoSchema),
 });
 
-export type PexelsPhoto = z.infer<typeof PhotoSchema>;
+export type ApiPexelsPhoto = z.infer<typeof PhotoSchema>;
 
-export type PexelsImagesResults = z.infer<typeof ImagesSchemaWithPhotos>;
+export type ApiPexelsImagesResults = z.infer<typeof ImagesSchemaWithPhotos>;

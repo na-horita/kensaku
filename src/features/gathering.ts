@@ -1,15 +1,17 @@
 
 import {
-  SourceType,
   Photo,
+  SourceType,
+  PexelsJadgeAlias,
   PexelsApiSchema,
   UnsplashApiSchema,
 } from "../ts/photo";
 import { getPexelsData } from "../api/photo/getPexelsData";
 import { getUnsplashData } from "../api/photo/getUnsplashData";
 import { PexelsPhoto } from "../class/PexelsPhoto";
-
-type PexelsJadgeAlias<T extends SourceType, A, B> = T extends "Pexels" ? A : B;
+import { UnsplashPhoto } from "../class/UnsplashPhoto";
+import { ApiPexelsPhoto } from "../ts/pexels";
+import { ApiUnsplashPhoto } from "../ts/unsplash";
 
 //apiデータ取得とオブジェクトの整形
 //第一引数　type SourceType
@@ -18,7 +20,7 @@ type PexelsJadgeAlias<T extends SourceType, A, B> = T extends "Pexels" ? A : B;
 export const fetchData = async (
   source: SourceType,
   inputData: PexelsJadgeAlias<typeof source, PexelsApiSchema, UnsplashApiSchema>
-): Promise<any | null> => {
+): Promise<Photo[] | null> => {
   try {
     const fetchResponse =
       source === "Pexels"
@@ -26,7 +28,9 @@ export const fetchData = async (
         : await getUnsplashData(inputData);
     
     const resultPhotos = fetchResponse
-      ? fetchResponse.map((photo: any) => mapDataToCustomFormat(photo, source))
+      ? fetchResponse.map((photo: ApiPexelsPhoto | ApiUnsplashPhoto) =>
+          mapDataToCustomFormat(photo, source)
+        )
       : [];
     
     return resultPhotos;
@@ -37,31 +41,21 @@ export const fetchData = async (
 };
 
 //pixel,Unsplashデータのオブジェクトのキーフレーズを合わせる
-export const mapDataToCustomFormat = (data: any, source: SourceType = "Pexels"): PexelsPhoto => {
-  const commonProperties = {
-    id: data.id,
-    source: source,
-    width: data.width,
-    height: data.height,
-  };
-
+export const mapDataToCustomFormat = (
+  data: ApiPexelsPhoto | ApiUnsplashPhoto,
+  source: SourceType = "Pexels"
+): PexelsPhoto => {
   if (source === "Pexels") {
-    return new PexelsPhoto(data);
+    return new PexelsPhoto(data as ApiPexelsPhoto);
   }
 
   if (source === "Unsplash") {
-    return {
-      ...commonProperties,
-      url: data.urls.regular,
-      link: data.links.html,
-      photographer: data.user.name,
-      created_at: data.created_at,
-    };
+    return new UnsplashPhoto(data as ApiUnsplashPhoto);
   }
+
   throw new Error("未知のソースです");
 };
 
-//
 
 // 作成日の新しい順にソートする
 export const sortByNewestCreationDate = (photos: Photo[]): Photo[] => {

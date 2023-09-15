@@ -1,22 +1,19 @@
-export type SourceType = "Unsplash" | "Pexels";
 import { z } from "zod";
+import { PexelsPhoto } from "../class/PexelsPhoto";
+import { UnsplashPhoto } from "../class/UnsplashPhoto";
 
-export type Photo = {
-  id: string;
-  width: number;
-  height: number;
-  source: SourceType;
-  url: string;
-  link: string;
-  photographer: string;
-  created_at: string;
-}; 
+// PexelsPhotoとUnsplashPhotoの型は同じになるように作成してます。２つともclassコンポーネントにて設定
+export type Photo = PexelsPhoto | UnsplashPhoto;
 
-// Pexels APIのリクエスト
-export type GetPexelsData = { 
-  word: string,
-  num: number,
-};
+//今のデータがどのソース名であるのかを明示的にする
+export type SourceType = "Unsplash" | "Pexels";
+
+//第一引数のソース名からdataの型を振り分ける
+export type PexelsJadgeAlias<
+  T extends SourceType,
+  A_Data extends Object,
+  B_Data extends Object
+> = T extends "Pexels" ? A_Data : B_Data;
 
 // オブジェクトのスキーマを定義
 export const pexelsApiSchema = z.object({

@@ -25,6 +25,6 @@ export const ImagesSchemaWithPhotos = BasicImageSchema.extend({
   results: z.array(PhotoSchema),
 });
 
-export type UnsplashPhoto = z.infer<typeof PhotoSchema>;
+export type ApiUnsplashPhoto = z.infer<typeof PhotoSchema>;
 
-export type UnsplashImagesResults = z.infer<typeof ImagesSchemaWithPhotos>;
+export type ApiUnsplashImagesResults = z.infer<typeof ImagesSchemaWithPhotos>;
