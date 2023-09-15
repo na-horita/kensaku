@@ -16,27 +16,29 @@ import Tdd from "./pages/tdd/index";
 
 function App() {
   return (
-    <div className="App">
+    <>
       <BrowserRouter>
         <Navb />
-        <RecoilRoot>
-          <div className="app_wrap">
-            <Routes>
-              <Route path="/" element={<Top />} />
-              <Route path="/explain" element={<Explain />} />
-              <Route path="/add" element={<Add />} />
-              <Route path="/favorite" element={<Favorite />} />
-              <Route path="/sus" element={<Sus />} />
-              <Route path="/scrape" element={<Scrape />} />
-              <Route path="/tdd" element={<Tdd />} />
-              <Route path="/tdd/pexels" element={<GetPexels />} />
-              <Route path="/tdd/unsplash" element={<GetUnsplash />} />
-            </Routes>
-          </div>
-        </RecoilRoot>
+        <div className="App">
+          <RecoilRoot>
+            <div className="app_wrap">
+              <Routes>
+                <Route path="/" element={<Top />} />
+                <Route path="/explain" element={<Explain />} />
+                <Route path="/add" element={<Add />} />
+                <Route path="/favorite" element={<Favorite />} />
+                <Route path="/sus" element={<Sus />} />
+                <Route path="/scrape" element={<Scrape />} />
+                <Route path="/tdd" element={<Tdd />} />
+                <Route path="/tdd/pexels" element={<GetPexels />} />
+                <Route path="/tdd/unsplash" element={<GetUnsplash />} />
+              </Routes>
+            </div>
+          </RecoilRoot>
+          <Footer />
+        </div>
       </BrowserRouter>
-      <Footer />
-    </div>
+    </>
   );
 }
 

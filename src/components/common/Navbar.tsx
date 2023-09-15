@@ -6,7 +6,7 @@ function Navb() {
     <Navbar bg="dark" variant="dark">
       <Container>
         <Navbar.Brand href="/">
-          <h1 className="h3">画像検索アプリ</h1>
+          <h1 className="text-base md:text-3xl">画像検索アプリ</h1>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
