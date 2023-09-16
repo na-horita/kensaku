@@ -5,9 +5,11 @@ import { Frequent } from "../../ts/frequent";
 const FrequentData = (props: any) => {
   const [frequents, setFrequents] = useState<Frequent[]>([]);
 
-  const getFrequentData = async (e: any) => {
+  const getFrequentData = async (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+  ) => {
     e.preventDefault();
-    const word = e.target.value;
+    const word = e.currentTarget.value;
     props.setLoading(true);
     props.setWord(word);
     await props.searchImages(word);
