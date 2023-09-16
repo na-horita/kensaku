@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
-import SearchForm from "../components/frontpage/SearchForm";
-import Results from "../components/frontpage/Results";
+import SearchForm from "../components/top/SearchForm";
+import Results from "../components/top/Results";
 import FrequentData from "../features/frequent/FrequentData";
-import Hopes from "../components/frontpage/Hopes";
-import Explain from "../components/frontpage/Explain";
+import Hopes from "../components/top/Hopes";
+import Explain from "../components/top/Explain";
 
 import { useIndexedDB } from "../useIndexedDB";
 
