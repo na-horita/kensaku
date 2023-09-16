@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import FrequentsList from "../../components/frequent/FrequentsList";
+import { useNavigate } from "react-router-dom";
 
 function FrequentsListHook() {
   const [frequents, setFrequents] = useState([]);
@@ -24,11 +25,12 @@ function FrequentsListHook() {
       });
   };
 
-  const handleClick =
-    (keyword: string): (() => void) =>
-    () => {
-      window.location.href = `/?keyword=${keyword}`;
+  const handleClick = (keyword: string): (() => void) => {
+    const navigate = useNavigate();
+    return () => {
+      navigate(`/?keyword=${keyword}`, { state: { keyword } });
     };
+  };
 
   return (
     <>

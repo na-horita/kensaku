@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
-
-import axios from "axios";
+import { useLocation } from "react-router-dom";
 
 import SearchForm from "../components/frontpage/SearchForm";
 import Results from "../components/frontpage/Results";
@@ -19,8 +18,10 @@ const Top = () => {
   const [photos, setPhotos] = useState<Photo[] | null>([]);
   const [loading, setLoading] = useState<boolean>(false);
 
-  const urlParams = new URLSearchParams(window.location.search);
-  const keyword = urlParams.get("keyword");
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const keyword:string|null = queryParams.get("keyword");
+  
   useEffect(() => {
     keyword &&
       (async () => {
