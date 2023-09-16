@@ -18,7 +18,7 @@ const PhotoSchema = z.object({
   user: z.object({
     name: z.string(),
   }),
-  created_at: z.string().optional(),
+  created_at: z.string(),
 });
 
 export const ImagesSchemaWithPhotos = BasicImageSchema.extend({
