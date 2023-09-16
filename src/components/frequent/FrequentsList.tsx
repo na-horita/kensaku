@@ -1,10 +1,11 @@
+import { MouseEventHandler } from "react";
 import { Button } from "react-bootstrap";
 import { Frequent } from "../../ts/frequent";
 
 type FrequentsListProps = {
   frequent: Frequent;
-  handleClick: (word:string) => void;
-}
+  handleClick: (word: string) => MouseEventHandler<HTMLButtonElement>;
+};
 
 function FrequentsList({ frequent, handleClick }: FrequentsListProps) {
   return (
@@ -13,7 +14,7 @@ function FrequentsList({ frequent, handleClick }: FrequentsListProps) {
       size="lg"
       className="mb-2 mx-1"
       value={frequent.word}
-      onClick={() => handleClick(frequent.word)}
+      onClick={handleClick(frequent.word)}
     >
       {frequent.word}
     </Button>
