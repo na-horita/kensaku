@@ -4,7 +4,7 @@ const Explain = () => {
       position: relative;
       display: block;
       width:190px;
-      margin:10px 0 10px 15px;
+      margin:10px 0 20px 15px;
       padding: 10px 10px 10px 30px;
       cursor: pointer;
       font-weight: bold;
@@ -51,13 +51,14 @@ const Explain = () => {
       top: 5px;
     }
     details[open] .details-content {
-        border:2px solid #777;
-        padding-top : 20px;
-        margin:3px 0 10px;
-      animation: fadeIn 0.5s ease;
+        border:6px double #999;
+        padding: 30px 10px 10px;
+        margin:3px 0 30px;
+        animation: fadeIn 0.5s ease;
     }
     details[open] .details-content ul{
         list-style:none;
+        padding-left: 0px;
     }
     @keyframes fadeIn {
       0% {
@@ -82,7 +83,7 @@ const Explain = () => {
       <details>
         <summary>アプリの説明文表示</summary>
         <div className="details-content">
-          <ul className="lg:px-4 px-2">
+          <ul>
             <li>
               検索窓にキーワードを入力して、searchボタンを押すと、UnsplashとPexelsの両方から画像を検索してきます
             </li>
