@@ -13,7 +13,7 @@ export function useIndexedDB(): [Photo[] | null, (val: Photo[]) => void] {
         setValue(val);
       }
     });
-  }, []);
+  }, [value]);
 
   const save = (val: Photo[] | null) => {
     // 引数の型を修正

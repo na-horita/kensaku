@@ -1,7 +1,8 @@
 import HopesCardHook from "../../organisms/top/HopesCardHook";
-import { Photo } from "../../ts/photo";
+import { useIndexedDB } from "../../features/useIndexedDB";
 
-const Hopes = ({ hopes }: { hopes: Photo[] | null }) => {
+const Hopes = () => {
+  const [hopes, setHopes] = useIndexedDB();
   return (
     <>
       {hopes && hopes.length > 0 && (

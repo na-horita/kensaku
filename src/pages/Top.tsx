@@ -7,13 +7,10 @@ import FrequentData from "../organisms/top/FrequentsHook";
 import Hopes from "../components/top/Hopes";
 import Explain from "../components/top/Explain";
 
-import { useIndexedDB } from "../features/useIndexedDB";
-
 import { fetchData, sortByNewestCreationDate } from "../features/gathering";
 import { Photo, PexelsApiSchema, UnsplashApiSchema } from "../ts/photo";
 
 const Top = () => {
-  const [hopes, setHopes] = useIndexedDB();
   const [word, setWord] = useState<string>("");
   const [photos, setPhotos] = useState<Photo[] | null>([]);
   const [loading, setLoading] = useState<boolean>(false);
@@ -79,9 +76,9 @@ const Top = () => {
       </div>
       <SearchForm setWord={setWord} word={word} getPhotoData={getPhotoData} />
       検索文字:{word}
-      <Results photos={photos} loading={loading} setHopes={setHopes} hopes={hopes} />
+      <Results photos={photos!} loading={loading} />
       <hr />
-      <Hopes hopes={hopes} />
+      <Hopes />
     </>
   );
 };
