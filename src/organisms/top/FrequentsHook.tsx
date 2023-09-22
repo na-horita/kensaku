@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import FrequentButton from "../../components/frequent/FrequentButton";
 import { Frequent } from "../../ts/frequent";
+import { getFrequents } from "../../api/frequent/getFrequents";
 
 const FrequentData = (props: any) => {
   const [frequents, setFrequents] = useState<Frequent[]>([]);
@@ -16,16 +17,10 @@ const FrequentData = (props: any) => {
     props.setLoading(false);
   };
 
-  const fetchFrequentsData = async () => {
-    const response = await fetch("https://kensaku-express.vercel.app/api/frequent");
-    if (!response.ok) throw new Error();
-    return response.json();
-  };
-
   useEffect(() => {
     async function fetchData() {
       try {
-        const allFrequents = await fetchFrequentsData();
+        const allFrequents = await getFrequents();
         setFrequents(allFrequents);
       } catch (error) {
         console.error(error);

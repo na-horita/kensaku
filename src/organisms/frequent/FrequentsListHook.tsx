@@ -1,29 +1,28 @@
 import { useState, useEffect } from "react";
 import FrequentsList from "../../components/frequent/FrequentsList";
 import { useNavigate } from "react-router-dom";
+import { getFrequents } from "../../api/frequent/getFrequents";
+import { Frequent } from "../../ts/frequent";
 
 function FrequentsListHook() {
-  const [frequents, setFrequents] = useState([]);
+  const [frequents, setFrequents] = useState<Frequent[]>([]);
 
   useEffect(() => {
-    fetchFrequents(); // 初回のデータ取得
-    const interval = setInterval(fetchFrequents, 5000); // 5秒ごとにデータ取得
+    const fetchData = async () => {
+      const data = await getFrequents();
+      if (data !== null) {
+        setFrequents(data);
+      }
+    };
+
+    fetchData(); // 初回のデータ取得
+
+    const interval = setInterval(fetchData, 5000); // 5秒ごとにデータ取得
 
     return () => {
       clearInterval(interval); // コンポーネントがアンマウントされた時にインターバルを解除
     };
   }, []);
-
-  const fetchFrequents = () => {
-    fetch("https://kensaku-express.vercel.app/api/frequent")
-      .then((response) => response.json())
-      .then((data) => {
-        setFrequents(data);
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-      });
-  };
 
   const handleClick = (keyword: string): (() => void) => {
     const navigate = useNavigate();
