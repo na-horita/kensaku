@@ -1,43 +1,15 @@
-import { useState, useEffect } from "react";
 import { Button, Form, Stack, Alert } from "react-bootstrap";
-import { useForm, SubmitHandler } from "react-hook-form";
-import { Frequent } from "../../ts/frequent";
-import { createFrequent } from "../../api/frequent/createFrequent";
 
-function AddFrequent() {
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors },
-  } = useForm<Omit<Frequent, "id">>();
-  const [showAlert, setShowAlert] = useState<boolean>(false);
-
-  useEffect(() => {
-    // 3秒後にアラートを非表示にする
-    const timeout = setTimeout(() => {
-      setShowAlert(false);
-    }, 3000);
-
-    // アンマウント時にクリア
-    return () => clearTimeout(timeout);
-  }, [showAlert]);
-
-  const onSubmit: SubmitHandler<Omit<Frequent, "id">> = (data) => {
-    const newFrequent = { name: data.name, word: data.word };
-
-    createFrequent(newFrequent)
-      .then(() => {
-        reset();
-        setShowAlert(true);
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-      });
-  };
-
+const FrequentCreate = ({
+  showAlert,
+  setShowAlert,
+  handleSubmit,
+  onSubmit,
+  register,
+  errors,
+}: any) => {
   return (
-    <div>
+    <>
       {showAlert && (
         <Alert variant="success" onClose={() => setShowAlert(false)} dismissible>
           POSTを完了しました
@@ -107,8 +79,8 @@ function AddFrequent() {
           </Button>
         </Stack>
       </Form>
-    </div>
+    </>
   );
-}
+};
 
-export default AddFrequent;
+export default FrequentCreate
