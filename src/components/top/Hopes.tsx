@@ -1,4 +1,4 @@
-import HopesCard from "../../features/HopesCard";
+import HopesCard from "../../organisms/top/HopesCardHook";
 
 const Hopes = (props:any) => {
   return (
