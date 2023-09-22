@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom";
 
 import SearchForm from "../components/top/SearchForm";
 import Results from "../components/top/Results";
-import FrequentData from "../features/frequent/FrequentData";
+import FrequentData from "../organisms/top/FrequentsHook";
 import Hopes from "../components/top/Hopes";
 import Explain from "../components/top/Explain";
 
