@@ -5,7 +5,7 @@ import "./App.css";
 import Top from "./pages/Top";
 import Add from "./pages/Add";
 import Favorite from "./pages/Favorite";
-import Scrape from "./pages/Scrape";
+// import Scrape from "./pages/Scrape";
 import Explain from "./pages/Explain";
 import Sus from "./pages/Sus";
 import Navb from "./components/common/Navbar";
@@ -28,7 +28,7 @@ function App() {
                 <Route path="/add" element={<Add />} />
                 <Route path="/favorite" element={<Favorite />} />
                 <Route path="/sus" element={<Sus />} />
-                <Route path="/scrape" element={<Scrape />} />
+                {/* <Route path="/scrape" element={<Scrape />} /> */}
                 <Route path="/tdd" element={<Tdd />} />
                 <Route path="/tdd/pexels" element={<GetPexels />} />
                 <Route path="/tdd/unsplash" element={<GetUnsplash />} />

@@ -1,4 +1,4 @@
-import TopHero from '../components/TopHero';
+import TopHero from '../components/top/TopHero';
 
 const Explain = () => {
 
