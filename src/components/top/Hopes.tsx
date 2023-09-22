@@ -1,12 +1,13 @@
-import HopesCard from "../../organisms/top/HopesCardHook";
+import HopesCardHook from "../../organisms/top/HopesCardHook";
+import { Photo } from "../../ts/photo";
 
-const Hopes = (props:any) => {
+const Hopes = ({ hopes }: { hopes: Photo[] | null }) => {
   return (
     <>
-      {props.hopes && props.hopes.length > 0 && (
+      {hopes && hopes.length > 0 && (
         <div className="splide_wrap">
           <h4 style={{ padding: "20px 0" }}>お気に入り画像集</h4>
-          <HopesCard hopes={props.hopes} />
+          <HopesCardHook hopes={hopes} />
         </div>
       )}
     </>
