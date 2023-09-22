@@ -3,9 +3,10 @@ import { get } from "idb-keyval";
 import PhotoAlbum from "react-photo-album";
 import Zoom from "react-medium-image-zoom";
 import "react-medium-image-zoom/dist/styles.css";
+import { Photo } from "../ts/photo";
 
 function Favorite() {
-  const [hopes, setHopes] = useState([]);
+  const [hopes, setHopes] = useState<Photo[]>([]);
 
   useEffect(() => {
     get("hopes").then((result) => {
@@ -17,7 +18,7 @@ function Favorite() {
 
   const breakpoints = [880, 640, 384, 256, 128, 96, 64, 48];
 
-  const FavoriteDatas = hopes.map((photo:any) => ({
+  const FavoriteDatas = hopes.map((photo: Photo) => ({
     src: photo.url,
     width: photo.width,
     height: photo.height,

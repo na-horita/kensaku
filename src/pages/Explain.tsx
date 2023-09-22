@@ -1,10 +1,10 @@
-import TopHero from '../components/top/TopHero';
+import Usage from "../components/top/Usage";
 
 const Explain = () => {
 
   return (
     <>
-      <TopHero />
+      <Usage />
     </>
   );
 };
