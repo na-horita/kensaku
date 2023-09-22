@@ -2,22 +2,7 @@ import { useState, useEffect } from "react";
 import { Button, Form, Stack, Alert } from "react-bootstrap";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { Frequent } from "../../ts/frequent";
-
-
-async function frequentsData(formData: Omit<Frequent,"id">) {
-  const response = await fetch("https://kensaku-express.vercel.app/api/frequent", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(formData),
-  });
-
-  if (!response.ok) {
-    throw new Error("Network response was not ok");
-  }
-  return response.json();
-}
+import { createFrequent } from "../../api/frequent/createFrequent";
 
 function AddFrequent() {
   const {
@@ -41,7 +26,7 @@ function AddFrequent() {
   const onSubmit: SubmitHandler<Omit<Frequent, "id">> = (data) => {
     const newFrequent = { name: data.name, word: data.word };
 
-    frequentsData(newFrequent)
+    createFrequent(newFrequent)
       .then(() => {
         reset();
         setShowAlert(true);
