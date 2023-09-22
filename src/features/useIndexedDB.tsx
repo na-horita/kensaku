@@ -1,6 +1,6 @@
 import { useLayoutEffect, useState } from "react";
 import { set, get } from "idb-keyval";
-import { Photo } from "./ts/photo"; 
+import { Photo } from "../ts/photo"; 
 
 const INEDEXED_KEY = "hopes";
 
