@@ -1,16 +1,17 @@
 import { useEffect } from "react";
 import { useIndexedDB } from "../../features/useIndexedDB";
+import { Photo } from "../../ts/photo"; 
 
-const aaa = [
+const aaa: Photo[] = [
   {
-    id: 92657,
-    width: 5760,
-    height: 3840,
-    created_at: "2019-04-07T09:46:11Z",
-    source: "Pexels",
-    url: "https://images.pexels.com/photos/92657/pexels-photo-92657.jpeg?auto=compress&cs=tinysrgb&h=350",
-    link: "https://www.pexels.com/photo/bird-s-eye-view-landscape-village-sunshine-92657/",
-    photographer: "Markus Spiske",
+    id: "vcRHpfrsaL8",
+    width: 3024,
+    height: 4032,
+    created_at: "2020-05-25T02:10:58Z",
+    link: "https://unsplash.com/photos/vcRHpfrsaL8",
+    photographer: "Omar Ram",
+    source: "Unsplash",
+    url: "https://images.unsplash.com/photo-1590372648787-fa5a935c2c40?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0MDczNjZ8MHwxfHNlYXJjaHwxNnx8c2t5fGVufDB8fHx8MTY5NTYyNDMyM3ww&ixlib=rb-4.0.3&q=80&w=1080",
   },
 ];
 

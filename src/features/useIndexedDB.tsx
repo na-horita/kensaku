@@ -4,7 +4,7 @@ import { Photo } from "../ts/photo";
 
 const INEDEXED_KEY = "hopes";
 
-export function useIndexedDB(): [Photo[] | null, (val: Photo[]) => void] {
+export function useIndexedDB(): [Photo[] | null, (val: Photo[] | null) => void] {
   const [value, setValue] = useState<Photo[] | null>(null);
 
   useLayoutEffect(() => {
