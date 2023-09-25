@@ -1,15 +1,20 @@
 import { Button } from "react-bootstrap";
 
-const FrequentButton = ({ frequent, getFrequentData }: any) => {
+type FrequentsButtonProps = {
+  word: string;
+  getFrequentData: Function;
+};
+
+const FrequentButton = ({ word, getFrequentData }: FrequentsButtonProps) => {
   return (
     <Button
       variant="outline-success"
       size="lg"
       className="mb-2 mx-1"
-      value={frequent.word}
-      onClick={getFrequentData}
+      value={word}
+      onClick={() => getFrequentData(word)}
     >
-      {frequent.word}
+      {word}
     </Button>
   );
 };

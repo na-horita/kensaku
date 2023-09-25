@@ -6,11 +6,7 @@ import { getFrequents } from "../../api/frequent/getFrequents";
 const FrequentData = (props: any) => {
   const [frequents, setFrequents] = useState<Frequent[]>([]);
 
-  const getFrequentData = async (
-    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
-  ) => {
-    e.preventDefault();
-    const word = e.currentTarget.value;
+  const getFrequentData = async (word:string) => {
     props.setLoading(true);
     props.setWord(word);
     await props.searchImages(word);
@@ -32,10 +28,10 @@ const FrequentData = (props: any) => {
 
   return (
     <>
-      {frequents.map((frequent: any) => (
+      {frequents.map((frequent: Frequent) => (
         <FrequentButton
           key={frequent.id}
-          frequent={frequent}
+          word={frequent.word}
           getFrequentData={getFrequentData}
         />
       ))}
