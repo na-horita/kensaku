@@ -14,7 +14,7 @@ const PhotoSchema = z.object({
   height: z.number(),
   url: z.string(),
   src: z.object({
-    medium: z.string(),
+    large2x: z.string(),
   }),
   photographer: z.string(),
   alt: z.string(),

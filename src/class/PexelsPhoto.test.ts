@@ -7,7 +7,7 @@ describe("PexelsPhoto", () => {
       id: 123,
       width: 800,
       height: 600,
-      src: { medium: "https://example.com/image.jpg" },
+      src: { large2x: "https://example.com/image.jpg" },
       url: "https://example.com/photo/123",
       photographer: "John Doe",
     };
@@ -20,7 +20,7 @@ describe("PexelsPhoto", () => {
     expect(pexelsPhoto.source).toBe("Pexels");
     expect(pexelsPhoto.width).toBe(data.width);
     expect(pexelsPhoto.height).toBe(data.height);
-    expect(pexelsPhoto.url).toBe(data.src.medium);
+    expect(pexelsPhoto.url).toBe(data.src.large2x);
     expect(pexelsPhoto.link).toBe(data.url);
     expect(pexelsPhoto.photographer).toBe(data.photographer);
     expect(pexelsPhoto.created_at).toBe("2010-01-01T01:01:01Z");
