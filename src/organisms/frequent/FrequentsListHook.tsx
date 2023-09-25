@@ -5,6 +5,7 @@ import { getFrequents } from "../../api/frequent/getFrequents";
 import { Frequent } from "../../ts/frequent";
 
 function FrequentsListHook() {
+  const navigate = useNavigate();
   const [frequents, setFrequents] = useState<Frequent[]>([]);
 
   useEffect(() => {
@@ -24,11 +25,8 @@ function FrequentsListHook() {
     };
   }, []);
 
-  const handleClick = (word: string): (() => void) => {
-    const navigate = useNavigate();
-    return () => {
-      navigate(`/?keyword=${word}`, { state: { word } });
-    };
+  const handleClick = (word: string): void => {
+    return navigate(`/?keyword=${word}`, { state: { word } });
   };
 
   return (

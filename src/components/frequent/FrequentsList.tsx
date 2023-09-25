@@ -4,7 +4,7 @@ import { Frequent } from "../../ts/frequent";
 
 type FrequentsListProps = {
   word: string;
-  handleClick: (word: string) => MouseEventHandler<HTMLButtonElement>;
+  handleClick: Function;
 };
 
 function FrequentsList({ word, handleClick }: FrequentsListProps) {
@@ -14,7 +14,7 @@ function FrequentsList({ word, handleClick }: FrequentsListProps) {
       size="lg"
       className="mb-2 mx-1"
       value={word}
-      onClick={handleClick(word)}
+      onClick={()=>handleClick(word)}
     >
       {word}
     </Button>
