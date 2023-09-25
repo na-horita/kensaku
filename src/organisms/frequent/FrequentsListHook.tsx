@@ -24,10 +24,10 @@ function FrequentsListHook() {
     };
   }, []);
 
-  const handleClick = (keyword: string): (() => void) => {
+  const handleClick = (word: string): (() => void) => {
     const navigate = useNavigate();
     return () => {
-      navigate(`/?keyword=${keyword}`, { state: { keyword } });
+      navigate(`/?keyword=${word}`, { state: { word } });
     };
   };
 
@@ -35,7 +35,7 @@ function FrequentsListHook() {
     <>
       {frequents.map((frequent, index) => (
         <FrequentsList
-          frequent={frequent}
+          word={frequent.word}
           key={index}
           handleClick={handleClick}
         ></FrequentsList>

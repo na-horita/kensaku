@@ -3,20 +3,20 @@ import { Button } from "react-bootstrap";
 import { Frequent } from "../../ts/frequent";
 
 type FrequentsListProps = {
-  frequent: Frequent;
+  word: string;
   handleClick: (word: string) => MouseEventHandler<HTMLButtonElement>;
 };
 
-function FrequentsList({ frequent, handleClick }: FrequentsListProps) {
+function FrequentsList({ word, handleClick }: FrequentsListProps) {
   return (
     <Button
       variant="outline-success"
       size="lg"
       className="mb-2 mx-1"
-      value={frequent.word}
-      onClick={handleClick(frequent.word)}
+      value={word}
+      onClick={handleClick(word)}
     >
-      {frequent.word}
+      {word}
     </Button>
   );
 }
