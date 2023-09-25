@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import FrequentsList from "../../components/frequent/FrequentsList";
+import FrequentButton from "../../components/common/FrequentButton";
 import { useNavigate } from "react-router-dom";
 import { getFrequents } from "../../api/frequent/getFrequents";
 import { Frequent } from "../../ts/frequent";
@@ -32,11 +32,11 @@ function FrequentsListHook() {
   return (
     <>
       {frequents.map((frequent, index) => (
-        <FrequentsList
+        <FrequentButton
           word={frequent.word}
           key={index}
-          handleClick={handleClick}
-        ></FrequentsList>
+          getPhotosbyFrequent={handleClick}
+        />
       ))}
     </>
   );

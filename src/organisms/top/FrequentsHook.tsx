@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import FrequentButton from "../../components/frequent/FrequentButton";
+import FrequentButton from "../../components/common/FrequentButton";
 import { Frequent } from "../../ts/frequent";
 import { getFrequents } from "../../api/frequent/getFrequents";
 
@@ -32,7 +32,7 @@ const FrequentData = (props: any) => {
         <FrequentButton
           key={frequent.id}
           word={frequent.word}
-          getFrequentData={getFrequentData}
+          getPhotosbyFrequent={getFrequentData}
         />
       ))}
     </>
