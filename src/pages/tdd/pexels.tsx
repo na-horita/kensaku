@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useLayoutEffect } from "react";
 import { fetchData } from "../../features/gathering";
 import { Photo, PexelsApiSchema } from "../../ts/photo";
 import TddNav from "../../components/tdd/TddNav";
@@ -12,7 +12,7 @@ const GetPexels = () => {
     num: 20,
   };
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const fetchDataAndSetCustomData = async () => {
       const customData = await fetchData("Pexels", inputData);
       if (customData) {

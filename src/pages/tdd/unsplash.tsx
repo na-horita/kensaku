@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect,useLayoutEffect } from "react";
 import { mapDataToCustomFormat } from "../../features/gathering";
 import { getApiUnsplashData } from "../../api/photo/getApiUnsplashData";
 import { UnsplashApiSchema } from "../../ts/photo";
@@ -29,7 +29,7 @@ const GetPexels = () => {
     }
   }, []);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const pexelsPhotos: ApiUnsplashPhoto[] = pexelsData.map((photo: ApiUnsplashPhoto) =>
       mapDataToCustomFormat(photo, "Unsplash")
     );
