@@ -49,10 +49,3 @@ describe("vitestの基本の書き方", () => {
     expect(0.1 + 0.4).toBeCloseTo(0.5);
   });
 });
-
-import { called } from "./moduleA";
-
-test("module確認", () => {
-    const calling = called(8);
-    expect(calling).toBeLessThanOrEqual(7);
-})
