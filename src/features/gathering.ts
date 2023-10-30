@@ -58,8 +58,9 @@ export const mapDataToCustomFormat = (
 
 
 // 作成日の新しい順にソートする
-export const sortByNewestCreationDate = (photos: Photo[]): Photo[] => {
-  return photos.sort((a: Photo, b: Photo) => {
+// Tはcreated_atプロパティを持つ型とする
+export const sortByNewestCreationDate = <T extends { created_at: string }>(photos: T[]): T[] => {
+  return photos.sort((a: T, b: T) => {
     const createdAtA = Date.parse(a.created_at);
     const createdAtB = Date.parse(b.created_at);
 
