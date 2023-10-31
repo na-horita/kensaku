@@ -18,3 +18,10 @@ IndexedDBでのデータ保存のためブラウザを変えることで保存�
 ## 良く検索されるワードのデータストレージ
 kensaku-expressのfrequent.jsonで管理してます。
 「ワード追加」ページから単語の追加は可能ですが、一時的な保存であることに注意。
+
+## vitestの実施
+
+```
+npm run test
+npx vitest run --coverage
+```
