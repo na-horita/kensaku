@@ -9,7 +9,8 @@ const GetPexels = () => {
   const [pexelsDataCustom, setPexelsDataCustom] = useState<Photo[]>([]);
   const [word, setWord] = useState<string>("dog");
   const [num, setNum] = useState<number>(15);
-  const [errors,setErrors] = useState<any>([]);
+  const [wordAlerts, setWordAlerts] = useState<string[]>([]);
+  const [numAlerts, setNumAlerts] = useState<string[]>([]);
 
   // エラーメッセージの管理
   const numError = numPexelsSchema.safeParse(num);
@@ -18,21 +19,21 @@ const GetPexels = () => {
   useLayoutEffect(() => {
     const fetchDataAndSetCustomData = async () => {
       // エラーメッセージを表示
-      if (numError.success === false) {
-        const errMessages = numError.error.issues.map((issue) => issue.message);
-        setErrors(errMessages);
+      if (wordError.success === false) {
+        const errMessages = wordError.error.issues.map((issue) => issue.message);
+        setWordAlerts(errMessages);
         return;
       } else {
-        setErrors([]);
+        setWordAlerts([]);
       }
 
       // エラーメッセージを表示
-      if (wordError.success === false) {
-        const errMessages = wordError.error.issues.map((issue) => issue.message);
-        setErrors(errMessages);
+      if (numError.success === false) {
+        const errMessages = numError.error.issues.map((issue) => issue.message);
+        setNumAlerts(errMessages);
         return;
       } else {
-        setErrors([]);
+        setNumAlerts([]);
       }
 
       const customData = await fetchData("Pexels", { word, num });
@@ -84,8 +85,14 @@ const GetPexels = () => {
           </div>
         </div>
         {/* エラーメッセージの表示 */}
-        {errors &&
-          errors.map((error:string, index:number) => (
+        {wordAlerts &&
+          wordAlerts.map((error: string, index: number) => (
+            <p key={index} className="text-red-500 text-xl">
+              {error}
+            </p>
+          ))}
+        {numAlerts &&
+          numAlerts.map((error: string, index: number) => (
             <p key={index} className="text-red-500 text-xl">
               {error}
             </p>
