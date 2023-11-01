@@ -10,26 +10,38 @@ export const getApiPexelsData = async ({
   num,
 }: PexelsApiSchema): Promise<ApiPexelsPhoto[] | null> => {
   try {
-    const response = await axios.get(
-      `https://api.pexels.com/v1/search?query=${word}&per_page=${num}`,
-      {
-        headers: {
-          Authorization: pexelsAPIKey,
-        },
-      }
-    );
+    const response = await requestPexelsAPI(word,num);
+    validateResponse(response)
 
-    if (!response) {
-      throw new Error("Pexels APIからの応答がありません");
-    }
-
-    const responseData: Awaited<ApiPexelsImagesResults> = await response.data;
-    const responseDataPhotos: ApiPexelsPhoto[] = await responseData.photos;
-
+    const responseDataPhotos: ApiPexelsPhoto[] = await response.data.photos;
     return responseDataPhotos;
   } catch (error) {
     // エラーハンドリングを行う場合のコード
     console.error("Pexels APIエラー:", error);
     return null; // またはエラーを適切に処理して返す
+  }
+};
+
+// APIリクエスト
+export const requestPexelsAPI = async(word:string, num:number) => {
+  const response = await axios.get(
+    `https://api.pexels.com/v1/search?query=${word}&per_page=${num}`, 
+    {
+      headers: {
+        Authorization: pexelsAPIKey,
+      },
+    }
+  );
+  return response;
+}
+
+// レスポンス検証
+export const validateResponse = (response:any) => {
+  if (!response) {
+    throw new Error("Responseがありません");
+  }
+
+  if (response.status !== 200) {
+    throw new Error("200番ではありません");
   }
 };
