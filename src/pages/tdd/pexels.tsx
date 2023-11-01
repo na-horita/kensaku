@@ -1,38 +1,44 @@
-import { useState,useLayoutEffect } from "react";
+import { useState, useLayoutEffect } from "react";
+import { z } from "zod"; 
+import { numPexelsSchema, wordSchema } from "../../zod/photoSchema";
 import { fetchData } from "../../features/gathering";
 import { Photo, PexelsApiSchema } from "../../ts/photo";
 import TddNav from "../../components/tdd/TddNav";
 
 const GetPexels = () => {
-  const [pexelsData, setPexelsData] = useState<any>([]);
   const [pexelsDataCustom, setPexelsDataCustom] = useState<Photo[]>([]);
   const [word, setWord] = useState<string>("dog");
-  const [num, setNum] = useState<number>(10);
+  const [num, setNum] = useState<number>(15);
 
-  const inputData: PexelsApiSchema = {
-    word: word,
-    num: num,
-  };
+  // エラーメッセージの管理
+  const numError = numPexelsSchema.safeParse(num);
+  const wordError = wordSchema.safeParse(word);
 
   useLayoutEffect(() => {
     const fetchDataAndSetCustomData = async () => {
-      const customData = await fetchData("Pexels", inputData);
+      // エラーメッセージを表示
+      if (numError.success === false) {
+        console.error("numエラー:", numError.error.message);
+        return;
+      }
+
+      const customData = await fetchData("Pexels", { word, num });
       if (customData) {
         setPexelsDataCustom(customData);
       }
     };
     fetchDataAndSetCustomData();
-  }, [word, num]);
+  }, [word, num, numError]);
 
   // 入力値が変更されたときに呼び出されるハンドラ
-  const handleWordInputChange = (event:any) => {
+  const handleWordInputChange = (event: any) => {
     const inputValue = event.target.value;
     setWord(inputValue);
   };
 
   // 数値入力が変更されたときに呼び出されるハンドラ
   const handleNumInputChange = (event: any) => {
-    const inputValue = parseInt(event.target.value, 10); // 数値に変換
+    const inputValue = parseInt(event.target.value, 10); //第二引数は10進数
     setNum(inputValue);
   };
 
@@ -48,7 +54,7 @@ const GetPexels = () => {
             <input
               type="text"
               name="word"
-              className="border-2 border-gray-500 rounded-md px-2 text-2xl"
+              className="border-2 border-slate-400 rounded-md px-2 text-2xl"
               value={word}
               onChange={handleWordInputChange}
             />
@@ -58,12 +64,17 @@ const GetPexels = () => {
             <input
               type="number"
               name="num"
-              className="border-2 border-gray-500 rounded-md px-2 text-2xl"
+              className="border-2 border-slate-400 rounded-md px-2 text-2xl"
               value={num}
               onChange={handleNumInputChange}
             />
           </div>
         </div>
+        {/* エラーメッセージの表示 */}
+        <p className="text-red-500">
+          {!numError.success && <>{numError.error.message}</>}
+          {!wordError.success && <>{wordError.error.message}</>}
+        </p>
 
         {pexelsDataCustom && (
           <table className="border">

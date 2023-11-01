@@ -9,7 +9,7 @@ const TddNav = () => {
   return (
     <div className="my-8">
       <style>{styles}</style>
-      <h2 className="mb-8">テスト開発</h2>
+      <h2 className="mb-8">テスト駆動開発</h2>
       <div className="[&>a]:text-white [&>a]:font-bold [&>a]:py-2 [&>a]:px-4 [&>a]:rounded-full [&>a]:mx-2 [&>a]:no-underline [&>a]:bg-[var(--color)]">
         <NavLink className="[--color:#3B82F6] hover:bg-blue-300" to="/tdd/pexels">
           ピクセルデータ
