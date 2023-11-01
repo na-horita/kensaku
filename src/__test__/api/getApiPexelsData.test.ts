@@ -1,4 +1,7 @@
-import { getApiPexelsData, validateResponse } from "../../api/photo/getApiPexelsData"; // テスト対象の関数をインポート
+import {
+  getApiPexelsData,
+  validateResponse,
+} from "../../api/photo/getApiPexelsData";
 
 describe("validateResponseのテスト", () => {
   it("正常なレスポンスはエラーをスローしない", () => {
@@ -44,7 +47,7 @@ describe("getApiPexelsDataのテスト", () => {
   });
 
   it("api pexels プロパティチェック", async () => {
-    const result = await getApiPexelsData({ word: "cat", num: 20 });
+    const result = await getApiPexelsData({ word: "cat", num: 25 });
     expect(result).not.toBeNull();
     result && expect(result[0]).toHaveProperty("photographer");
     result && expect(result[0]).toHaveProperty("width");
