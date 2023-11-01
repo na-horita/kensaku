@@ -9,6 +9,7 @@ const GetPexels = () => {
   const [pexelsDataCustom, setPexelsDataCustom] = useState<Photo[]>([]);
   const [word, setWord] = useState<string>("dog");
   const [num, setNum] = useState<number>(15);
+  const [errors,setErrors] = useState<any>([]);
 
   // エラーメッセージの管理
   const numError = numPexelsSchema.safeParse(num);
@@ -18,8 +19,20 @@ const GetPexels = () => {
     const fetchDataAndSetCustomData = async () => {
       // エラーメッセージを表示
       if (numError.success === false) {
-        console.error("numエラー:", numError.error.message);
+        const errMessages = numError.error.issues.map((issue) => issue.message);
+        setErrors(errMessages);
         return;
+      } else {
+        setErrors([]);
+      }
+
+      // エラーメッセージを表示
+      if (wordError.success === false) {
+        const errMessages = wordError.error.issues.map((issue) => issue.message);
+        setErrors(errMessages);
+        return;
+      } else {
+        setErrors([]);
       }
 
       const customData = await fetchData("Pexels", { word, num });
@@ -28,7 +41,7 @@ const GetPexels = () => {
       }
     };
     fetchDataAndSetCustomData();
-  }, [word, num, numError]);
+  }, [word, num]);
 
   // 入力値が変更されたときに呼び出されるハンドラ
   const handleWordInputChange = (event: any) => {
@@ -71,10 +84,12 @@ const GetPexels = () => {
           </div>
         </div>
         {/* エラーメッセージの表示 */}
-        <p className="text-red-500">
-          {!numError.success && <>{numError.error.message}</>}
-          {!wordError.success && <>{wordError.error.message}</>}
-        </p>
+        {errors &&
+          errors.map((error:string, index:number) => (
+            <p key={index} className="text-red-500 text-xl">
+              {error}
+            </p>
+          ))}
 
         {pexelsDataCustom && (
           <table className="border">
