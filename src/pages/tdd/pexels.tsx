@@ -1,4 +1,4 @@
-import { useState, useLayoutEffect } from "react";
+import { useState,useLayoutEffect } from "react";
 import { fetchData } from "../../features/gathering";
 import { Photo, PexelsApiSchema } from "../../ts/photo";
 import TddNav from "../../components/tdd/TddNav";
@@ -6,10 +6,12 @@ import TddNav from "../../components/tdd/TddNav";
 const GetPexels = () => {
   const [pexelsData, setPexelsData] = useState<any>([]);
   const [pexelsDataCustom, setPexelsDataCustom] = useState<Photo[]>([]);
+  const [word, setWord] = useState<string>("dog");
+  const [num, setNum] = useState<number>(10);
 
   const inputData: PexelsApiSchema = {
-    word: "bio",
-    num: 20,
+    word: word,
+    num: num,
   };
 
   useLayoutEffect(() => {
@@ -19,9 +21,20 @@ const GetPexels = () => {
         setPexelsDataCustom(customData);
       }
     };
-
     fetchDataAndSetCustomData();
-  }, []);
+  }, [word, num]);
+
+  // 入力値が変更されたときに呼び出されるハンドラ
+  const handleWordInputChange = (event:any) => {
+    const inputValue = event.target.value;
+    setWord(inputValue);
+  };
+
+  // 数値入力が変更されたときに呼び出されるハンドラ
+  const handleNumInputChange = (event: any) => {
+    const inputValue = parseInt(event.target.value, 10); // 数値に変換
+    setNum(inputValue);
+  };
 
   return (
     <>
@@ -29,6 +42,29 @@ const GetPexels = () => {
       <div>
         <h2>ピクセルデータの実験</h2>
         <p className="text-center text-lg">(一度の検索は80件まで)</p>
+        <div className="flex justify-center gap-x-8 my-6">
+          <div>
+            <label>【word】</label>
+            <input
+              type="text"
+              name="word"
+              className="border-2 border-gray-500 rounded-md px-2 text-2xl"
+              value={word}
+              onChange={handleWordInputChange}
+            />
+          </div>
+          <div>
+            <label>【num】</label>
+            <input
+              type="number"
+              name="num"
+              className="border-2 border-gray-500 rounded-md px-2 text-2xl"
+              value={num}
+              onChange={handleNumInputChange}
+            />
+          </div>
+        </div>
+
         {pexelsDataCustom && (
           <table className="border">
             <thead className="border bg-sky-400">
