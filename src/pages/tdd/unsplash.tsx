@@ -24,7 +24,7 @@ const GetPexels = () => {
       .number()
       .int()
       .min(1, "numの数値は1以上である必要があります")
-      .max(80, "numの数値は80以下である必要があります"),
+      .max(80, "numの数値は30以下である必要があります"),
   });
 
   const handleSubmit = (e: any) => {
