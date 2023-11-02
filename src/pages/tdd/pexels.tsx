@@ -1,5 +1,5 @@
 import { useState, useLayoutEffect } from "react";
-import { z } from "zod"; 
+import { z } from "zod";
 import { numPexelsSchema, wordSchema } from "../../zod/photoSchema";
 import { fetchData } from "../../features/gathering";
 import { Photo, PexelsApiSchema } from "../../ts/photo";
@@ -16,42 +16,47 @@ const GetPexels = () => {
   const numError = numPexelsSchema.safeParse(num);
   const wordError = wordSchema.safeParse(word);
 
+  function inputValidate(
+    error: z.SafeParseReturnType<string, string | number>,
+    setAlerts: React.Dispatch<React.SetStateAction<string[]>>
+  ) {
+    if (error.success === false) {
+      const errMessages = error.error.issues.map((issue: z.ZodIssue) => issue.message);
+      setAlerts(errMessages);
+    } else {
+      setAlerts([]);
+    }
+  }
+
   useLayoutEffect(() => {
     const fetchDataAndSetCustomData = async () => {
-      // エラーメッセージを表示
-      if (wordError.success === false) {
-        const errMessages = wordError.error.issues.map((issue) => issue.message);
-        setWordAlerts(errMessages);
-        return;
-      } else {
-        setWordAlerts([]);
-      }
+      inputValidate(wordError, setWordAlerts);
+      inputValidate(numError, setNumAlerts);
 
-      // エラーメッセージを表示
-      if (numError.success === false) {
-        const errMessages = numError.error.issues.map((issue) => issue.message);
-        setNumAlerts(errMessages);
-        return;
-      } else {
-        setNumAlerts([]);
-      }
+      try {
+        if (wordAlerts.length > 0 || numAlerts.length > 0) {
+          throw new Error("スキーマチェックでエラーがありました");
+        }
 
-      const customData = await fetchData("Pexels", { word, num });
-      if (customData) {
-        setPexelsDataCustom(customData);
+        const customData = await fetchData("Pexels", { word, num });
+        if (customData) {
+          setPexelsDataCustom(customData);
+        }
+      } catch (error) {
+        console.error("データ取得エラー:", error);
       }
     };
     fetchDataAndSetCustomData();
   }, [word, num]);
 
   // 入力値が変更されたときに呼び出されるハンドラ
-  const handleWordInputChange = (event: any) => {
+  const handleWordInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue = event.target.value;
     setWord(inputValue);
   };
 
   // 数値入力が変更されたときに呼び出されるハンドラ
-  const handleNumInputChange = (event: any) => {
+  const handleNumInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue = parseInt(event.target.value, 10); //第二引数は10進数
     setNum(inputValue);
   };
