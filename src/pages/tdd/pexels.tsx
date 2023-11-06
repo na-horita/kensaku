@@ -64,6 +64,19 @@ const GetPexels = () => {
     setNum(inputValue);
   };
 
+  //ts-patternによる分岐
+  const renderTableOrNull = match(pexelsDataCustom.length)
+    .with(0, () => {
+      return "";
+    })
+    .otherwise(() => {
+      return (
+        <>{pexelsDataCustom.map((value: Photo, index:number) =>
+            <PexelsTableComp pexelsDataCustom={pexelsDataCustom} />
+          )}</>
+      );
+    });
+
   return (
     <>
       <TddNav />
@@ -105,12 +118,7 @@ const GetPexels = () => {
               {error}
             </p>
           ))}
-
-        {pexelsDataCustom.length > 0 ? (
-          <PexelsTableComp pexelsDataCustom={pexelsDataCustom} />
-        ) : (
-          <p>データなし</p>
-        )}
+        {renderTableOrNull}
       </div>
     </>
   );
