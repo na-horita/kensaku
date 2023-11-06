@@ -1,9 +1,12 @@
 import { useState, useLayoutEffect } from "react";
 import { z } from "zod";
+import { match } from "ts-pattern";
 import { numPexelsSchema, wordSchema } from "../../zod/photoSchema";
 import { fetchData } from "../../features/gathering";
 import { Photo, PexelsApiSchema } from "../../ts/photo";
 import TddNav from "../../components/tdd/TddNav";
+import PexelsTableComp from "../../components/tdd/PexelsTableComp";
+import { PexelsPhoto } from "../../class/PexelsPhoto";
 
 const GetPexels = () => {
   const [pexelsDataCustom, setPexelsDataCustom] = useState<Photo[]>([]);
@@ -103,47 +106,12 @@ const GetPexels = () => {
             </p>
           ))}
 
-        {pexelsDataCustom && (
-          <table className="border">
-            <thead className="border bg-sky-400">
-              <tr>
-                <th>ナンバー</th>
-                <th>ID</th>
-                <th>Source</th>
-                <th>URL</th>
-                <th>Width</th>
-                <th>Height</th>
-                <th>Link</th>
-                <th>Photographer</th>
-                <th>日付</th>
-              </tr>
-            </thead>
-            <tbody>
-              {pexelsDataCustom.map((data: any, index: number) => (
-                <tr key={data.id} className="border">
-                  <td>【{index + 1}】</td>
-                  <td>{data.id}</td>
-                  <td>{data.source}</td>
-                  <td>
-                    <img className="w-12 h-auto" src={data.url} />
-                  </td>
-                  <td>{data.width}</td>
-                  <td>{data.height}</td>
-                  <td>
-                    <a href={data.link} target="_blank">
-                      {data.link}
-                    </a>
-                  </td>
-                  <td>{data.photographer}</td>
-                  <td>{data.created_at}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+        {pexelsDataCustom.length > 0 ? (
+          <PexelsTableComp pexelsDataCustom={pexelsDataCustom} />
+        ) : (
+          <p>データなし</p>
         )}
       </div>
-      <hr className="border-orange-500 border-8" />
-      <hr className="border-orange-500 border-8" />
     </>
   );
 };
