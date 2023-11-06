@@ -71,9 +71,7 @@ const GetPexels = () => {
     })
     .otherwise(() => {
       return (
-        <>{pexelsDataCustom.map((value: Photo, index:number) =>
-            <PexelsTableComp pexelsDataCustom={pexelsDataCustom} />
-          )}</>
+        <PexelsTableComp pexelsDataCustom={pexelsDataCustom} />
       );
     });
 
