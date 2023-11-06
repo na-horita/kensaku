@@ -12,33 +12,40 @@ import { PexelsPhoto } from "../class/PexelsPhoto";
 import { UnsplashPhoto } from "../class/UnsplashPhoto";
 import { ApiPexelsPhoto } from "../ts/pexels";
 import { ApiUnsplashPhoto } from "../ts/unsplash";
+import { match } from "ts-pattern";
 
 //apiデータ取得とオブジェクトの整形
 //第一引数　type SourceType
 //第二引数　PexelsJadgeAliasはsource値に応じて型定義が変更される
-
 export const fetchData = async (
   source: SourceType,
   inputData: PexelsJadgeAlias<typeof source, PexelsApiSchema, UnsplashApiSchema>
 ): Promise<Photo[] | null> => {
-  try {
-    const fetchResponse =
-      source === "Pexels"
-        ? await getApiPexelsData(inputData)
-        : await getApiUnsplashData(inputData);
-    
-    const resultPhotos = fetchResponse
-      ? fetchResponse.map((photo: ApiPexelsPhoto | ApiUnsplashPhoto) =>
-          mapDataToCustomFormat(photo, source)
-        )
-      : [];
-    
-    return resultPhotos;
-  } catch (validationError) {
-    console.error("入力データが無効です。エラー:", validationError);
-    return null;
-  }
+  const resultPhotos = match(source)
+    .with("Pexels", async () => {
+      const fetchResponse = await getApiPexelsData(inputData);
+      return fetchResponse
+        ? fetchResponse.map((photo: ApiPexelsPhoto) =>
+            mapDataToCustomFormat(photo, source)
+          )
+        : [];
+    })
+    .with("Unsplash", async () => {
+      const fetchResponse = await getApiUnsplashData(inputData);
+      return fetchResponse
+        ? fetchResponse.map((photo: ApiUnsplashPhoto) =>
+            mapDataToCustomFormat(photo, source)
+          )
+        : [];
+    })
+    .otherwise(() => {
+      console.error("入力データが無効です。");
+      return null;
+    });
+
+  return await resultPhotos;
 };
+
 
 //pixel,Unsplashデータのオブジェクトのキーフレーズを合わせる
 export const mapDataToCustomFormat = (
