@@ -48,7 +48,7 @@
     "@types/react-responsive-masonry": "^2.1.0",
     "@typescript-eslint/eslint-plugin": "^6.0.0",
     "@typescript-eslint/parser": "^6.0.0",
-    "@vitejs/plugin-react": "^4.0.3",
+    "@vitejs/plugin-react": "^4.2.1",
     "@vitest/coverage-v8": "^0.34.6",
     "autoprefixer": "^10.4.15",
     "eslint": "^8.45.0",
@@ -67,7 +67,7 @@
     "tailwindcss": "^3.3.3",
     "ts-jest": "^29.1.1",
     "typescript": "^5.0.2",
-    "vite": "^4.5.0",
+    "vite": "^v5.0.6",
     "vitest": "^0.34.6"
   }
 }
