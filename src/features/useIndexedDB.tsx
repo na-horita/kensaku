@@ -1,4 +1,4 @@
-import { useLayoutEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { set, get } from "idb-keyval";
 import { Photo } from "../ts/photo"; 
 
@@ -7,7 +7,7 @@ const INEDEXED_KEY = "hopes";
 export function useIndexedDB(): [Photo[] | null, (val: Photo[] | null) => void] {
   const [value, setValue] = useState<Photo[] | null>(null);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     get(INEDEXED_KEY).then((val) => {
       if (val !== null) {
         setValue(val);
