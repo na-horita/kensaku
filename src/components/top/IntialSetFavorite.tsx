@@ -39,7 +39,7 @@ const IntialSetFavorite = () => {
       // Cleanup the timeout when the component unmounts
       clearTimeout(timeoutId);
     };
-  }, [hopes]);
+  }, [hopes, setHopes]);
   return <></>;
 };
 

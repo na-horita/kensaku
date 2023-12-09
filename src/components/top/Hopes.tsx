@@ -2,7 +2,7 @@ import HopesCardHook from "../../organisms/top/HopesCardHook";
 import { useIndexedDB } from "../../features/useIndexedDB";
 
 const Hopes = () => {
-  const [hopes, setHopes] = useIndexedDB();
+  const [hopes,] = useIndexedDB();
   return (
     <>
       {hopes && hopes.length > 0 && (
