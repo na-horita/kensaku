@@ -2,7 +2,7 @@ import { Button } from "react-bootstrap";
 
 type FrequentsButtonProps = {
   word: string;
-  getPhotosbyFrequent: () => void;
+  getPhotosbyFrequent: any;
 };
 
 const FrequentButton = ({ word, getPhotosbyFrequent }: FrequentsButtonProps) => {
