@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect,useCallback } from "react";
 import { useLocation } from "react-router-dom";
 
 import SearchForm from "../components/top/SearchForm";
@@ -18,8 +18,35 @@ const Top = () => {
 
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
-  const keyword:string|null = queryParams.get("keyword");
-  
+  const keyword: string | null = queryParams.get("keyword");
+
+  // 初期値をuseStateで保持している変数のwordにした。そしてこの変数は外部から代入することが可能としている。
+  const searchImages = useCallback(
+    async (word2 = word) => {
+      const inputData: PexelsApiSchema & UnsplashApiSchema = {
+        word: word2,
+        num: 20,
+      };
+
+      // pexels APIのリクエスト 最大８０件まで
+      const pexelsPhotos = await fetchData("Pexels", { ...inputData, num: 25 });
+      // Unsplash APIのリクエスト 最大３０件まで
+      const unsplashPhotos = await fetchData("Unsplash", inputData);
+
+      // PexelsとUnsplashの結果を合わせる。両方共に空ならばnullとする
+      const mergedPhotos: Photo[] | null =
+        pexelsPhotos !== null && unsplashPhotos !== null
+          ? [...pexelsPhotos, ...unsplashPhotos]
+          : null;
+
+      // 作成日の新しい順にソートする
+      sortByNewestCreationDate(mergedPhotos as Photo[]);
+
+      setPhotos(mergedPhotos);
+    },
+    [word]
+  );
+
   useEffect(() => {
     keyword &&
       (async () => {
@@ -28,31 +55,7 @@ const Top = () => {
         await searchImages(keyword);
         setLoading(false);
       })();
-  }, [keyword]);
-
-  // 初期値をuseStateで保持している変数のwordにした。そしてこの変数は外部から代入することが可能としている。
-  const searchImages = async (word2 = word) => {
-    const inputData: PexelsApiSchema & UnsplashApiSchema = {
-      word: word2,
-      num: 20,
-    };
-
-    // pexels APIのリクエスト 最大８０件まで
-    const pexelsPhotos = await fetchData("Pexels", { ...inputData, num: 25 });
-    // Unsplash APIのリクエスト 最大３０件まで
-    const unsplashPhotos = await fetchData("Unsplash", inputData);
-
-    // PexelsとUnsplashの結果を合わせる。両方共に空ならばnullとする
-    const mergedPhotos: Photo[] | null =
-      pexelsPhotos !== null && unsplashPhotos !== null
-        ? [...pexelsPhotos, ...unsplashPhotos]
-        : null;
-
-    // 作成日の新しい順にソートする
-    sortByNewestCreationDate(mergedPhotos as Photo[]);
-
-    setPhotos(mergedPhotos);
-  };
+  }, [keyword, searchImages]);
 
   const getPhotoData = async (e: any) => {
     e.preventDefault();
