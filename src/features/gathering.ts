@@ -15,8 +15,8 @@ import { ApiUnsplashPhoto } from "../ts/unsplash";
 import { match } from "ts-pattern";
 
 //apiデータ取得とオブジェクトの整形
-//第一引数　type SourceType
-//第二引数　PexelsJadgeAliasはsource値に応じて型定義が変更される
+//第一引数 type SourceType
+//第二引数 PexelsJadgeAliasはsource値に応じて型定義が変更される
 export const fetchData = async (
   source: SourceType,
   inputData: PexelsJadgeAlias<typeof source, PexelsApiSchema, UnsplashApiSchema>
