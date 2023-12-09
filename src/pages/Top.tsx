@@ -9,7 +9,6 @@ import Explain from "../components/top/Explain";
 
 import { fetchData, sortByNewestCreationDate } from "../features/gathering";
 import { Photo, PexelsApiSchema, UnsplashApiSchema } from "../ts/photo";
-import IntialSetFavorite from "../components/top/IntialSetFavorite";
 
 const Top = () => {
   const [word, setWord] = useState<string>("");
@@ -68,7 +67,6 @@ const Top = () => {
     <>
       <Explain />
       <div>
-        <IntialSetFavorite />
         <h3>良く検索される一覧</h3>
         <form>
           <FrequentData
