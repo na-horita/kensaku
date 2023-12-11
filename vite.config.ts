@@ -7,7 +7,6 @@ dotenv.config(); // .envファイルを読み込む
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  appType: "mpa",
   plugins: [react()],
   test: {
     globals: true,
