@@ -67,7 +67,7 @@ const Top = () => {
     <>
       <Explain />
       <div>
-        <h3>良く検索される一覧</h3>
+        <h3 className="text-center">良く検索される一覧</h3>
         <form>
           <FrequentData
             setWord={setWord}
@@ -78,7 +78,6 @@ const Top = () => {
         </form>
       </div>
       <SearchForm setWord={setWord} word={word} getPhotoData={getPhotoData} />
-      検索文字:{word}
       <Results photos={photos!} loading={loading} />
       <hr />
       <Hopes />

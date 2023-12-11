@@ -16,12 +16,14 @@ const FrequentCreate = ({
         </Alert>
       )}
 
-      <Form onSubmit={handleSubmit(onSubmit)}>
+      <Form onSubmit={handleSubmit(onSubmit)} className="text-center">
         <Form.Group className="mb-3">
           <Form.Label>
             <span className="pe-2">Name</span>
           </Form.Label>
-          <Form.Text className="text-muted">入力者のお名前をご記入ください</Form.Text>
+          <Form.Text className="text-muted text-center">
+            入力者のお名前をご記入ください
+          </Form.Text>
           <div className="d-flex justify-content-center">
             <Form.Control
               type="text"
@@ -47,7 +49,7 @@ const FrequentCreate = ({
         </Form.Group>
 
         <Form.Group className="mb-3">
-          <Form.Label>
+          <Form.Label className="mx-auto">
             <span className="pe-2">Word</span>
           </Form.Label>
           <Form.Text className="text-muted">登録したいワードをご入力ください。</Form.Text>

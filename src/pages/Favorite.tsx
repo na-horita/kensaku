@@ -4,6 +4,7 @@ import PhotoAlbum from "react-photo-album";
 import Zoom from "react-medium-image-zoom";
 import "react-medium-image-zoom/dist/styles.css";
 import { Photo } from "../ts/photo";
+import FavoriteAllDelete from "../components/favorite/FavoriteAllDelete";
 
 function Favorite() {
   const [hopes, setHopes] = useState<Photo[]>([]);
@@ -36,7 +37,8 @@ function Favorite() {
 
   return (
     <div>
-      <h1>My Favorite Images</h1>
+      <h1 className="text-center">My Favorite Images</h1>
+      <FavoriteAllDelete />
       <PhotoAlbum
         layout="rows"
         spacing={8}

@@ -1,6 +1,6 @@
 const Footer = () => {
   return (
-    <footer>
+    <footer className="text-center">
       <p className="mt-4">
         By <a href="https://unsplash.com/">Unsplash</a>・
         <a href="https://www.pexels.com/ja-jp/">Pexels</a>

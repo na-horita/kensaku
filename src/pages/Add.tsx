@@ -5,7 +5,7 @@ const Contact = () => {
   return (
     <>
       <div className="haedtitle">
-        <h1>良く検索されるワード追加</h1>
+        <h1 className="text-center">良く検索されるワード追加</h1>
       </div>
       <FrequentAdd />
       <hr />

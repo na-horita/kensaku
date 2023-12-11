@@ -11,7 +11,9 @@ const Results = ({ photos, loading }: { photos:Photo[], loading:boolean }) => {
 
   return (
     <>
-      {loading && <RiseLoader color={"#26d146"} size={25} margin={40} />}
+      {loading && (
+        <RiseLoader color={"#26d146"} size={25} margin={40} className="text-center" />
+      )}
 
       {!loading && (
         <ResponsiveMasonry columnsCountBreakPoints={{ 350: 2, 580: 3, 800: 5, 1080: 6 }}>

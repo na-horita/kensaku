@@ -1,7 +1,7 @@
 import { Button } from "react-bootstrap";
 const SearchForm = (props:any) => {
   return (
-    <div className="mt-3">
+    <div className="mt-3 mb-4 text-center">
       <form>
         <input
           type="text"

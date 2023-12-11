@@ -79,7 +79,7 @@ const GetPexels = () => {
     <>
       <TddNav />
       <div>
-        <h2>ピクセルデータの実験</h2>
+        <h2 className="text-center">ピクセルデータの実験</h2>
         <p className="text-center text-lg">(一度の検索は80件まで)</p>
         <div className="flex justify-center gap-x-8 my-6">
           <div>

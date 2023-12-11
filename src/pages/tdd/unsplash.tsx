@@ -86,7 +86,7 @@ const GetPexels = () => {
     <>
       <TddNav />
       <div>
-        <h2>アンスプラッシュデータの実験</h2>
+        <h2 className="text-center">アンスプラッシュデータの実験</h2>
         <p className="text-center text-lg">(一度の検索は30件まで)</p>
 
         <form onSubmit={handleSubmit}>
@@ -117,7 +117,7 @@ const GetPexels = () => {
           <div className="mb-4">
             <button
               type="submit"
-              className=" bg-green-500 text-white rounded-lg px-4 py-2"
+              className=" bg-green-500 text-white rounded-lg px-4 py-2 mx-auto block"
             >
               検索
             </button>
