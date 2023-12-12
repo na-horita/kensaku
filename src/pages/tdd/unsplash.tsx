@@ -1,8 +1,8 @@
 import { useState, useEffect, useLayoutEffect } from "react";
 import { z, ZodError } from "zod";
+import { Slider } from "antd";
 import { mapDataToCustomFormat } from "../../features/gathering";
 import { getApiUnsplashData } from "../../api/photo/getApiUnsplashData";
-import { UnsplashApiSchema } from "../../ts/photo";
 import TddNav from "../../components/tdd/TddNav";
 import { ApiUnsplashPhoto } from "../../ts/unsplash";
 
@@ -10,7 +10,7 @@ const GetPexels = () => {
   const [pexelsData, setPexelsData] = useState<any>([]);
   const [pexelsDataCustom, setPexelsDataCustom] = useState<ApiUnsplashPhoto[]>([]);
 
-  const [inputData, setInputData] = useState({ word: "cat", num: 8 });
+  const [inputData, setInputData] = useState({ word: "cat", num: 12 });
   const [errors, setErrors] = useState<any>(null);
   const [isValidaded, setIsValidaded] = useState<boolean>(false);
 
@@ -76,10 +76,8 @@ const GetPexels = () => {
   };
 
   // 数値入力が変更されたときに呼び出されるハンドラ
-  const handleNumInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { name } = event.target;
-    const value = parseInt(event.target.value, 10); //第二引数は10進数
-    setInputData({ ...inputData, [name]: value });
+  const handleNumInputChange = (sliderVal: number) => {
+    setInputData({ ...inputData, ["num"]: sliderVal });
   };
 
   return (
@@ -90,26 +88,29 @@ const GetPexels = () => {
         <p className="text-center text-lg">(一度の検索は30件まで)</p>
 
         <form onSubmit={handleSubmit}>
-          <div className="flex justify-center gap-x-10 mb-4">
+          <div className="flex justify-center gap-x-10 mb-4 flex-col md:flex-row">
             <div>
               <label htmlFor="word">Word</label>
               <input
                 type="text"
                 name="word"
-                className="border-2 border-slate-400 rounded-md px-2 text-2xl"
+                className="border-2 border-slate-400 rounded-md px-2 text-2xl ml-1"
                 value={inputData.word}
                 onChange={handleWordInputChange}
               />
             </div>
             <div>
-              <label htmlFor="num">Num</label>
-              <input
-                type="number"
-                name="num"
-                className="border-2 border-slate-400 rounded-md px-2 text-2xl"
-                value={inputData.num}
-                onChange={handleNumInputChange}
-              />
+              <div className="min-w-[210px]">
+                <label htmlFor="num">Num</label>
+                <Slider
+                  onChange={(value) => handleNumInputChange(value)}
+                  defaultValue={inputData.num}
+                  tooltip={{ open: true }}
+                  min={1}
+                  max={30}
+                  className="w-4/5 md:w-full mt-0"
+                />
+              </div>
             </div>
           </div>
           {errors?.word && <p className="text-red-700 font-bold">{errors.word}</p>}
