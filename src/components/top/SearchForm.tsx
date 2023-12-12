@@ -6,7 +6,7 @@ const SearchForm = (props:any) => {
         <input
           type="text"
           name="keyword"
-          placeholder="e.g. cat"
+          placeholder="cat"
           onChange={(e) => props.setWord(e.target.value)}
           value={props.word}
           className="border-3 text-2xl px-2 py-1 w-8/12 md:w-auto"
