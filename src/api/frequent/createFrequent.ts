@@ -1,7 +1,7 @@
 import { Frequent } from "../../ts/frequent";
 
 export async function createFrequent(formData: Omit<Frequent, "id">) {
-  const response = await fetch(import.meta.env.VITE_kensaku_express + "/api/frequent", {
+  const response = await fetch(import.meta.env.VITE_kensaku_backend + "/api/frequent", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
