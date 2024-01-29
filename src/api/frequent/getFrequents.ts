@@ -2,7 +2,9 @@ import { Frequent } from "../../ts/frequent";
 
 export const getFrequents = async () => {
   try {
-    const response = await fetch(import.meta.env.VITE_kensaku_backend + "/api/frequent");
+    const response = await fetch(import.meta.env.VITE_kensaku_backend + "/api/frequent", {
+      credentials: "include",
+    });
 
     if (!response.ok) {
       throw new Error("Network response was not ok");
