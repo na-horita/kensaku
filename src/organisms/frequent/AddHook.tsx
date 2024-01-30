@@ -3,8 +3,12 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { Frequent } from "../../ts/frequent";
 import { createFrequent } from "../../api/frequent/createFrequent";
 import FrequentCreate from "../../components/frequent/FrequentCreate";
+import { useRecoilState } from "recoil";
+import { frequentsAtom } from "../../recoil/atoms/frequentsAtom";
+
 
 function AddFrequent() {
+    const [frequents, setFrequents] = useRecoilState(frequentsAtom);
   const {
     register,
     handleSubmit,
@@ -23,17 +27,15 @@ function AddFrequent() {
     return () => clearTimeout(timeout);
   }, [showAlert]);
 
-  const onSubmit: SubmitHandler<Omit<Frequent, "id">> = (data) => {
+  const onSubmit: SubmitHandler<Omit<Frequent, "id">> = async(data) => {
     const newFrequent = { name: data.name, word: data.word };
 
-    createFrequent(newFrequent)
-      .then(() => {
-        reset();
-        setShowAlert(true);
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-      });
+    const newTodo = await createFrequent(newFrequent);
+    if (newTodo) {
+      reset();
+      setShowAlert(true);
+      setFrequents([...frequents, newTodo]);
+    }
   };
 
   return (

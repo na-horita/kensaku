@@ -1,11 +1,12 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import FrequentButton from "../../components/common/FrequentButton";
 import { Frequent } from "../../ts/frequent";
 import { getFrequents } from "../../api/frequent/getFrequents";
+import { useRecoilState } from "recoil";
+import { frequentsAtom } from "../../recoil/atoms/frequentsAtom";
 
 const FrequentData = (props: any) => {
-  const [frequents, setFrequents] = useState<Frequent[]>([]);
-
+  const [frequents,setFrequents] = useRecoilState(frequentsAtom);
   const getFrequentData = async (word:string) => {
     props.setLoading(true);
     props.setWord(word);
@@ -24,7 +25,7 @@ const FrequentData = (props: any) => {
     }
 
     fetchData();
-  }, []);
+  }, [setFrequents]);
 
   return (
     <>
