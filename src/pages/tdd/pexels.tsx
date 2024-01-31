@@ -2,7 +2,7 @@ import { useState, useLayoutEffect } from "react";
 import { z } from "zod";
 import { match } from "ts-pattern";
 import { numPexelsSchema, wordSchema } from "../../zod/photoSchema";
-import { fetchData } from "../../features/gathering";
+import { fetchData } from "../../utils/gathering";
 import { Photo, PexelsApiSchema } from "../../ts/photo";
 import TddNav from "../../components/tdd/TddNav";
 import PexelsTableComp from "../../components/tdd/PexelsTableComp";

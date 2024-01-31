@@ -1,5 +1,5 @@
-import FrequentAdd from "../organisms/frequent/AddHook";
-import FrequentsListHook from "../organisms/frequent/FrequentsListHook";
+import FrequentAdd from "../components/add/AddFrequent";
+import FrequentsLists from "../components/add/FrequentsLists";
 
 const Contact = () => {
   return (
@@ -10,7 +10,7 @@ const Contact = () => {
       <FrequentAdd />
       <hr />
       <div>
-        <FrequentsListHook />
+        <FrequentsLists />
       </div>
     </>
   );

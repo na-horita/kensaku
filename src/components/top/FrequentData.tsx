@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import FrequentButton from "../../components/common/FrequentButton";
+import FrequentButton from "../common/FrequentButton";
 import { Frequent } from "../../ts/frequent";
 import { getFrequents } from "../../api/frequent/getFrequents";
 import { useRecoilState } from "recoil";

@@ -1,4 +1,4 @@
-import { sortByNewestCreationDate } from "../../features/gathering";
+import { sortByNewestCreationDate } from "../../utils/gathering";
 
 describe("並び替えのユニットテスト", () => {
   it("基本の日付並び替え", () => {

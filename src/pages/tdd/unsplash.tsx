@@ -1,7 +1,7 @@
 import { useState, useEffect, useLayoutEffect } from "react";
 import { z, ZodError } from "zod";
 import { Slider } from "antd";
-import { mapDataToCustomFormat } from "../../features/gathering";
+import { mapDataToCustomFormat } from "../../utils/gathering";
 import { getApiUnsplashData } from "../../api/photo/getApiUnsplashData";
 import TddNav from "../../components/tdd/TddNav";
 import { ApiUnsplashPhoto } from "../../ts/unsplash";

@@ -4,7 +4,7 @@ import { Button } from "react-bootstrap";
 import { dateUntilDayJap } from "../../lib/dateFns";
 import { Photo } from "../../ts/photo";
 import { useIndexedDB } from "../../lib/idbkeyval/useIndexedDB";
-import { isFavorite, AddToFavorites } from "../../features/favoriteToggle";
+import { isFavorite, AddToFavorites } from "../../utils/favoriteToggle";
 
 const Results = ({ photos, loading }: { photos:Photo[], loading:boolean }) => {
   const [hopes, setHopes] = useIndexedDB();

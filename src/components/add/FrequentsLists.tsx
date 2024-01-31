@@ -1,9 +1,9 @@
-import FrequentButton from "../../components/common/FrequentButton";
+import FrequentButton from "../common/FrequentButton";
 import { useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { frequentsAtom } from "../../recoil/atoms/frequentsAtom";
 
-function FrequentsListHook() {
+function FrequentsLists() {
   const navigate = useNavigate();
   const [frequents,] = useRecoilState(frequentsAtom);
 
@@ -24,4 +24,4 @@ function FrequentsListHook() {
   );
 }
 
-export default FrequentsListHook;
+export default FrequentsLists;
