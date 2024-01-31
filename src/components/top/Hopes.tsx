@@ -1,5 +1,5 @@
 import HopesCardHook from "../../organisms/top/HopesCardHook";
-import { useIndexedDB } from "../../features/useIndexedDB";
+import { useIndexedDB } from "../../lib/idbkeyval/useIndexedDB";
 
 const Hopes = () => {
   const [hopes,] = useIndexedDB();

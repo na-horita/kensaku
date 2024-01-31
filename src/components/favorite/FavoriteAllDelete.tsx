@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/Button";
-import { useIndexedDB } from "../../features/useIndexedDB";
+import { useIndexedDB } from "../../lib/idbkeyval/useIndexedDB";
 
 const FavoriteAllDelete = () => {
     const [, setHopes] = useIndexedDB();
