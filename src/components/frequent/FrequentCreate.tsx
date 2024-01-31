@@ -1,13 +1,9 @@
 import { Button, Form, Stack, Alert } from "react-bootstrap";
+import useFrequentAddForm from "../../hooks/useFrequentAddForm";
 
-const FrequentCreate = ({
-  showAlert,
-  setShowAlert,
-  handleSubmit,
-  onSubmit,
-  register,
-  errors,
-}: any) => {
+const FrequentCreate = () => {
+  const { showAlert, setShowAlert, handleSubmit, onSubmit, register, errors } = useFrequentAddForm();
+
   return (
     <>
       {showAlert && (

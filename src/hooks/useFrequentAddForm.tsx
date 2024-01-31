@@ -1,13 +1,12 @@
 import { useState, useEffect } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { Frequent } from "../../ts/frequent";
-import { createFrequent } from "../../api/frequent/createFrequent";
-import FrequentCreate from "../frequent/FrequentCreate";
+import { Frequent } from "../ts/frequent";
+import { createFrequent } from "../api/frequent/createFrequent";
 import { useRecoilState } from "recoil";
-import { frequentsAtom } from "../../recoil/atoms/frequentsAtom";
+import { frequentsAtom } from "../recoil/atoms/frequentsAtom";
 
-function AddFrequent() {
-    const [frequents, setFrequents] = useRecoilState(frequentsAtom);
+function useFrequentAddForm() {
+  const [frequents, setFrequents] = useRecoilState(frequentsAtom);
   const {
     register,
     handleSubmit,
@@ -26,7 +25,7 @@ function AddFrequent() {
     return () => clearTimeout(timeout);
   }, [showAlert]);
 
-  const onSubmit: SubmitHandler<Omit<Frequent, "id">> = async(data) => {
+  const onSubmit: SubmitHandler<Omit<Frequent, "id">> = async (data) => {
     const newFrequent = { name: data.name, word: data.word };
 
     const newTodo = await createFrequent(newFrequent);
@@ -37,18 +36,7 @@ function AddFrequent() {
     }
   };
 
-  return (
-    <>
-      <FrequentCreate
-        showAlert={showAlert}
-        setShowAlert={setShowAlert}
-        handleSubmit={handleSubmit}
-        onSubmit={onSubmit}
-        register={register}
-        errors={errors}
-      />
-    </>
-  );
+  return { showAlert, setShowAlert, handleSubmit, onSubmit, register, errors};
 }
 
-export default AddFrequent;
+export default useFrequentAddForm;

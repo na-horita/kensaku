@@ -1,5 +1,6 @@
-import FrequentAdd from "../components/add/AddFrequent";
+
 import FrequentsLists from "../components/add/FrequentsLists";
+import FrequentCreate from "../components/frequent/FrequentCreate";
 
 const Contact = () => {
   return (
@@ -7,7 +8,7 @@ const Contact = () => {
       <div className="haedtitle">
         <h1 className="text-center">良く検索されるワード追加</h1>
       </div>
-      <FrequentAdd />
+      <FrequentCreate />
       <hr />
       <div>
         <FrequentsLists />
