@@ -1,6 +1,6 @@
 
 import FrequentsLists from "../components/add/FrequentsLists";
-import FrequentCreate from "../components/frequent/FrequentCreate";
+import FrequentCreate from "../components/add/FrequentCreate";
 
 const Contact = () => {
   return (
