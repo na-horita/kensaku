@@ -2,10 +2,9 @@ import { useState, useEffect } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { Frequent } from "../../ts/frequent";
 import { createFrequent } from "../../api/frequent/createFrequent";
-import FrequentCreate from "../../components/frequent/FrequentCreate";
+import FrequentCreate from "../frequent/FrequentCreate";
 import { useRecoilState } from "recoil";
 import { frequentsAtom } from "../../recoil/atoms/frequentsAtom";
-
 
 function AddFrequent() {
     const [frequents, setFrequents] = useRecoilState(frequentsAtom);
