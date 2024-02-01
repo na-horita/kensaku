@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { set, get } from "idb-keyval";
 import { Photo } from "../../ts/photo"; 
 import { defaultPhoto } from "./defaultPhoto";
 
 const INEDEXED_KEY = "hopes";
 
-export function useIndexedDB(): [Photo[] | null, (val: Photo[] | null) => void] {
+export function useIndexedDB(): [Photo[] | null, (val: Photo[] | null) => void, () => void] {
   const [value, setValue] = useState<Photo[] | null>(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     get(INEDEXED_KEY).then((val) => {
@@ -31,5 +33,10 @@ export function useIndexedDB(): [Photo[] | null, (val: Photo[] | null) => void] 
     });
   };
 
-  return [value, save];
+  function handleDeleteAll() {
+    save(null); // valueをnullに設定
+    navigate("/");
+  }
+
+  return [value, save, handleDeleteAll];
 }
