@@ -60,6 +60,10 @@ const Explain = () => {
         list-style:none;
         padding-left: 0px;
     }
+    details[open] .details-content li span{
+        font-weight: bold;
+        color: #CE1330;
+    }
     @keyframes fadeIn {
       0% {
         opacity: 0;
@@ -85,10 +89,11 @@ const Explain = () => {
         <div className="details-content">
           <ul>
             <li>
-              検索窓にキーワードを入力して、searchボタンを押すと、UnsplashとPexelsの両方から画像を検索してきます
+              検索窓にキーワードを入力して、searchボタンを押すと、
+              <span>UnsplashとPexels</span>の両方から画像を検索してきます
             </li>
             <li>
-              気に入った画像はお気に入りとして保存することが出来ます。保存した画像は、【トップページのスライダー】か【お気に入りページ】から確認できます
+              気に入った画像はお気に入りとして保存することが出来ます。保存した画像は、<span>【トップページのスライダー】か【お気に入りページ】</span>から確認できます
             </li>
             <li>
               良く検索されるキーワードとしても検索することが出来ます、登録は【ワード追加ページ】から登録できます
